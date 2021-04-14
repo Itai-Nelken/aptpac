@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "THIS SCRIPT IS UNDER DEVELOPMENT AND DOESN'T DO ANYTHING YET!"
+sleep 5
+exit
