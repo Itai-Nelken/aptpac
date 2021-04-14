@@ -1,4 +1,5 @@
-# aptpac
+<img src=icons/aptpac-logo.png alt=aptpac-logo.png /><h1>aptpac</h1>
+
 A simple wrapper for `pacman` with a syntax similar to `apt` to help people transitioning to arch and arch based distros like manjaro.
 
 ## Installation
