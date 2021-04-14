@@ -24,6 +24,9 @@
 #SOFTWARE.
 #
 
+#variables
+appver="0.1-alpha"
+
 while [[ "$#" != 0 ]]; do
 	case $1 in
 		install)
@@ -41,7 +44,7 @@ while [[ "$#" != 0 ]]; do
 		update)
 			pacman -Syu
 		;;
-		autoclean)
+		autoclean|clean)
 			pacman -Sc
 		;;
 		autoremove)
@@ -60,10 +63,12 @@ while [[ "$#" != 0 ]]; do
 			echo "	autoclean - clean up all local caches."
 			echo "	autoremove - remove packages that are no longer needed."
 			echo "	help - show this help."
+			echo "	version - show version and about information."
 		;;
 		version|-v|--version)
-			echo "aptpac - a pacman wrapper that makes it easy apt users to transition to arch linux"
-			echo "version 0.1-alpha"
+			echo "aptpac - A simple wrapper for pacman with a syntax similar to apt to help people transitioning to arch and arch based distros like manjaro."
+			echo "version: $APPVER"
+			echo ' '
 			echo "MIT license"
 			echo "Copyright (c) 2021 Itai Nelken"
 		
