@@ -67,7 +67,7 @@ while [[ "$#" != 0 ]]; do
 		;;
 		version|-v|--version)
 			echo "aptpac - A simple wrapper for pacman with a syntax similar to apt to help people transitioning to arch and arch based distros like manjaro."
-			echo "version: $APPVER"
+			echo "version: $appver"
 			echo ' '
 			echo "MIT license"
 			echo "Copyright (c) 2021 Itai Nelken"
