@@ -38,7 +38,7 @@ while [[ "$#" != 0 ]]; do
 		search)
 			pacman -Ss "$2"
 		;;
-		query)
+		find)
 			pacman -F "$2"
 		;;
 		update)
@@ -58,7 +58,7 @@ while [[ "$#" != 0 ]]; do
 			echo "	install - install a package."
 			echo "	remove - uninstall a package."
 			echo "	search - search a package."
-			echo "	query - (pacman -F) in debian: 'apt-file search'."
+			echo "	find - (pacman -F) in debian: 'apt-file search'."
 			echo "	update - equivalent of 'apt upgdate && apt upgrade' in debian."
 			echo "	autoclean - clean up all local caches."
 			echo "	autoremove - remove packages that are no longer needed."
