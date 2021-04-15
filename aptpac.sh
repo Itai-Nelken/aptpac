@@ -25,7 +25,7 @@
 #
 
 #variables
-appver="0.1.1-alpha"
+appver="0.1.2-alpha"
 
 while [[ "$#" != 0 ]]; do
 	case $1 in
