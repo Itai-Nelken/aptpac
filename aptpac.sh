@@ -27,52 +27,90 @@
 #variables
 appver="0.1.2-alpha"
 
-while [[ "$#" != 0 ]]; do
+#functions
+function help() {
+    echo "USAGE:"
+    echo "	./aptpac.sh [option] [options for the option]"
+    echo "	EXAMPLE: ./aptpac.sh search \"qemu\""
+    echo "AVAILABLE OPTIONS:"
+    echo "	install - install a package."
+    echo "	remove - uninstall a package."
+    echo "	search - search a package."
+    echo "	find - (pacman -F) in debian: 'apt-file search'."
+    echo "	update - equivalent of 'apt upgdate && apt upgrade' in debian."
+    echo "	autoclean - clean up all local caches."
+    echo "	autoremove - remove packages that are no longer needed."
+	echo "	list-installed - list all installed packages."
+    echo "	help - show this help."
+	echo "	version - show version and about information."
+}
+function about() {
+    echo "      APTPAC      "
+    echo "  ==============  "
+    echo "A simple wrapper for pacman with a syntax similar to apt to help people transitioning to arch and arch based distros like manjaro."
+    echo "version: $appver"
+    echo ' '
+    echo "MIT license"
+    echo "Copyright (c) 2021 Itai Nelken"
+}
+
+if [[ "$1" == '' ]]; then
+    about
+    echo ' '
+    help
+	exit 0
+fi
+
+while [[ "$1" != '' ]]; do
 	case $1 in
 		install)
-			pacman -S "$2"
+			shift
+			sudo pacman -S "$@"
+			break
 		;;
 		remove)
-			pacman -Rs "$2"
+			shift
+			sudo pacman -Rs "$@"
+			break
 		;;
 		search)
-			pacman -Ss "$2"
+			shift
+			pacman -Ss "$@"
+			break
 		;;
 		find)
-			pacman -F "$2"
+			shift
+			pacman -F "$@"
+			break
 		;;
 		update)
-			pacman -Syu
+			sudo pacman -Syu
+			break
 		;;
 		autoclean|clean)
-			pacman -Sc
+			sudo pacman -Sc
+			break
 		;;
 		autoremove)
-			pacman -Qdtq | pacman -Rs -
+			sudo pacman -Qdtq | sudo pacman -Rs -
+			break
+		;;
+		list-installed)
+			pacman -Qqe
+			break
 		;;
 		help|-h|--help|-help)
-			echo "USAGE:"
-			echo "	./aptpac.sh [option] [options for the option]"
-			echo "	EXAMPLE: ./aptpac.sh search \"qemu\""
-			echo "AVAILABLE OPTIONS:"
-			echo "	install - install a package."
-			echo "	remove - uninstall a package."
-			echo "	search - search a package."
-			echo "	find - (pacman -F) in debian: 'apt-file search'."
-			echo "	update - equivalent of 'apt upgdate && apt upgrade' in debian."
-			echo "	autoclean - clean up all local caches."
-			echo "	autoremove - remove packages that are no longer needed."
-			echo "	help - show this help."
-			echo "	version - show version and about information."
+			help
+			exit 0
 		;;
 		version|-v|--version)
-			echo "aptpac - A simple wrapper for pacman with a syntax similar to apt to help people transitioning to arch and arch based distros like manjaro."
-			echo "version: $appver"
-			echo ' '
-			echo "MIT license"
-			echo "Copyright (c) 2021 Itai Nelken"
-		
+            about
+            exit 0
+        ;;
+        *)
+            echo -e "\e[1m\e[31minvalid option \"$1\"!\e[0m"
+            help
+            exit 0
 	esac
-	shift
-done
-		
+	#shift
+done	
