@@ -25,13 +25,13 @@
 #
 
 #variables
-appver="0.1.2-alpha"
+appver="0.2.0-alpha"
 
 #functions
 function help() {
     echo "USAGE:"
-    echo "	./aptpac.sh [option] [options for the option]"
-    echo "	EXAMPLE: ./aptpac.sh search \"qemu\""
+    echo "	aptpac [option] [options for the option]"
+    echo "	EXAMPLE: ./aptpac.sh search qemu"
     echo "AVAILABLE OPTIONS:"
     echo "	install - install a package."
     echo "	remove - uninstall a package."
@@ -43,6 +43,8 @@ function help() {
 	echo "	list-installed - list all installed packages."
     echo "	help - show this help."
 	echo "	version - show version and about information."
+	echo " "
+	echo -e "\e[1mIf you don't supply any option, the help and about will be printed.\e[0m"
 }
 function about() {
     echo "      APTPAC      "
