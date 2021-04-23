@@ -1,0 +1,1 @@
+/bin/cc CMakeFiles/aptpac.dir/src/main.c.o -o aptpac  libfunctions.a 

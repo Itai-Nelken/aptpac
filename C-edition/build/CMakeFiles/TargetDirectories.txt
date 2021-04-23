@@ -1,0 +1,9 @@
+/home/itai/Documents/aptpac/C-edition/build/CMakeFiles/install/strip.dir
+/home/itai/Documents/aptpac/C-edition/build/CMakeFiles/install/local.dir
+/home/itai/Documents/aptpac/C-edition/build/CMakeFiles/install.dir
+/home/itai/Documents/aptpac/C-edition/build/CMakeFiles/list_install_components.dir
+/home/itai/Documents/aptpac/C-edition/build/CMakeFiles/rebuild_cache.dir
+/home/itai/Documents/aptpac/C-edition/build/CMakeFiles/uninstall.dir
+/home/itai/Documents/aptpac/C-edition/build/CMakeFiles/edit_cache.dir
+/home/itai/Documents/aptpac/C-edition/build/CMakeFiles/aptpac.dir
+/home/itai/Documents/aptpac/C-edition/build/CMakeFiles/functions.dir
