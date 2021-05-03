@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E rm -f
+RM = /Applications/CMake.app/Contents/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/itai/Documents/aptpac/C-edition
+CMAKE_SOURCE_DIR = /Users/itai/Documents/GitHub/aptpac/C-edition
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/itai/Documents/aptpac/C-edition/build
+CMAKE_BINARY_DIR = /Users/itai/Documents/GitHub/aptpac/C-edition/build
 
 # Utility rule file for uninstall.
 
@@ -67,7 +67,7 @@ include CMakeFiles/uninstall.dir/compiler_depend.make
 include CMakeFiles/uninstall.dir/progress.make
 
 CMakeFiles/uninstall:
-	/usr/bin/cmake -P /home/itai/Documents/aptpac/C-edition/build/cmake_uninstall.cmake
+	/Applications/CMake.app/Contents/bin/cmake -P /Users/itai/Documents/GitHub/aptpac/C-edition/build/cmake_uninstall.cmake
 
 uninstall: CMakeFiles/uninstall
 uninstall: CMakeFiles/uninstall.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/itai/Documents/aptpac/C-edition/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/itai/Documents/aptpac/C-edition /home/itai/Documents/aptpac/C-edition /home/itai/Documents/aptpac/C-edition/build /home/itai/Documents/aptpac/C-edition/build /home/itai/Documents/aptpac/C-edition/build/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/itai/Documents/GitHub/aptpac/C-edition/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/itai/Documents/GitHub/aptpac/C-edition /Users/itai/Documents/GitHub/aptpac/C-edition /Users/itai/Documents/GitHub/aptpac/C-edition/build /Users/itai/Documents/GitHub/aptpac/C-edition/build /Users/itai/Documents/GitHub/aptpac/C-edition/build/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/uninstall.dir/depend
 

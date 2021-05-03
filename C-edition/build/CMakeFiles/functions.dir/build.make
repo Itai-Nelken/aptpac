@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E rm -f
+RM = /Applications/CMake.app/Contents/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/itai/Documents/aptpac/C-edition
+CMAKE_SOURCE_DIR = /Users/itai/Documents/GitHub/aptpac/C-edition
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/itai/Documents/aptpac/C-edition/build
+CMAKE_BINARY_DIR = /Users/itai/Documents/GitHub/aptpac/C-edition/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/functions.dir/depend.make
@@ -72,16 +72,16 @@ include CMakeFiles/functions.dir/flags.make
 CMakeFiles/functions.dir/src/functions.c.o: CMakeFiles/functions.dir/flags.make
 CMakeFiles/functions.dir/src/functions.c.o: ../src/functions.c
 CMakeFiles/functions.dir/src/functions.c.o: CMakeFiles/functions.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itai/Documents/aptpac/C-edition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/functions.dir/src/functions.c.o"
-	/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/functions.dir/src/functions.c.o -MF CMakeFiles/functions.dir/src/functions.c.o.d -o CMakeFiles/functions.dir/src/functions.c.o -c /home/itai/Documents/aptpac/C-edition/src/functions.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/itai/Documents/GitHub/aptpac/C-edition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/functions.dir/src/functions.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/functions.dir/src/functions.c.o -MF CMakeFiles/functions.dir/src/functions.c.o.d -o CMakeFiles/functions.dir/src/functions.c.o -c /Users/itai/Documents/GitHub/aptpac/C-edition/src/functions.c
 
 CMakeFiles/functions.dir/src/functions.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/functions.dir/src/functions.c.i"
-	/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/itai/Documents/aptpac/C-edition/src/functions.c > CMakeFiles/functions.dir/src/functions.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/itai/Documents/GitHub/aptpac/C-edition/src/functions.c > CMakeFiles/functions.dir/src/functions.c.i
 
 CMakeFiles/functions.dir/src/functions.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/functions.dir/src/functions.c.s"
-	/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/itai/Documents/aptpac/C-edition/src/functions.c -o CMakeFiles/functions.dir/src/functions.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/itai/Documents/GitHub/aptpac/C-edition/src/functions.c -o CMakeFiles/functions.dir/src/functions.c.s
 
 # Object files for target functions
 functions_OBJECTS = \
@@ -93,7 +93,7 @@ functions_EXTERNAL_OBJECTS =
 libfunctions.a: CMakeFiles/functions.dir/src/functions.c.o
 libfunctions.a: CMakeFiles/functions.dir/build.make
 libfunctions.a: CMakeFiles/functions.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/itai/Documents/aptpac/C-edition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libfunctions.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/itai/Documents/GitHub/aptpac/C-edition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libfunctions.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/functions.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/functions.dir/link.txt --verbose=$(VERBOSE)
 
@@ -106,6 +106,6 @@ CMakeFiles/functions.dir/clean:
 .PHONY : CMakeFiles/functions.dir/clean
 
 CMakeFiles/functions.dir/depend:
-	cd /home/itai/Documents/aptpac/C-edition/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/itai/Documents/aptpac/C-edition /home/itai/Documents/aptpac/C-edition /home/itai/Documents/aptpac/C-edition/build /home/itai/Documents/aptpac/C-edition/build /home/itai/Documents/aptpac/C-edition/build/CMakeFiles/functions.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/itai/Documents/GitHub/aptpac/C-edition/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/itai/Documents/GitHub/aptpac/C-edition /Users/itai/Documents/GitHub/aptpac/C-edition /Users/itai/Documents/GitHub/aptpac/C-edition/build /Users/itai/Documents/GitHub/aptpac/C-edition/build /Users/itai/Documents/GitHub/aptpac/C-edition/build/CMakeFiles/functions.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/functions.dir/depend
 

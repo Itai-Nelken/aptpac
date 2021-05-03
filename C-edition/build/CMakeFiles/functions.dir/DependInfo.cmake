@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/itai/Documents/aptpac/C-edition/src/functions.c" "CMakeFiles/functions.dir/src/functions.c.o" "gcc" "CMakeFiles/functions.dir/src/functions.c.o.d"
+  "/Users/itai/Documents/GitHub/aptpac/C-edition/src/functions.c" "CMakeFiles/functions.dir/src/functions.c.o" "gcc" "CMakeFiles/functions.dir/src/functions.c.o.d"
   )
 
 # Targets to which this target links.

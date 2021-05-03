@@ -1,2 +1,2 @@
-/bin/ar qc libfunctions.a CMakeFiles/functions.dir/src/functions.c.o
-/bin/ranlib libfunctions.a
+/Library/Developer/CommandLineTools/usr/bin/ar qc libfunctions.a CMakeFiles/functions.dir/src/functions.c.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libfunctions.a

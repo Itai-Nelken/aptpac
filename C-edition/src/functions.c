@@ -6,7 +6,7 @@ void echo(char text[501]) {
     printf("%s\n", text);
 }
 
-int help(void) {
+void help() {
     echo("\e[1mUSAGE:\e[0m");
     echo("	aptpac [option] [options for the option]");
     echo("	\e[1mEXAMPLE:\e[0m aptpac search \"qemu\"");
@@ -24,10 +24,10 @@ int help(void) {
 	echo("\e[1mIf you don't supply any option, the help and about will be printed.\e[0m");
 }
 
-int about(void) {
+void about() {
     echo("\e[1m   APTPAC \e[0m\n ==========");
     echo("A simple wrapper for pacman with a syntax similar to apt to help people transitioning to arch and arch based distros like manjaro.");
-    printf("version: %s\n\n", APPVER);
+    printf("version: %s built on %s%s.\n\n", APPVER, __DATE__, __TIMESTAMP__);
     echo("license: MIT");
     echo("Copyright (c) 2021 Itai Nelken");
 }
