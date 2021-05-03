@@ -30,29 +30,29 @@ SOFTWARE.
 int main(int argc, char **argv) {
     char command[101], app[501];
     while(argc>1) {
-        if(!strcmp(argv[1], "install")) {
+        if(!strcasecmp(argv[1], "install")) {
             if(argv[2]) {
                 strcpy(app, argv[2]);
         } else {
-            fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'install' option passed, but no app provided!\e[0m\n");
+            fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m '%s' option passed, but no app provided!\e[0m\n", argv[1]);
             break;
         }
         strcpy(command, "sudo pacman -S ");
         strcat(command, app);
         system(command);
         break;
-        } else if(!strcmp(argv[1], "remove") || !strcmp(argv[1], "uninstall")) {
+        } else if(!strcasecmp(argv[1], "remove") || !strcasecmp(argv[1], "uninstall")) {
             if(argv[2]) {
                 strcpy(app, argv[2]);
         } else {
-            fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'uninstall' option passed, but no app provided!\e[0m\n");
+            fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'install' option passed, but no app provided!\e[0m\n");
             break;
         }
         strcpy(command, "sudo pacman -Rs ");
         strcat(command, app);
         system(command);
         break;
-        } else if(!strcmp(argv[1], "search")) {
+        } else if(!strcasecmp(argv[1], "search")) {
             if(argv[2]) {
                 strcpy(app, argv[2]);
         } else {
@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
         strcat(command, app);
         system(command);
         break;
-        } else if(!strcmp(argv[1], "find")) {
+        } else if(!strcasecmp(argv[1], "find")) {
             if(argv[2]) {
                 strcpy(app, argv[2]);
         } else {
@@ -74,25 +74,28 @@ int main(int argc, char **argv) {
             strcat(command, app);
             system(command);
             break;
-        } else if(!strcmp(argv[1], "update")) {
-            system("sudo pacman -Syu");
+        } else if(!strcasecmp(argv[1], "update")) {
+            system("sudo pacman -Sy");
             break;
-        } else if(!strcmp(argv[1], "clean") || !strcmp(argv[1], "autoclean")) {
+        } else if(!strcasecmp(argv[1], "upgrade")) {
+            system("sudo pacman -Su");
+            break;
+        } else if(!strcasecmp(argv[1], "clean") || !strcasecmp(argv[1], "autoclean")) {
             system("sudo pacman -Sc");
             break;
-        } else if(!strcmp(argv[1], "autoremove")) {
+        } else if(!strcasecmp(argv[1], "autoremove")) {
             system("sudo pacman -Qdtq | sudo pacman -Rs -");
             break;
-        } else if(!strcmp(argv[1], "list-installed")) {
+        } else if(!strcasecmp(argv[1], "list-installed")) {
             system("pacman -Qqe");
             break;
-        } else if(!strcmp(argv[1], "list-installed")) {
+        } else if(!strcasecmp(argv[1], "list-installed")) {
             system("pacman -Qqe");
             break;
-        } else if(!strcmp(argv[1], "help") || !strcmp(argv[1], "-help") || !strcmp(argv[1], "--help") || !strcmp(argv[1], "-h")) {
+        } else if(!strcasecmp(argv[1], "help") || !strcasecmp(argv[1], "-help") || !strcasecmp(argv[1], "--help") || !strcasecmp(argv[1], "-h")) {
             help();
             break;
-        } else if(!strcmp(argv[1], "version") || !strcmp(argv[1], "-v") || !strcmp(argv[1], "--version")) {
+        } else if(!strcasecmp(argv[1], "version") || !strcasecmp(argv[1], "-v") || !strcasecmp(argv[1], "--version")) {
             about();
             break;
         } else {

@@ -15,7 +15,8 @@ void help() {
     echo("	remove - uninstall a package.");
     echo("	search - search a package.");
     echo("	find - (pacman -F) in debian: 'apt-file search'.");
-    echo("	update - equivalent of 'apt upgdate && apt upgrade' in debian.");
+    echo("	update - equivalent of 'apt upgdate' in debian.");
+	echo("	upgrade - equivalent of 'apt upgrade' in debian.");
     echo("	autoclean - clean up all local caches.");
     echo("	autoremove - remove packages that are no longer needed.");
 	echo("	list-installed - list all installed packages.");
@@ -27,7 +28,7 @@ void help() {
 void about() {
     echo("\e[1m   APTPAC \e[0m\n ==========");
     echo("A simple wrapper for pacman with a syntax similar to apt to help people transitioning to arch and arch based distros like manjaro.");
-    printf("version: %s built on %s%s.\n\n", APPVER, __DATE__, __TIMESTAMP__);
+    printf("version: %s built on %s.\n\n", APPVER, __TIMESTAMP__);
     echo("license: MIT");
     echo("Copyright (c) 2021 Itai Nelken");
 }
