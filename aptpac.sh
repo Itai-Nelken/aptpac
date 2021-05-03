@@ -25,7 +25,7 @@
 #
 
 #variables
-appver="0.2.0-alpha"
+appver="0.2.1-alpha"
 
 #functions
 function help() {
@@ -37,7 +37,8 @@ function help() {
     echo "	remove - uninstall a package."
     echo "	search - search a package."
     echo "	find - (pacman -F) in debian: 'apt-file search'."
-    echo "	update - equivalent of 'apt upgdate && apt upgrade' in debian."
+    echo "	update - equivalent of 'apt upgdate' in debian."
+	echo "	upgrade - equivalent of 'apt upgrade' in debian."
     echo "	autoclean - clean up all local caches."
     echo "	autoremove - remove packages that are no longer needed."
 	echo "	list-installed - list all installed packages."
@@ -86,7 +87,11 @@ while [[ "$1" != '' ]]; do
 			break
 		;;
 		update)
-			sudo pacman -Syu
+			sudo pacman -Sy
+			break
+		;;
+		upgrade)
+			sudo pacman -Su
 			break
 		;;
 		autoclean|clean)
