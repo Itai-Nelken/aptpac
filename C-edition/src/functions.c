@@ -22,13 +22,13 @@ void help() {
 	echo("	list-installed - list all installed packages.");
     echo("	help - show this help.");
 	echo("	version - show version and about information.\n");
-	echo("\e[1mIf you don't supply any option, the help and about will be printed.\e[0m");
+	echo("\e[1moptions are not case sensitive.\e[0m");
 }
 
 void about() {
     echo("\e[1m   APTPAC \e[0m\n ==========");
     echo("A simple wrapper for pacman with a syntax similar to apt to help people transitioning to arch and arch based distros like manjaro.");
-    printf("version: %s built on %s.\n\n", APPVER, __TIMESTAMP__);
+    printf("version: %s built on %s.\n\n", VER, __TIMESTAMP__);
     echo("license: MIT");
     echo("Copyright (c) 2021 Itai Nelken");
 }

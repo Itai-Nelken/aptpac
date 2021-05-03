@@ -25,7 +25,7 @@ SOFTWARE.
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "functions.h" //APPVERR defined in "functions.h"
+#include "functions.h" //VER defined in "functions.h"
 
 int main(int argc, char **argv) {
     char command[101], app[501];
@@ -105,9 +105,10 @@ int main(int argc, char **argv) {
     }
     if(argc==1) {
         fprintf(stderr, "\e[31m\e[1mERROR:\e[0m \e[31mno operation specified!\e[0m\n");
-		about();
-        echo("");
-        help();
+        fprintf(stderr, "\e[1mrun \"%s --help\" for help\e[0m\n", CALLCOMMAND);
+		//about();
+        //echo("");
+        //help();
 	}
 	return 0;
 }
