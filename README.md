@@ -1,9 +1,69 @@
 # aptpac
 
-A simple wrapper for `pacman` with a syntax similar to `apt` to help people transitioning to arch and arch based distros like manjaro.
+AptPac is a program which helps with the transition to Arch Linux and similar.
 
-## Installation
-Go to the <a href="https://github.com/Itai-Nelken/aptpac/releases/latest" target="_blank">latest release</a> and follow the instructions there.
+It simplifies using pacman as it works like the easier to use APT package manager found in Debian based distributions.
 
-## Uninstallation
-Go to the <a href="https://github.com/Itai-Nelken/aptpac/releases/latest" target="_blank">latest release</a> and follow the instructions there.
+The program comes in 2 variants, a bash shell version, and a C code variant.
+The C code variant should be used since C code is quicker and better to use rather than shell scripts.
+
+## Usage
+
+``` bash
+aptpac install $PACKAGENAME 
+aptpac search $PACKAGENAME
+aptpac remove $PACKAGENAME
+```
+
+## **Installation**
+
+Since there are 2 variants of aptpac, there are 2 install methods, please choose the variant you would like, C or Bash
+
+**Guide to installing C aptpac:**
+
+``` bash
+sudo pacman -S cmake make git gcc
+cd $HOME
+git clone https://github.com/Itai-Nelken/aptpac
+cd ./aptpac/C-edition
+mkdir build
+cd build 
+cmake ..
+make
+# Optional however crucial
+sudo make install # This moves aptpac to /usr/local/bin so it can be run easily
+```
+
+**Guide to installing Bash aptpac:**
+
+``` bash
+sudo pacman -S wget
+cd $HOME
+mkdir .aptpac
+wget https://github.com/Itai-Nelken/aptpac/releases/download/0.2.0-alpha/aptpac.sh -O .aptpac/aptpac.sh
+chmod +x .aptpac/aptpac.sh
+echo "alias aptpac=\"~/.aptpac/aptpac.sh\"" >> $HOME/.bashrc
+source .bashrc
+```
+
+## Uninstalling
+
+Choose the correct uninstall method - the one you chose when installing
+
+**Guide to uninstalling C aptpac:**
+
+``` bash
+cd ~/aptpac/C-edition/build
+sudo make uninstall
+cd ~
+sudo rm ./aptpac -r 
+```
+
+**Guide to uninstalling Bash aptpac:**
+
+``` bash
+cd $HOME
+sed -i '/alias aptpac=.*aptpac.*/d' .bashrc
+rm -r .aptpac
+source .bashrc
+```
