@@ -28,11 +28,15 @@ SOFTWARE.
 #include "functions.h" //VER defined in "functions.h"
 
 int main(int argc, char **argv) {
-    char command[101], app[501];
+    char command[101], app[501], cmdflags[4097]="";
     while(argc>1) {
         if(!strcasecmp(argv[1], "install")) {
             if(argv[2]) {
-                strcpy(app, argv[2]);
+                for(int i=2; i<argc; i++) {
+                    strcat(cmdflags, argv[i]);
+                    strcat(cmdflags, " ");
+                }
+                strcpy(app, cmdflags);
         } else {
             fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m '%s' option passed, but no app provided!\e[0m\n", argv[1]);
             break;
@@ -43,7 +47,11 @@ int main(int argc, char **argv) {
         break;
         } else if(!strcasecmp(argv[1], "remove") || !strcasecmp(argv[1], "uninstall")) {
             if(argv[2]) {
-                strcpy(app, argv[2]);
+                for(int i=2; i<argc; i++) {
+                    strcat(cmdflags, argv[i]);
+                    strcat(cmdflags, " ");
+                }
+                strcpy(app, cmdflags);
         } else {
             fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'install' option passed, but no app provided!\e[0m\n");
             break;
@@ -55,18 +63,22 @@ int main(int argc, char **argv) {
         } else if(!strcasecmp(argv[1], "search")) {
             if(argv[2]) {
                 strcpy(app, argv[2]);
-        } else {
-            fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'search' option passed, but no search string provided!\e[0m\n");
-            break;
-        }
+            } else {
+                fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'search' option passed, but no search string provided!\e[0m\n");
+                break;
+            }
         strcpy(command, "sudo pacman -Ss ");
         strcat(command, app);
         system(command);
         break;
         } else if(!strcasecmp(argv[1], "find")) {
             if(argv[2]) {
-                strcpy(app, argv[2]);
-        } else {
+                for(int i=2; i<argc; i++) {
+                    strcat(cmdflags, argv[i]);
+                    strcat(cmdflags, " ");
+                }
+                strcpy(app, cmdflags);
+            } else {
                 fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'find' option passed, but no search string provided!\e[0m\n");
                 break;
             }
