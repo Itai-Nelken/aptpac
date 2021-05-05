@@ -13,5 +13,7 @@
 - add 'purge' option to bash and C edition.
 - fix typo in the help function in the C and bash editions.
 - add 'show' and 'show-all' commands (C and bash editions).
+- CleanMachine1: change the `clean`/`autoclean` from `pacman -Sc` to `pacman -Scc`.
+- CleanMachine1: add `full-upgrade` (same as `upgrade`).
 <hr>
 
