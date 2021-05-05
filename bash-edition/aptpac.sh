@@ -98,12 +98,12 @@ while [[ "$1" != '' ]]; do
 			sudo pacman -Sy
 			break
 		;;
-		upgrade)
+		upgrade|full-upgrade)
 			sudo pacman -Su
 			break
 		;;
 		autoclean|clean)
-			sudo pacman -Sc
+			sudo pacman -Scc
 			break
 		;;
 		autoremove)
