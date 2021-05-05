@@ -26,10 +26,10 @@ jobs:
       - name: Build-amd64
         run: |
           cd C-edition/build/amd64
-          cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+          cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ../..
           make -j4
       - name: Build-arm
         run: |
           cd C-edition/build/arm
-          arm-linux-gnueabi-cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+          arm-linux-gnueabi-cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ../..
           arm-linux-gnueabi-make -j4
