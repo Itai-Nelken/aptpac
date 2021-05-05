@@ -1,11 +1,11 @@
 # aptpac
 
-aptpac is a program which helps with the transition to Arch Linux and similar.
+aptpac is a program which helps with the transition to Arch Linux and Arch based distros like Manjaro.
 
 It simplifies using pacman as it works like the easier to use APT package manager found in Debian based distributions.
 
 The program comes in 2 variants, a bash shell version, and a C code variant.
-It is recommended to use the C code variant since C code is quicker and better than shell scripts.
+It is recommended to use the C code variant since C code is quicker and better than shell scripts. the C variant is more friendly and more feature rich, but the bash version gets new commands befoer as its simpler and easier to debug. 
 
 ## Usage
 
@@ -36,9 +36,8 @@ If you don't supply any option, the help and about will be printed.
 
 Since there are 2 variants of aptpac, there are 2 install methods, please choose the variant you would like:
 
-C (recommended)
-
-Bash
+1) C (recommended)
+2) Bash
 
 **Guide to installing C aptpac:**
 
@@ -60,11 +59,11 @@ sudo make install # This moves aptpac to /usr/local/bin so it can be run easily
 ``` bash
 sudo pacman -S wget
 cd $HOME
-mkdir .aptpac
-wget https://github.com/Itai-Nelken/aptpac/releases/download/0.2.0-alpha/aptpac.sh -O .aptpac/aptpac.sh
+mkdir ~/.aptpac
+wget https://github.com/Itai-Nelken/aptpac/releases/download/2.1/aptpac.sh -O ~/.aptpac/aptpac.sh
 chmod +x .aptpac/aptpac.sh
 echo "alias aptpac=\"~/.aptpac/aptpac.sh\"" >> $HOME/.bashrc
-source .bashrc
+source ~/.bashrc
 ```
 
 ## Uninstalling
