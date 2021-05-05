@@ -1,0 +1,30 @@
+name: Build-armhf
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt -y install build-essential gcc-arm-linux-gnueabihf
+      - name: Configure
+        run: |
+          cd C-edition/
+          mkdir -p build/
+      - name: Build
+        run: |
+          cd C-edition/build/
+          cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+          CC=arm-linux-gnueabihf-gcc make -j4
+          
