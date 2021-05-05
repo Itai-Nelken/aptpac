@@ -1,6 +1,6 @@
 # aptpac
 
-AptPac is a program which helps with the transition to Arch Linux and similar.
+aptpac is a program which helps with the transition to Arch Linux and similar.
 
 It simplifies using pacman as it works like the easier to use APT package manager found in Debian based distributions.
 
