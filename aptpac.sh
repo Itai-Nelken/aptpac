@@ -25,7 +25,7 @@
 #
 
 #variables
-appver="0.3.0"
+appver="1.0-bash"
 
 #functions
 function help() {
