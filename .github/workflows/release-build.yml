@@ -36,15 +36,15 @@ jobs:
       - name: prepare-upload
         run: |
           cd C-edition/build
-          mkdir aptpac-daily/
-          mv ./aptpac aptpac-daily/
-          cd aptpac-daily/
-          echo -e "\naptpac daily build for $DATE
-          =========================================\n" > README.txt
+          mkdir aptpac_$DATE/
+          mv ./aptpac aptpac_$DATE/
+          cd aptpac_$DATE/
+          echo -e "\n aptpac daily build for $DATE
+          ===================================\n" > README.txt
   
       - name: upload
         uses: actions/upload-artifact@v2
         with:
-          name: executable
-          path: C-edition/build/aptpac-daily/
+          name: aptpac_${{ env.DATE }}
+          path: C-edition/build/aptpac_${{ env.DATE }}/
           
