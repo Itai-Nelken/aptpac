@@ -16,12 +16,15 @@ USAGE:
 AVAILABLE OPTIONS:
         install - install a package.
         remove - uninstall a package.
+        purge - uninstall a package along with its configuration files.
         search - search a package.
         find - (`pacman -F`) in debian: `apt-file search`.
         update - equivalent of `apt update` in debian.
         upgrade - equivalent of `apt upgrade` in debian.
         autoclean - clean up all local caches.
         autoremove - remove packages that are no longer needed.
+        show - show the information of a package that is installed.
+        show-all - same as 'show', but shows packages from the repos.
         list-installed - list all installed packages.
         help - show this help.
         version - show version and about information.
