@@ -22,7 +22,7 @@ jobs:
         run: |
           cd C-edition/
           mkdir -p build/
-      - name: Build-amd64
+      - name: Build
         run: |
           cd C-edition/build/
           cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
