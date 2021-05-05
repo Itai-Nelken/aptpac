@@ -75,8 +75,8 @@ Choose the correct uninstall method - the one you chose when installing
 ``` bash
 cd ~/aptpac/C-edition/build
 sudo make uninstall
-cd ~
-sudo rm ./aptpac -r 
+cd $HOME
+sudo rm -r ./aptpac
 ```
 
 **Guide to uninstalling Bash aptpac:**
