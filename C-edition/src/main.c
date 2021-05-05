@@ -104,7 +104,7 @@ int main(int argc, char **argv) {
         } else if(!strcasecmp(argv[1], "update")) {
             system("sudo pacman -Sy");
             break;
-        } else if(!strcasecmp(argv[1], "upgrade" || !strcasecmp(argv[1], "full-upgrade")) {
+        } else if(!strcasecmp(argv[1], "upgrade") || !strcasecmp(argv[1], "full-upgrade")) {
             system("sudo pacman -Su");
             break;
         } else if(!strcasecmp(argv[1], "clean") || !strcasecmp(argv[1], "autoclean")) {
