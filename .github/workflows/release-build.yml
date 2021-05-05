@@ -30,15 +30,19 @@ jobs:
           
       - name: gen-date
         run: echo "DATE=$(date +"%F")" >> $GITHUB_ENV
-          
-      - name: tar-executable
+        
+      - name: prepare-upload
         run: |
           cd C-edition/build
-          tar -czvf $DATE-aptpac.tar.gz ./aptpac
-        
+          mkdir $DATE/
+          mv aptpac $DATE/
+          cd $DATE/
+          echo -e "\naptpac daily build for $DATE
+          =========================================\n" > README.txt
+  
       - name: upload
         uses: actions/upload-artifact@v2
         with:
           name: executable
-          path: C-edition/build/${{ env.DATE }}-aptpac.tar.gz
+          path: C-edition/build/aptpac/${{ env.DATE }}/
           
