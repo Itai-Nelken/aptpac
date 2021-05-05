@@ -103,7 +103,7 @@ while [[ "$1" != '' ]]; do
 			break
 		;;
 		autoclean|clean)
-			sudo pacman -Sc
+			sudo pacman -Scc
 			break
 		;;
 		autoremove)
