@@ -17,19 +17,14 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          sudo apt -y install build-essential gcc-arm-linux-gnueabihf make-arm-linux-gnueabihf cmake-arm-linux-gnueabihf
+          sudo apt -y install build-essential 
       - name: Configure
         run: |
           cd C-edition/
-          mkdir -p build/amd64
-          mkdir -p build/armhf
+          mkdir -p build/
       - name: Build-amd64
         run: |
-          cd C-edition/build/amd64
-          cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ../..
+          cd C-edition/build/
+          cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
           make -j4
-      - name: Build-armhf
-        run: |
-          cd C-edition/build/armhf
-          cmake-arm-linux-gnueabihf -DCMAKE_BUILD_TYPE=RelWithDebInfo ../..
-          make-arm-linux-gnueabihf -j4
+          
