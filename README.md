@@ -10,9 +10,23 @@ It is recommended to use the C code variant since C code is quicker and better t
 ## Usage
 
 ``` bash
-aptpac install $PACKAGENAME 
-aptpac search $PACKAGENAME
-aptpac remove $PACKAGENAME
+**USAGE:**
+        `aptpac [option] [options for the option]`
+        **EXAMPLE:** `aptpac search qemu`
+**AVAILABLE OPTIONS:**
+        `install` - install a package.
+        `remove` - uninstall a package.
+        `search` - search a package.
+        `find` - (`pacman -F`) in debian: `apt-file search`.
+        `update` - equivalent of `apt update` in debian.
+        `upgrade` - equivalent of `apt upgrade` in debian.
+        `autoclean` - clean up all local caches.
+        `autoremove` - remove packages that are no longer needed.
+        `list-installed` - list all installed packages.
+        `help` - show this help.
+        `version` - show version and about information.
+ 
+If you don't supply any option, the help and about will be printed.
 ```
 
 ## **Installation**
