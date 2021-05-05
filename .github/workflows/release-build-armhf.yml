@@ -45,5 +45,5 @@ jobs:
       - name: upload
         uses: actions/upload-artifact@v2
         with:
-          name: aptpac_${{ env.DATE }}
+          name: aptpac-armhf_${{ env.DATE }}
           path: C-edition/build/aptpac-armhf_${{ env.DATE }}/
