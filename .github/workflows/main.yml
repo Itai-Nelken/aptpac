@@ -20,9 +20,10 @@ jobs:
           sudo apt -y install build-essential
       - name: Configure
         run: |
+          cd C-edition/
           mkdir -p build/
       - name: Build
         run: |
-          cd build/
+          cd C-edition/build/
           cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
           make -j4
