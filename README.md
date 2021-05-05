@@ -5,7 +5,7 @@ aptpac is a program which helps with the transition to Arch Linux and similar.
 It simplifies using pacman as it works like the easier to use APT package manager found in Debian based distributions.
 
 The program comes in 2 variants, a bash shell version, and a C code variant.
-The C code variant should be used since C code is quicker and better to use rather than shell scripts.
+It is recommended to use the C code variant since C code is quicker and better than shell scripts.
 
 ## Usage
 
