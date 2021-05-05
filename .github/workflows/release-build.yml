@@ -1,0 +1,44 @@
+name: release-build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt -y install build-essential zip
+      - name: Configure
+        run: |
+          cd C-edition
+          mkdir build
+      - name: Build
+        run: |
+          cd C-edition/build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+          make -j4
+          
+      - name: gen-zipname
+        run: echo "ZIPNAME=$(date +"%F")" >> $GITHUB_ENV
+          
+      - name: zip-executable
+        run: |
+          cd C-edition/build
+          zip $ZIPNAME_aptpac.zip aptpac
+        
+      - name: upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: executable
+          path: C-edition/build/${{ env.ZIPNAME }}_aptpac.zip
+          
