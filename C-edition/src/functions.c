@@ -15,7 +15,7 @@ void help() {
     echo("	remove - uninstall a package.");
     echo("	search - search a package.");
     echo("	find - (pacman -F) in debian: 'apt-file search'.");
-    echo("	update - equivalent of 'apt upgdate' in debian.");
+    echo("	update - equivalent of 'apt update' in debian.");
 	echo("	upgrade - equivalent of 'apt upgrade' in debian.");
     echo("	autoclean - clean up all local caches.");
     echo("	autoremove - remove packages that are no longer needed.");
