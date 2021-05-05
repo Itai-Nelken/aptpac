@@ -60,6 +60,21 @@ int main(int argc, char **argv) {
         strcat(command, app);
         system(command);
         break;
+        } else if(!strcasecmp(argv[1], "purge")) {
+            if(argv[2]) {
+                for(int i=2; i<argc; i++) {
+                    strcat(cmdflags, argv[i]);
+                    strcat(cmdflags, " ");
+                }
+                strcpy(app, cmdflags);
+            } else {
+                fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'purge' option passed, but no app provided!\e[0m\n");
+                break;
+            }
+            strcpy(command, "sudo pacman -Rn ");
+            strcat(command, app);
+            system(command);
+            break;
         } else if(!strcasecmp(argv[1], "search")) {
             if(argv[2]) {
                 strcpy(app, argv[2]);
@@ -101,8 +116,17 @@ int main(int argc, char **argv) {
         } else if(!strcasecmp(argv[1], "list-installed")) {
             system("pacman -Qqe");
             break;
-        } else if(!strcasecmp(argv[1], "list-installed")) {
-            system("pacman -Qqe");
+        } else if(!strcasecmp(argv[1], "show")) {
+            strcpy(command, "pacman -Qi ");
+            strcpy(app, argv[2]);
+            strcat(command, app);
+            system(command);
+            break;
+        } else if(!strcasecmp(argv[1], "show-all")) {
+            strcpy(command, "pacman -Si ");
+            strcpy(app, argv[2]);
+            strcat(command, app);
+            system(command);
             break;
         } else if(!strcasecmp(argv[1], "help") || !strcasecmp(argv[1], "-help") || !strcasecmp(argv[1], "--help") || !strcasecmp(argv[1], "-h")) {
             help();

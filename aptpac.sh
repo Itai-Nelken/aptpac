@@ -25,7 +25,7 @@
 #
 
 #variables
-appver="0.2.1-alpha"
+appver="0.3.0"
 
 #functions
 function help() {
@@ -35,12 +35,15 @@ function help() {
     echo "AVAILABLE OPTIONS:"
     echo "	install - install a package."
     echo "	remove - uninstall a package."
+    echo "	purge - uninstall a package along with its configuration files. in debian (apt): 'apt purge'."
     echo "	search - search a package."
     echo "	find - (pacman -F) in debian: 'apt-file search'."
     echo "	update - equivalent of 'apt update' in debian."
 	echo "	upgrade - equivalent of 'apt upgrade' in debian."
     echo "	autoclean - clean up all local caches."
     echo "	autoremove - remove packages that are no longer needed."
+    echo "	show - show the information of a package that is installed."
+    echo "	show-all - same as 'show', but shows packages from the repos."
 	echo "	list-installed - list all installed packages."
     echo "	help - show this help."
 	echo "	version - show version and about information."
@@ -76,6 +79,11 @@ while [[ "$1" != '' ]]; do
 			sudo pacman -Rs "$@"
 			break
 		;;
+		purge)
+            shift
+            sudo pacman -Rn "$@"
+            break
+        ;;
 		search)
 			shift
 			pacman -Ss "$@"
@@ -106,6 +114,16 @@ while [[ "$1" != '' ]]; do
 			pacman -Qqe
 			break
 		;;
+		show)
+            shift
+            pacman -Qi "$@"
+            break
+        ;;
+        show-all)
+            shift
+            pacman -Si "$@"
+            break
+        ;;
 		help|-h|--help|-help)
 			help
 			exit 0
