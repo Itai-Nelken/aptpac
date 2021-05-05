@@ -17,7 +17,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          sudo apt -y install build-essential zip
+          sudo apt -y install build-essential tar
       - name: Configure
         run: |
           cd C-edition
@@ -28,17 +28,17 @@ jobs:
           cmake -DCMAKE_BUILD_TYPE=Release ..
           make -j4
           
-      - name: gen-zipname
-        run: echo "ZIPNAME=$(date +"%F")" >> $GITHUB_ENV
+      - name: gen-date
+        run: echo "DATE=$(date +"%F")" >> $GITHUB_ENV
           
-      - name: zip-executable
+      - name: tar-executable
         run: |
           cd C-edition/build
-          zip $ZIPNAME_aptpac.zip aptpac
+          tar -czvf $DATE-aptpac.tar.gz ./aptpac
         
       - name: upload
         uses: actions/upload-artifact@v2
         with:
           name: executable
-          path: C-edition/build/${{ env.ZIPNAME }}_aptpac.zip
+          path: C-edition/build/${{ env.DATE }}-aptpac.tar.gz
           
