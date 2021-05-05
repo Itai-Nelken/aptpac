@@ -97,7 +97,7 @@ int main(int argc, char **argv) {
                 fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'find' option passed, but no search string provided!\e[0m\n");
                 break;
             }
-            strcpy(command, "sudo pacman -F ");
+            strcpy(command, "pacman -F ");
             strcat(command, app);
             system(command);
             break;
