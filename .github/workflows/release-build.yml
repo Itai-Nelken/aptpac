@@ -46,5 +46,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: executable
-          path: C-edition/build/aptpac/C-edition/build/aptpac-daily/aptpac
+          path: C-edition/build/aptpac-daily/
           
