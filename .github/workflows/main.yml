@@ -20,15 +20,9 @@ jobs:
           sudo apt -y install build-essential
       - name: Configure
         run: |
-          mkdir -p build/debug
-          mkdir -p build/release
-      - name: Debug Build
+          mkdir -p build/
+      - name: Build
         run: |
-          cd build/debug
-          cmake -DCMAKE_BUILD_TYPE=Debug ../..
-          make -j4
-      - name: Release Build
-        run: |
-          cd build/release
-          cmake -DCMAKE_BUILD_TYPE=Release ../..
+          cd build/
+          cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
           make -j4
