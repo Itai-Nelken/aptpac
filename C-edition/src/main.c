@@ -108,7 +108,7 @@ int main(int argc, char **argv) {
             system("sudo pacman -Su");
             break;
         } else if(!strcasecmp(argv[1], "clean") || !strcasecmp(argv[1], "autoclean")) {
-            system("sudo pacman -Sc");
+            system("sudo pacman -Scc");
             break;
         } else if(!strcasecmp(argv[1], "autoremove")) {
             system("sudo pacman -Qdtq | sudo pacman -Rs -");
