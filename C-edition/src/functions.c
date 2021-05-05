@@ -18,7 +18,9 @@ void help() {
     echo("	find - (pacman -F) in debian: 'apt-file search'.");
     echo("	update - equivalent of 'apt update' in debian.");
 	echo("	upgrade - equivalent of 'apt upgrade' in debian.");
+	echo("	full-upgrade - same as 'upgrade'.");
     echo("	autoclean - clean up all local caches.");
+    echo("	clean - same as 'autoclean'.");
     echo("	autoremove - remove packages that are no longer needed.");
     echo("	show - show the information of a package that is installed.");
 	echo("	show-all - same as 'show', but shows packages from the repos.");

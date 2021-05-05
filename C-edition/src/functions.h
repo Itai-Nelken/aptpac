@@ -1,4 +1,4 @@
-#define VER "2.1"
+#define VER "2.1.1"
 #define CALLCOMMAND "./aptpac"
 
 void echo(char text[501]);

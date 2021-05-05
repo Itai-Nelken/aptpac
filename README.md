@@ -21,7 +21,9 @@ AVAILABLE OPTIONS:
         find - (`pacman -F`) in debian: `apt-file search`.
         update - equivalent of `apt update` in debian.
         upgrade - equivalent of `apt upgrade` in debian.
-        autoclean - clean up all local caches.
+        full-upgrade - same as 'upgrade'.
+        autoclean - clean up pacman caches.
+        clean - same as 'autoclean'.
         autoremove - remove packages that are no longer needed.
         show - show the information of a package that is installed.
         show-all - same as 'show', but shows packages from the repos.
@@ -48,7 +50,7 @@ git clone https://github.com/Itai-Nelken/aptpac
 cd ./aptpac/C-edition
 mkdir build
 cd build 
-cmake ..
+cmake .. -DCMAKE_BUILD_TYPE=Release
 make
 # Optional however crucial
 sudo make install # This moves aptpac to /usr/local/bin so it can be run easily

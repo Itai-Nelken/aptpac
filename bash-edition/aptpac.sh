@@ -25,7 +25,7 @@
 #
 
 #variables
-appver="2.1-bash"
+appver="2.1.1-bash"
 
 #functions
 function help() {
@@ -40,7 +40,9 @@ function help() {
     echo "	find - (pacman -F) in debian: 'apt-file search'."
     echo "	update - equivalent of 'apt update' in debian."
 	echo "	upgrade - equivalent of 'apt upgrade' in debian."
-    echo "	autoclean - clean up all local caches."
+	echo "	full-upgrade - same as 'upgrade'."
+    echo "	autoclean - clean up pacman caches."
+    echo "	clean - same as 'autoclean'."
     echo "	autoremove - remove packages that are no longer needed."
     echo "	show - show the information of a package that is installed."
     echo "	show-all - same as 'show', but shows packages from the repos."
