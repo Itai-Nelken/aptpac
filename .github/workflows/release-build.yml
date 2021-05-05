@@ -17,11 +17,13 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          sudo apt -y install build-essential tar
+          sudo apt -y install build-essential
+          
       - name: Configure
         run: |
           cd C-edition
           mkdir build
+          
       - name: Build
         run: |
           cd C-edition/build
@@ -44,5 +46,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: executable
-          path: C-edition/build/aptpac/${{ env.DATE }}/
+          path: C-edition/build/aptpac/C-edition/build/${{ env.DATE }}/
           
