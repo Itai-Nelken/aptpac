@@ -97,10 +97,10 @@ source .bashrc
 
 ## Daily builds
 
-Daily builds for x64 and armhf are available in the 'actions' tab of this repo, click on 'build-release' or 'build-release-armhf',
+Daily builds for x64 and armhf are now available, these can be found in the actions tab on the aptpac repo, once you have clicked on the actions tab, click on 'build-release' or 'build-release-armhf' then
 click on the latest build with a green ✔️, scroll down to the 'artifacts' section, and click on the zip there.
 keep in mind you need a github account to download them.
 
 ## Build checks
 
-Build checks for arm64, armhf, and x64 are run for every commit and pr. you can see the status in the badges at the top of the readme.
+Build checks for ARM64, ARMhf, and X64 are run for every commit and pr. you can see the status in the badges at the top of the README.
