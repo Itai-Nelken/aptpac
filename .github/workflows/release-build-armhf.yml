@@ -1,0 +1,50 @@
+name: release-build-armhf
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt -y install build-essential
+          
+      - name: Configure
+        run: |
+          cd C-edition
+          mkdir build
+          
+      - name: Build
+        run: |
+          cd C-edition/build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+          make -j4
+          
+      - name: gen-date
+        run: echo "DATE=$(date +"%F")" >> $GITHUB_ENV
+        
+      - name: prepare-upload
+        run: |
+          cd C-edition/build
+          mkdir aptpac_$DATE/
+          mv ./aptpac aptpac_$DATE/
+          cd aptpac_$DATE/
+          echo -e "\n aptpac daily build for $DATE
+          ===================================\n" > README.txt
+  
+      - name: upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: aptpac_${{ env.DATE }}
+          path: C-edition/build/aptpac_${{ env.DATE }}/
+          
