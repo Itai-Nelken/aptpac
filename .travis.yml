@@ -2,7 +2,8 @@ language: c
 arch:
   - amd64
   - arm64 
-os: linux 
+os: linux
+dist: focal
 
 compiler:
   - gcc
