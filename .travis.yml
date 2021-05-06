@@ -1,0 +1,14 @@
+language: c
+
+compiler:
+  - gcc
+
+before_script:
+  - cd C-edition
+  - mkdir build/
+  - cd build
+  - cmake -DCMAKE_BUILD_TYPE=Release ..
+
+script:
+  - make
+  - sudo make install
