@@ -23,6 +23,8 @@ jobs:
       uses: docker/setup-qemu-action@v1
       with:
         platforms: arm64
+    - name: install-dependencies
+      run: sudo apt install -y build-essential
     - name: Run prebuild outside of QEMU emulator
       run: |
         cd C-edition/
