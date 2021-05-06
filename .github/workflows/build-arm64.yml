@@ -28,4 +28,4 @@ jobs:
     - name: Build for arm64 (aka arm64v8)
       uses: docker://arm64v8/node:14-buster
       with:
-        args: bash -c "sudo apt install build-essential -y && cd C-edition && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make"
+        args: bash -c "apt install build-essential -y && cd C-edition && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make"
