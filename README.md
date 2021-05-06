@@ -1,4 +1,5 @@
 # aptpac
+![Build status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build?label=Build%20x64&style=flat-square) ![Build-armhf status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-armhf?label=Build%20armhf&style=flat-square)
 
 aptpac is a program which helps with the transition to Arch Linux and Arch based distros like Manjaro.
 
