@@ -25,13 +25,7 @@ jobs:
         platforms: arm64
     - name: install-dependencies
       run: sudo apt install -y build-essential
-    - name: Run prebuild outside of QEMU emulator
-      run: |
-        cd C-edition/
-        mkdir build
-        cd build
-        cmake -DCMAKE_BUILD_TYPE=Releaase ..
     - name: Build for arm64 (aka arm64v8)
       uses: docker://arm64v8/node:14-buster
       with:
-        args: bash -c "cd C-edition/build && make"
+        args: bash -c "cd C-edition && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make"
