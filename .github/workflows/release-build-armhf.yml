@@ -36,9 +36,9 @@ jobs:
       - name: prepare-upload
         run: |
           cd C-edition/build
-          mkdir aptpac_$DATE_armhf/
-          mv ./aptpac aptpac_$DATE_armhf/
-          cd aptpac_$DATE_armhf/
+          mkdir aptpac-armhf_$DATE/
+          mv ./aptpac aptpac-armhf_$DATE/
+          cd aptpac-armhf_$DATE/
           echo -e "\n armhf aptpac daily build for $DATE
           ===================================\n" > README.txt
   
@@ -46,5 +46,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: aptpac_${{ env.DATE }}
-          path: C-edition/build/aptpac_${{ env.DATE }}_armhf/
+          path: C-edition/build/aptpac-armhf_${{ env.DATE }}/
           
