@@ -1,4 +1,4 @@
-/*
+/*********************
 MIT License
 
 Copyright (c) 2021 Itai Nelken
@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+*********************/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -82,7 +82,7 @@ int main(int argc, char **argv) {
                 fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'search' option passed, but no search string provided!\e[0m\n");
                 break;
             }
-        strcpy(command, "sudo pacman -Ss ");
+        strcpy(command, "pacman -Ss ");
         strcat(command, app);
         system(command);
         break;
