@@ -4,6 +4,7 @@ compiler:
   - gcc
 
 before_script:
+  - sudo apt install build-essential -y
   - cd C-edition
   - mkdir build/
   - cd build
