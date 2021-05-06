@@ -1,4 +1,8 @@
 language: c
+arch:
+  - amd64
+  - arm64 
+os: linux 
 
 compiler:
   - gcc
