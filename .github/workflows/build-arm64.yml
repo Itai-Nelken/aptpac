@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Build-arm64
 
 # Controls when the action will run. 
 on:
@@ -32,4 +32,4 @@ jobs:
     - name: Build for arm64 (aka arm64v8)
       uses: docker://arm64v8/node:14-buster
       with:
-        args: bash -c "make"
+        args: bash -c "cd C-edition/build && make"
