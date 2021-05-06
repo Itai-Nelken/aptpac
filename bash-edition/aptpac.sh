@@ -71,6 +71,15 @@ fi
 
 while [[ "$1" != '' ]]; do
 	case $1 in
+		--learning-mode*)
+			MODE=$(echo $1 | sed -e 's/^[^=]*=//g')
+			if [[ "$MODE" == "on" ]]; then
+				echo "learning mode on"
+			elif [[ "$MODE" == "off" ]]; then
+				echo "learning mode off"
+			fi
+			shift
+		;;
 		install)
 			shift
 			sudo pacman -S "$@"
