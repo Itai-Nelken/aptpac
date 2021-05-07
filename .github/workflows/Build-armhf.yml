@@ -31,14 +31,14 @@ jobs:
       - name: prepare-upload
         run: |
           cd C-edition/build
-          mkdir aptpac-arm64_$DATE/
-          mv ./aptpac aptpac-arm64_$DATE/
-          cd aptpac-arm64_$DATE/
-          echo -e "\n arm64 aptpac daily build for $DATE
+          mkdir aptpac-armv7_$DATE/
+          mv ./aptpac aptpac-armv7_$DATE/
+          cd aptpac-armv7_$DATE/
+          echo -e "\n armv7 aptpac daily build for $DATE
           ===================================\n" > README.txt
   
       - name: upload
         uses: actions/upload-artifact@v2
         with:
-          name: aptpac-arm64_${{ env.DATE }}
-          path: C-edition/build/aptpac-arm64_${{ env.DATE }}/
+          name: aptpac-armv7_${{ env.DATE }}
+          path: C-edition/build/aptpac-armv7_${{ env.DATE }}/
