@@ -25,4 +25,9 @@ jobs:
             cmake ..
             make -j4
             file aptpac
+      - name: upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: aptpac-arm64
+          path: C-edition/build/aptpac
             
