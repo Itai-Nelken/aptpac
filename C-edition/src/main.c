@@ -43,6 +43,9 @@ int main(int argc, char **argv) {
         }
         strcpy(command, "sudo pacman -S ");
         strcat(command, app);
+#ifdef LEARN
+        printf("The command being run is: \e[1m%s\e[0m\n", command);
+#endif
         system(command);
         break;
         } else if(!strcasecmp(argv[1], "remove") || !strcasecmp(argv[1], "uninstall")) {
@@ -58,6 +61,9 @@ int main(int argc, char **argv) {
         }
         strcpy(command, "sudo pacman -Rs ");
         strcat(command, app);
+#ifdef LEARN
+        printf("The command being run is: \e[1m%s\e[0m\n", command);
+#endif
         system(command);
         break;
         } else if(!strcasecmp(argv[1], "purge")) {
@@ -73,6 +79,9 @@ int main(int argc, char **argv) {
             }
             strcpy(command, "sudo pacman -Rn ");
             strcat(command, app);
+#ifdef LEARN
+            printf("The command being run is: \e[1m%s\e[0m\n", command);
+#endif
             system(command);
             break;
         } else if(!strcasecmp(argv[1], "search")) {
@@ -84,6 +93,9 @@ int main(int argc, char **argv) {
             }
         strcpy(command, "pacman -Ss ");
         strcat(command, app);
+#ifdef LEARN
+        printf("The command being run is: \e[1m%s\e[0m\n", command);
+#endif
         system(command);
         break;
         } else if(!strcasecmp(argv[1], "find")) {
@@ -99,33 +111,68 @@ int main(int argc, char **argv) {
             }
             strcpy(command, "pacman -F ");
             strcat(command, app);
+#ifdef LEARN
+            printf("The command being run is: \e[1m%s\e[0m\n", command);
+#endif
             system(command);
             break;
         } else if(!strcasecmp(argv[1], "update")) {
+#ifdef LEARN
+            printf("The command being run is: \e[1msudo pacman -Sy\e[0m\n");
+#endif
             system("sudo pacman -Sy");
             break;
         } else if(!strcasecmp(argv[1], "upgrade") || !strcasecmp(argv[1], "full-upgrade")) {
+#ifdef LEARN
+            printf("The command being run is: \e[1msudo pacman -Su\e[0m\n");
+#endif
             system("sudo pacman -Su");
             break;
         } else if(!strcasecmp(argv[1], "clean") || !strcasecmp(argv[1], "autoclean")) {
+#ifdef LEARN
+            printf("The command being run is: \e[1msudo pacman -Scc\e[0m\n");
+#endif
             system("sudo pacman -Scc");
             break;
         } else if(!strcasecmp(argv[1], "autoremove")) {
+#ifdef LEARN
+            printf("The command being run is: \e[1msudo pacman -Qdtg | sudo pacman -Rs -\e[0m\n");
+#endif
             system("sudo pacman -Qdtq | sudo pacman -Rs -");
             break;
         } else if(!strcasecmp(argv[1], "list-installed")) {
+#ifdef LEARN
+            printf("The command being run is: \e[1msudo pacman -Qqe\e[0m\n");
+#endif
             system("pacman -Qqe");
             break;
         } else if(!strcasecmp(argv[1], "show")) {
+            if(argv[2]) {
             strcpy(command, "pacman -Qi ");
             strcpy(app, argv[2]);
             strcat(command, app);
+            } else {
+                fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'show' option passed, but no package provided \e[0m\n");
+                break;
+            }
+                
+#ifdef LEARN
+            printf("The command being run is: \e[1m%s\e[0m\n", command);
+#endif
             system(command);
             break;
         } else if(!strcasecmp(argv[1], "show-all")) {
+            if(argv[2]) {
             strcpy(command, "pacman -Si ");
             strcpy(app, argv[2]);
             strcat(command, app);
+            } else {
+                fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'show-all' option passed, but no package provided \e[0m\n");
+                break;
+            }
+#ifdef LEARN
+            printf("The command being run is: \e[1m%s\e[0m\n", command);
+#endif
             system(command);
             break;
         } else if(!strcasecmp(argv[1], "help") || !strcasecmp(argv[1], "-help") || !strcasecmp(argv[1], "--help") || !strcasecmp(argv[1], "-h")) {
