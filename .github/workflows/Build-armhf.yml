@@ -1,4 +1,4 @@
-name: release-build-armhf
+name: Build-armhf
 
 on:
   push:
