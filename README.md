@@ -41,7 +41,7 @@ If you don't supply any option, the help and about will be printed.
 
 Since there are 2 variants of aptpac, there are 2 install methods, please choose the variant you would like:
 
-1) C (recommended)
+1) C (recommended)<br>
 2) Bash
 
 **Guide to installing C aptpac:**
