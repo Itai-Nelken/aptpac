@@ -2,6 +2,10 @@
 
 ![Build status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build?label=Build%20x64&style=flat-square) ![Build-armhf status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-armhf?label=Build%20armhf&style=flat-square) ![Build-arm64 status badge](https://img.shields.io/travis/com/Itai-Nelken/aptpac?label=Build%20arm64&style=flat-square)
 
+
+![latest release badge](https://img.shields.io/github/v/release/Itai-Nelken/aptpac?include_prereleases&style=flat-square) ![license badge](https://img.shields.io/github/license/Itai-Nelken/aptpac?style=flat-square) ![Build-x64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-x64?label=Build%20x64&style=flat-square) ![Build-arm64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-arm64?label=Build%20arm64&style=flat-square) ![Build-armhf status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-armhf?label=Build%20armhf&style=flat-square)
+
+
 aptpac is a program which helps with the transition to Arch Linux and Arch based distros like Manjaro.
 
 It simplifies using pacman as it works like the easier to use APT package manager found in Debian based distributions.

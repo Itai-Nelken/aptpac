@@ -1,0 +1,39 @@
+name: Build-arm64
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+jobs:
+  build-arm64:
+    runs-on: ubuntu-latest
+    name: Build-arm64 
+    steps:
+      - uses: actions/checkout@v2
+      - uses: darsvador/run-on-arch-action@v1.0.10
+        with:
+          architecture: aarch64
+          distribution: ubuntu20.04
+          run: |
+            DEBIAN_FRONTEND=noninteractive apt update
+            DEBIAN_FRONTEND=noninteractive apt install build-essential cmake gcc make -y
+            cd C-edition/
+            mkdir build
+            cd build
+            cmake ..
+            make -j4
+            echo "DATE=$(date +"%F")" >> $GITHUB_ENV
+            mkdir aptpac-arm64_$DATE/
+            mv ./aptpac aptpac-arm64_$DATE/
+            cd aptpac-arm64_$DATE/
+            echo -e "\n arm64 aptpac daily build for $DATE
+            ===================================\n" > README.txt
+            
+      - name: upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: aptpac-arm64_${{ env.DATE }}
+          path: C-edition/build/aptpac-arm64_${{ env.DATE }}/
+          

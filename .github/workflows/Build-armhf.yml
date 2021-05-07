@@ -16,15 +16,32 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          sudo apt update
-          sudo apt -y install build-essential 
-      - name: Configure
-        run: |
-          cd C-edition/
-          mkdir -p build/
+          DEBIAN_FRONTEND=noninteractive sudo apt update
+          DEBIAN_FRONTEND=noninteractive sudo apt -y install build-essential cmake
+          
       - name: Build
         run: |
-          cd C-edition/build/
-          cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+          cd C-edition/
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
           make -j4
+          
+      - name: gen-date
+        run: echo "DATE=$(date +"%F")" >> $GITHUB_ENV
+        
+      - name: prepare-upload
+        run: |
+          cd C-edition/build
+          mkdir aptpac-armhf_$DATE/
+          mv ./aptpac aptpac-armhf_$DATE/
+          cd aptpac-armhf_$DATE/
+          echo -e "\n armhf aptpac daily build for $DATE
+          ===================================\n" > README.txt
+  
+      - name: upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: aptpac-armhf_${{ env.DATE }}
+          path: C-edition/build/aptpac-armhf_${{ env.DATE }}/
           
