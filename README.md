@@ -33,8 +33,8 @@ AVAILABLE OPTIONS:
         list-installed - list all installed packages.
         help - show this help.
         version - show version and about information.
- 
-If you don't supply any option, the help and about will be printed.
+        
+ options are not case sensitive (C version only).
 ```
 
 ## Installation
