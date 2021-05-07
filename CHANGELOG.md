@@ -15,5 +15,6 @@
 - add 'show' and 'show-all' commands (C and bash editions).
 - CleanMachine1: change the `clean`/`autoclean` from `pacman -Sc` to `pacman -Scc`.
 - CleanMachine1: add `full-upgrade` (same as `upgrade`).
+### 10-11/5/2021
+- add workflows for github-actions for daily builds for each commit and pr and for checking if compilation is succesfull (for C-edition).
 <hr>
-
