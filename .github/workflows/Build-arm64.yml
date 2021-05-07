@@ -18,7 +18,7 @@ jobs:
           distribution: ubuntu20.04
           run: |
             DEBIAN_FRONTEND=noninteractive apt update
-            DEBIAN_FRONTEND=noninteractive apt install build-essential -y
+            DEBIAN_FRONTEND=noninteractive apt install build-essential cmake gcc make -y
             cd C-edition/
             mkdir build
             cd build
