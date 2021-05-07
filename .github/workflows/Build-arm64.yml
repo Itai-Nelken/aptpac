@@ -23,5 +23,6 @@ jobs:
             mkdir build
             cd build
             cmake ..
-            make
+            make -j4
+            file aptpac
             
