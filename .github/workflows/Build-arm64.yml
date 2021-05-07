@@ -12,7 +12,7 @@ jobs:
     name: Build-arm64 
     steps:
       - uses: actions/checkout@v2
-      - uses: uraimo/run-on-arch-action@v1.0.10
+      - uses: darsvador/run-on-arch-action@v1.0.10
         with:
           architecture: aarch64
           distribution: ubuntu20.04
