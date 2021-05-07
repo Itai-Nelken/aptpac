@@ -24,19 +24,13 @@ jobs:
             cd build
             cmake ..
             make -j4
+            echo "DATE=$(date +"%F")" >> $GITHUB_ENV
+            mkdir aptpac-arm64_$DATE/
+            mv ./aptpac aptpac-arm64_$DATE/
+            cd aptpac-arm64_$DATE/
+            echo -e "\n arm64 aptpac daily build for $DATE
+            ===================================\n" > README.txt
             
-      - name: gen-date
-        run: echo "DATE=$(date +"%F")" >> $GITHUB_ENV
-        
-      - name: prepare-upload
-        run: |
-          cd C-edition/build
-          mkdir aptpac-arm64_$DATE/
-          mv ./aptpac aptpac-arm64_$DATE/
-          cd aptpac-arm64_$DATE/
-          echo -e "\n arm64 aptpac daily build for $DATE
-          ===================================\n" > README.txt
-  
       - name: upload
         uses: actions/upload-artifact@v2
         with:
