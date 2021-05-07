@@ -1,7 +1,22 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(aptpac VERSION 0.1)
+project(aptpac VERSION 2.1.1)
 
+option(CALLCOMMAND "The command to use when calling aptpac e.g './aptpac' or 'aptpac'" ${CALLCOMMAND})
+
+if(CALLCOMMAND STREQUAL "./aptpac")
+    add_compile_definitions(CALLCOMMAND="./aptpac")
+elseif(CALLCOMMAND STREQUAL "aptpac")
+    add_compile_definitions(CALLCOMMAND="aptpac")
+else()
+    message(WARNING )
+    execute_process(COMMAND 
+        ${CMAKE_COMMAND} -E env CLICOLOR_FORCE=1
+        ${CMAKE_COMMAND} -E cmake_echo_color --red --bold "Unknown option for 'CALLCOMMAND'! using default './aptpac'"
+    )
+    add_compile_definitions(CALLCOMMAND="./aptpac")
+endif()
+    
 #functions.h
 add_library(
 	functions

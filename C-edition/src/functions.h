@@ -1,5 +1,5 @@
 #define VER "2.1.1"
-#define CALLCOMMAND "./aptpac"
+//#define CALLCOMMAND "./aptpac" //defined in CMakeLists.txt
 
 void echo(char text[501]);
 void help();
