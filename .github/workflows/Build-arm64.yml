@@ -24,7 +24,6 @@ jobs:
             cd build
             cmake ..
             make -j4
-            file aptpac
       - name: upload
         uses: actions/upload-artifact@v2
         with:
