@@ -17,16 +17,13 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          sudo apt -y install build-essential
-          
-      - name: Configure
-        run: |
-          cd C-edition
-          mkdir build
+          DEBIAN_FRONTEND-noninteractive sudo apt -y install build-essential cmake
           
       - name: Build
         run: |
-          cd C-edition/build
+          cd C-edition/
+          mkdir build
+          cd build
           cmake -DCMAKE_BUILD_TYPE=Release ..
           make -j4
           
