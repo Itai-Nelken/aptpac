@@ -106,3 +106,4 @@ keep in mind you need a github account to download them.
 ## Build checks
 
 Build checks for arm64, armhf, and X86-64 are run for every commit and pr. you can see the status in the badges at the top of the README.
+The check are not run for README updates.
