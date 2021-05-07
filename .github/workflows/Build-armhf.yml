@@ -1,30 +1,44 @@
-name: Build-armhf
+name: Build-armv7l
 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+    
 jobs:
-  build:
-    runs-on: self-hosted
-
+  build-arm64:
+    runs-on: ubuntu-latest
+    name: Build-armv7l
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Install Dependencies
+      - uses: actions/checkout@v2
+      - uses: darsvador/run-on-arch-action@v1.0.10
+        with:
+          architecture: armv7l
+          distribution: ubuntu20.04
+          run: |
+            DEBIAN_FRONTEND=noninteractive apt update
+            DEBIAN_FRONTEND=noninteractive apt install build-essential cmake gcc make -y
+            cd C-edition/
+            mkdir build
+            cd build
+            cmake ..
+            make -j4
+            
+      - name: gen-date
+        run: echo "DATE=$(date +"%F")" >> $GITHUB_ENV
+        
+      - name: prepare-upload
         run: |
-          sudo apt update
-          sudo apt -y install build-essential 
-      - name: Configure
-        run: |
-          cd C-edition/
-          mkdir -p build/
-      - name: Build
-        run: |
-          cd C-edition/build/
-          cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
-          make -j4
-          
+          cd C-edition/build
+          mkdir aptpac-arm64_$DATE/
+          mv ./aptpac aptpac-arm64_$DATE/
+          cd aptpac-arm64_$DATE/
+          echo -e "\n arm64 aptpac daily build for $DATE
+          ===================================\n" > README.txt
+  
+      - name: upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: aptpac-arm64_${{ env.DATE }}
+          path: C-edition/build/aptpac-arm64_${{ env.DATE }}/
