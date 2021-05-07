@@ -53,7 +53,7 @@ git clone https://github.com/Itai-Nelken/aptpac
 cd ./aptpac/C-edition
 mkdir build
 cd build 
-cmake .. -DCMAKE_BUILD_TYPE=Release
+cmake -DCMAKE_BUILD_TYPE=Release -DCALLCOMMAND="aptpac" ..
 make
 # Optional however crucial
 sudo make install # This moves aptpac to /usr/local/bin so it can be run easily
