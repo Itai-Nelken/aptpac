@@ -6,7 +6,7 @@ aptpac is a program which helps with the transition to Arch Linux and Arch based
 It simplifies using pacman as it works like the easier to use APT package manager found in Debian based distributions.
 
 The program comes in 2 variants, a bash shell version, and a C code variant.
-It is recommended to use the C code variant since C code is quicker and better than shell scripts. the C variant is more friendly and more feature rich, but the bash version gets new commands befoer as its simpler and easier to debug. 
+It is recommended to use the C code variant since C code is quicker and better than shell scripts. the C variant is more friendly and more feature rich, but the bash version gets new commands before as its simpler and easier to debug. 
 
 ## Usage
 
@@ -103,4 +103,4 @@ keep in mind you need a github account to download them.
 
 ## Build checks
 
-Build checks for ARM64, ARMhf, and X64 are run for every commit and pr. you can see the status in the badges at the top of the README.
+Build checks for ARM64, ARMhf, and X86-64 are run for every commit and pr. you can see the status in the badges at the top of the README.
