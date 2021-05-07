@@ -1,0 +1,25 @@
+name: Build-arm64
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+jobs:
+  build-arm64:
+    runs-on: ubuntu-latest
+    name: Build-arm64 
+    steps:
+      - uses: actions/checkout@v2
+      - uses: uraimo/run-on-arch-action@v1.0.10
+        with:
+          architecture: aarch64
+          distribution: ubuntu20.04
+          run: |
+            cd C-edition/
+            mkdir build
+            cd build
+            cmake ..
+            make
+            
