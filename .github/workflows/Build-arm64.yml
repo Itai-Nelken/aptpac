@@ -17,7 +17,7 @@ jobs:
           architecture: aarch64
           distribution: ubuntu20.04
           run: |
-            sudo apt install cmake make gcc -y
+            apt install cmake make gcc -y
             cd C-edition/
             mkdir build
             cd build
