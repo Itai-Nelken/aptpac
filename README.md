@@ -1,6 +1,6 @@
 # aptpac
 
-![latest release badge](https://img.shields.io/github/v/release/Itai-Nelken/aptpac?include_prereleases&style=flat-square) ![license badge](https://img.shields.io/github/license/Itai-Nelken/aptpac?style=flat-square) ![Build-x64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-x64?label=Build%20x64&style=flat-square) ![Build-arm64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-arm64?label=Build%20arm64&style=flat-square) ![Build-armhf status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-armhf?label=Build%20armhf&style=flat-square)
+[![latest release badge](https://img.shields.io/github/v/release/Itai-Nelken/aptpac?include_prereleases&style=flat-square)](github.com/Itai-Nelken/aptpac/releases/latest) [![license badge](https://img.shields.io/github/license/Itai-Nelken/aptpac?style=flat-square)](https://github.com/Itai-Nelken/aptpac/blob/main/LICENSE) ![Build-x64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-x64?label=Build%20x64&style=flat-square) ![Build-arm64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-arm64?label=Build%20arm64&style=flat-square) ![Build-armhf status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-armhf?label=Build%20armhf&style=flat-square)
 
 
 aptpac is a program which helps with the transition to Arch Linux and Arch based distros like Manjaro.
@@ -53,7 +53,7 @@ git clone https://github.com/Itai-Nelken/aptpac
 cd ./aptpac/C-edition
 mkdir build
 cd build 
-cmake .. -DCMAKE_BUILD_TYPE=Release
+cmake -DCMAKE_BUILD_TYPE=Release -DCALLCOMMAND="aptpac" ..
 make
 # Optional however crucial
 sudo make install # This moves aptpac to /usr/local/bin so it can be run easily
