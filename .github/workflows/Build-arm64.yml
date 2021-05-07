@@ -18,7 +18,6 @@ jobs:
         with:
           architecture: aarch64
           distribution: ubuntu20.04
-          githubToken: ${{ github.token }}
           run: |
             DEBIAN_FRONTEND=noninteractive apt update
             DEBIAN_FRONTEND=noninteractive apt install build-essential cmake gcc make -y
