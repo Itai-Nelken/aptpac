@@ -1,12 +1,14 @@
 # aptpac
+
 ![latest release badge](https://img.shields.io/github/v/release/Itai-Nelken/aptpac?include_prereleases&style=flat-square) ![license badge](https://img.shields.io/github/license/Itai-Nelken/aptpac?style=flat-square) ![Build-x64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-x64?label=Build%20x64&style=flat-square) ![Build-arm64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-arm64?label=Build%20arm64&style=flat-square) ![Build-armhf status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-armhf?label=Build%20armhf&style=flat-square)
+
 
 aptpac is a program which helps with the transition to Arch Linux and Arch based distros like Manjaro.
 
 It simplifies using pacman as it works like the easier to use APT package manager found in Debian based distributions.
 
 The program comes in 2 variants, a bash shell version, and a C code variant.
-It is recommended to use the C code variant since C code is quicker and better than shell scripts. the C variant is more friendly and more feature rich, but the bash version gets new commands befoer as its simpler and easier to debug. 
+It is recommended to use the C code variant since C code is quicker and better than shell scripts. the C variant is more friendly and more feature rich, but the bash version gets new commands before as its simpler and easier to debug.
 
 ## Usage
 
@@ -97,10 +99,10 @@ source .bashrc
 
 ## Daily builds
 
-Daily builds for x64 and armhf are available in the 'actions' tab of this repo, click on 'build-release' or 'build-release-armhf',
+Daily builds for x64, arm64, and armhf are now available, these can be found in the actions tab on the aptpac repo, once you have clicked on the actions tab, click on 'Build-x64', 'Build-arm64', or 'Build-armhf' then
 click on the latest build with a green ✔️, scroll down to the 'artifacts' section, and click on the zip there.
 keep in mind you need a github account to download them.
 
 ## Build checks
 
-Build checks for arm64, armhf, and x64 are run for every commit and pr. you can see the status in the badges at the top of the readme.
+Build checks for arm64, armhf, and X86-64 are run for every commit and pr. you can see the status in the badges at the top of the README.
