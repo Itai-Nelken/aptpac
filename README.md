@@ -58,8 +58,12 @@ make
 # Optional however crucial
 sudo make install # This moves aptpac to /usr/local/bin so it can be run easily
 ```
+
+<summary>
+        <details> Learning Mode </details>     
 if you wan't to enable 'learning mode' (print the commands being run), add `-DLEARN=1` before the `..` in the `cmake` line.
 
+</summary
 **Guide to installing Bash aptpac:**
 
 ``` bash
