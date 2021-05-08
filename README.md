@@ -59,11 +59,11 @@ make
 sudo make install # This moves aptpac to /usr/local/bin so it can be run easily
 ```
 
-<summary>
-        <details> Learning Mode </details>     
-if you wan't to enable 'learning mode' (print the commands being run), add `-DLEARN=1` before the `..` in the `cmake` line.
+<details>
+<summary><b>To uninstall Pi-Apps</b></summary>
+if you want to enable 'learning mode' which prints the commands being run, add  ` -DLEARN=1 ` before the .. in the cmake line during installation.
+</details>
 
-</summary>
 **Guide to installing Bash aptpac:**
 
 ``` bash
