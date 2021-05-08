@@ -44,7 +44,7 @@ Since there are 2 variants of aptpac, there are 2 install methods, please choose
 1) C (recommended)<br>
 2) Bash
 
-**Guide to installing C aptpac:**
+### Guide to installing C aptpac:
 
 ``` bash
 sudo pacman -S cmake make git gcc
@@ -58,18 +58,13 @@ make
 # Optional however crucial
 sudo make install # This moves aptpac to /usr/local/bin so it can be run easily
 ```
-
-<details>
-        
-<summary><b>Learning Mode</b></summary>
-        
-if you want to enable 'learning mode' which prints the commands being run, add  `-DLEARN=1` before the .. in the `cmake` line during installation so it looks like this:<br>
+#### Learning mode (C-edition only)
+If you want to enable 'learning mode' which prints the commands being run, add  `-DLEARN=1` before the .. in the `cmake` line during installation so it looks like this:<br>
 ```bash
 cmake -DLEARN=1 -DCALLCOMMAND="aptpac" -DCMAKE_BUILD_TYPE=Release ..
 ```
-</details>
 
-**Guide to installing Bash aptpac:**
+### Guide to installing Bash aptpac:
 
 ``` bash
 sudo pacman -S wget
@@ -85,7 +80,7 @@ source ~/.bashrc
 
 Choose the correct uninstall method - the one you chose when installing
 
-**Guide to uninstalling C aptpac:**
+### Guide to uninstalling C aptpac:
 
 ``` bash
 cd ~/aptpac/C-edition/build
@@ -94,7 +89,7 @@ cd $HOME
 sudo rm -r ./aptpac
 ```
 
-**Guide to uninstalling Bash aptpac:**
+### Guide to uninstalling Bash aptpac:
 
 ``` bash
 cd $HOME
