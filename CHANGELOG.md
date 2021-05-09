@@ -20,7 +20,7 @@
 - error and exit if no packages are provided in `show` and `show-all` commands (C-edition).
 - add `-DLEARN=1` and `-DCALLCOMMAND="xxx"` to CMakeLists.txt to compile with learning mode on and the command to use as the program name when printing the help respectively (C-edition)
 ### 09/05/2021
-- If no option is passed for `CALLCOMMAND`, use default `aptpac` value, if a value that isn't `aptpac` or `./aptpac` is given, gie a warning and use default `aptpac` as well.
+- If no option is passed for `CALLCOMMAND`, use default `aptpac` value, if a value that isn't `aptpac` or `./aptpac` is given, give a warning and use default `aptpac` as well.
 - Improvement to about function (shown when running `aptpac --version`).
 - Bumped version to 2.2
 <hr>
