@@ -33,7 +33,7 @@ void help() {
 void about() {
     echo("\e[1m   APTPAC \e[0m\n ==========");
     echo("A simple wrapper for pacman with a syntax similar to apt to help people transitioning to arch and arch based distros like manjaro.");
-    printf("version: %s built on %s.\n\n", VER, __TIMESTAMP__);
+    printf("\e[1mversion:\e[0m %s built on %s.\n\n", VER, __TIMESTAMP__);
     echo("license: MIT");
     echo("Copyright (c) 2021 Itai Nelken");
 }

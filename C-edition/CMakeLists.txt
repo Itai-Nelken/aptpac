@@ -1,23 +1,29 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(aptpac VERSION 2.2)
+project(aptpac VERSION 2.3)
 
 option(CALLCOMMAND "The command to use when calling aptpac e.g './aptpac' or 'aptpac'" ${CALLCOMMAND})
 option(LEARN "Print the commands being run so you can learn how to use pacman" ${LEARN})
 
+#CALLCOMMAND
 if(CALLCOMMAND STREQUAL "./aptpac")
     add_compile_definitions(CALLCOMMAND="./aptpac")
 elseif(CALLCOMMAND STREQUAL "aptpac")
+    add_compile_definitions(CALLCOMMAND="aptpac")
+elseif(CALLCOMMAND STREQUAL "OFF")
+    message(STATUS "Using default value for 'CALLCOMMAND'...")
     add_compile_definitions(CALLCOMMAND="aptpac")
 else()
     message(WARNING )
     execute_process(COMMAND 
         ${CMAKE_COMMAND} -E env CLICOLOR_FORCE=1
-        ${CMAKE_COMMAND} -E cmake_echo_color --red --bold "Unknown option for 'CALLCOMMAND'! using default './aptpac'"
+        ${CMAKE_COMMAND} -E cmake_echo_color --red --bold "Unknown option for 'CALLCOMMAND'! using default 'aptpac'"
     )
-    add_compile_definitions(CALLCOMMAND="./aptpac")
+    add_compile_definitions(CALLCOMMAND="aptpac")
 endif()
+#LEARN
 if(LEARN)
+    message(STATUS "Configuring with learning mode on...")
     add_compile_definitions(LEARN)
 endif()
     
