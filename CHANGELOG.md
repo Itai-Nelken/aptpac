@@ -23,4 +23,6 @@
 - If no option is passed for `CALLCOMMAND`, use default `aptpac` value, if a value that isn't `aptpac` or `./aptpac` is given, give a warning and use default `aptpac` as well.
 - Improvement to about function (shown when running `aptpac --version`).
 - Bumped version to 2.2
+- Improved foundation for learning mode setting saving in bash edition.
+- add experimental makefile for bash edition.
 <hr>

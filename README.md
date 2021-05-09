@@ -70,7 +70,7 @@ cmake -DLEARN=1 -DCALLCOMMAND="aptpac" -DCMAKE_BUILD_TYPE=Release ..
 sudo pacman -S wget
 cd $HOME
 mkdir ~/.aptpac
-wget https://github.com/Itai-Nelken/aptpac/releases/download/2.1/aptpac.sh -O ~/.aptpac/aptpac.sh
+wget https://github.com/Itai-Nelken/aptpac/releases/download/2.2/aptpac.sh -O ~/.aptpac/aptpac.sh
 chmod +x .aptpac/aptpac.sh
 echo "alias aptpac=\"~/.aptpac/aptpac.sh\"" >> $HOME/.bashrc
 source ~/.bashrc
