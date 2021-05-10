@@ -50,6 +50,8 @@ function help() {
 	echo "	list-installed - list all installed packages."
 	echo "	help - show this help."
 	echo "	version - show version and about information."
+	echo "SETTINGS:"
+	echo "	--learning-mode=<on|off> - accepts 'on' or 'off' as values. turns learning mode on or off."
 	echo " "
 	echo -e "\e[1mIf you don't supply any option, the help and about will be printed.\e[0m"
 }
