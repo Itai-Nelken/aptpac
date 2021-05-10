@@ -36,6 +36,8 @@ AVAILABLE OPTIONS:
         
  options are not case sensitive (C version only).
 ```
+### Bash version only (for now):
+`--learning-mode=<on|off>` - accepts 'on' or 'off' as values. turns learning mode on or off.
 
 ## Installation
 
