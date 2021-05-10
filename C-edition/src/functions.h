@@ -5,3 +5,4 @@
 void echo(char text[501]);
 void help();
 void about();
+void config(char opt[10], char **conf);
