@@ -25,13 +25,14 @@
 #
 
 #variables
-appver="2.2-bash"
+appver="2.3-bash"
+CALLCOMMAND="./aptpac.sh"
 
 #functions
 function help() {
 	echo "USAGE:"
-	echo "	aptpac [option] [options for the option]"
-	echo "	EXAMPLE: ./aptpac.sh search qemu"
+	echo "	$CALLCOMMAND [option] [options for the option]"
+	echo "	EXAMPLE: $CALLCOMMAND search qemu"
 	echo "AVAILABLE OPTIONS:"
 	echo "	install - install a package."
 	echo "	remove - uninstall a package."
@@ -62,21 +63,72 @@ function about() {
 	echo "Copyright (c) 2021 Itai Nelken"
 }
 
+function config() {
+#	SAVE:
+#	$1=save
+#	$2=setting to add to config
+#	$3=optional text to printed
+#	DELETE:
+#	$1=delete
+#	$2=setting to delete
+#	$3=optional text to print.
+#	LOAD:
+#	$1=load
+#	$2=setting to load
+#	$3=setting name when loading
+#
+	local DIR="$(pwd)"
+	if [[ ! -d "${HOME}/.config/aptpac/" ]]; then
+		mkdir "${HOME}/.config/aptpac/"
+	fi
+	local CONF="${HOME}/.config/aptpac"
+	cd "$CONF"
+	if [[ ! -f config ]]; then
+		touch config
+	fi
+	if [[ "$1" == "save" ]]; then
+		echo "$2" >> config
+		if [[ ! -z "$3" ]]; then
+			echo -e "$3"
+		fi
+	elif [[ "$1" == "delete" ]]; then
+		sed -i "/$2/d" config
+		if [[ ! -z "$3" ]]; then
+			echo -e "$3"
+		fi
+	elif [[ "$1" == "load" ]]; then
+		if [[ "$(cat config | grep $2)" == "$2" ]]; then
+			export SETTING=$3
+		else
+			echo -e "\e[31m\e[1mERROR: \e[0m\e[31mfailed to find requested setting!\e[0m"
+			exit 1
+		fi
+	elif [[ "$1" == "load-all" ]]; then
+		export SETTING="$(cat config)"
+	fi
+	cd "$DIR"
+}
+
 if [[ "$1" == '' ]]; then
-	about
-	echo ' '
-	help
+	echo -e "\e[31m\e[1mERROR:\e[0m\e[31m no operation specified!\e[0m"
+	echo -e "\e[1mrun \"$CALLCOMMAND --help\" for help\e[0m"
 	exit 0
 fi
-
 while [[ "$1" != '' ]]; do
+	config load-all
+	case $SETTING in
+		learn)
+			export LEARN=1
+		;;
+	esac
 	case $1 in
 		--learning-mode*)
 			MODE=$(echo $1 | sed -e 's/^[^=]*=//g')
 			if [[ "$MODE" == "on" ]]; then
+				config save "learn"
 				echo -e "learning mode on"
-				export APTPAC_LEARN=1 #doesn't work... TODO: find some way to save and load the setting
 			elif [[ "$MODE" == "off" ]]; then
+				config delete "learn"
 				echo "learning mode off"
 			fi
 			shift
@@ -182,7 +234,6 @@ while [[ "$1" != '' ]]; do
         ;;
         *)
             echo -e "\e[1m\e[31minvalid option \"$1\"!\e[0m"
-            help
             exit 0
 	esac
 	#shift
