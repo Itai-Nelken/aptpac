@@ -10,6 +10,9 @@ It simplifies using pacman as it works like the easier to use APT package manage
 The program comes in 2 variants, a bash shell version, and a C code variant.
 It is recommended to use the C code variant since C code is quicker and better than shell scripts. the C variant is more friendly and more feature rich, but the bash version gets new commands before as its simpler and easier to debug.
 
+## Note
+This program has nothing to do with the other projects named `aptpac` like [this one](https://github.com/FascodeNet/aptpac). please don't ask for support for other `aptpac`'s or ask for support for this `aptpac` in the other `aptpac`'s repositories.
+
 ## Usage
 
 ```

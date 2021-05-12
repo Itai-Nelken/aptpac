@@ -40,7 +40,6 @@ void about() {
 
 void config(char opt[10], char **conf) {
 /*****************
-function config() {
 #	SAVE:
 #	$1=save
 #	$2=setting to add to config
@@ -84,6 +83,5 @@ function config() {
 		export SETTING="$(cat config)"
 	fi
 	cd "$DIR"
-}
 ****************/
 }
