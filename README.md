@@ -105,7 +105,7 @@ source .bashrc
 
 ## Reviews
 
-<a href="https://github.com/CleanMachine1" target="_blank">CleanMachine1</a> - aptpac is a great piece of software, making the move to arch easier (the better Linux)
+<a href="https://github.com/CleanMachine1" target="_blank">CleanMachine1</a> - aptpac is a great piece of software, making the move to arch easier (the better Linux in my opinion).
 
 ## Daily builds
 
