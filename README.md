@@ -1,6 +1,6 @@
 # aptpac
 
-[![latest release badge](https://img.shields.io/github/v/release/Itai-Nelken/aptpac?include_prereleases&style=flat-square)](github.com/Itai-Nelken/aptpac/releases/latest) [![license badge](https://img.shields.io/github/license/Itai-Nelken/aptpac?style=flat-square)](https://github.com/Itai-Nelken/aptpac/blob/main/LICENSE) ![Build-x64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-x64?label=Build%20x64&style=flat-square) ![Build-arm64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-arm64?label=Build%20arm64&style=flat-square) ![Build-armhf status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-armhf?label=Build%20armhf&style=flat-square)
+[![latest release badge](https://img.shields.io/github/v/release/Itai-Nelken/aptpac?include_prereleases&style=flat-square)](github.com/Itai-Nelken/aptpac/releases/latest) [![license badge](https://img.shields.io/github/license/Itai-Nelken/aptpac?style=flat-square)](https://github.com/Itai-Nelken/aptpac/blob/main/LICENSE) ![Build-x64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-x64?label=Build%20x64&style=flat-square) ![Build-arm64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-arm64?label=Build%20arm64&style=flat-square) ![Build-armhf status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-armhf?label=Build%20armhf&style=flat-square) ![repository size badge](https://img.shields.io/github/repo-size/Itai-Nelken/aptpac?style=flat-square)
 
 
 aptpac is a program which helps with the transition to Arch Linux and Arch based distros like Manjaro.
@@ -11,7 +11,7 @@ The program comes in 2 variants, a bash shell version, and a C code variant.
 It is recommended to use the C code variant since C code is quicker and better than shell scripts. the C variant is more friendly and more feature rich, but the bash version gets new commands before as its simpler and easier to debug.
 
 ## Note
-This program has nothing to do with the other projects named `aptpac` like [this one](https://github.com/FascodeNet/aptpac). please don't ask for support for other `aptpac`'s or ask for support for this `aptpac` in the other `aptpac`'s repositories.
+This program has nothing to do with the other projects named `aptpac` like [this one](https://github.com/FascodeNet/aptpac). please don't ask for support for other `aptpac`'s in this repository or ask for support for this `aptpac` in the other `aptpac`'s repositories.
 
 ## Usage
 
