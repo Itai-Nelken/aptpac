@@ -25,7 +25,7 @@
 #
 
 #variables
-appver="2.3-bash"
+appver="2.3.1-bash"
 CALLCOMMAND="./aptpac.sh"
 
 #functions
@@ -58,10 +58,9 @@ function help() {
 function about() {
 	echo "      APTPAC      "
 	echo "  ==============  "
-	echo "A simple wrapper for pacman with a syntax similar to apt to help people transitioning to arch and arch based distros like manjaro."
-	echo "version: $appver"
-	echo ' '
-	echo "MIT license"
+	echo "A simple wrapper for pacman with a syntax similar to apt to help people transitioning to Arch and Arch based distros like Manjaro."
+	echo -e "Version: $appver\n"
+	echo "License: MIT"
 	echo "Copyright (c) 2021 Itai Nelken"
 }
 
@@ -132,6 +131,8 @@ while [[ "$1" != '' ]]; do
 			elif [[ "$MODE" == "off" ]]; then
 				config delete "learn"
 				echo "learning mode off"
+			else
+				echo -e "\e[31m\e[1mERROR:\e[0m\e[31m Invalid option '$MODE' for option '--learning-mode'!\e[0m"
 			fi
 			shift
 		;;

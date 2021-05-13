@@ -1,0 +1,24 @@
+# Maintainer: Itai-Nelken <itainelken@gmail.com>
+
+pkgname=aptpac
+pkgver=2.3
+pkgrel=1
+pkgdesc="A simple pacman wrapper with a syntax similar to apt."
+arch=('any')
+provides=('aptpac')
+_repo="aptpac"
+_author="Itai-Nelken"
+url="https://github.com/Itai-Nelken/aptpac"/
+license=('MIT')
+makedepends=('cmake')
+source=("${pkgname%-git}::git+https://github.com/${_author}/${_repo}.git")
+md5sums=('SKIP')
+build() {
+	cmake -B build -S "$pkgname/C-edition/" -DCMAKE_BUILD_TYPE=Release -DCALLCOMMAND="aptpac" -Wno-dev
+	make -C build
+}
+
+package() {
+	make -C build DESTDIR="$pkgdir" install
+	sudo install -Dm644 "$srcdir/build/aptpac" "/usr/bin/aptpac"
+}

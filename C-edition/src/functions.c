@@ -9,7 +9,7 @@ void echo(char text[501]) {
 void help() {
 	echo("\e[1mUSAGE:\e[0m");
 	echo("	aptpac [option] [options for the option]");
-	echo("	\e[1mEXAMPLE:\e[0m aptpac search \"qemu\"");
+	echo("	\e[1mEXAMPLE:\e[0m aptpac search qemu");
 	echo("\e[1mAVAILABLE OPTIONS:\e[0m");
 	echo("	install - install a package.");
 	echo("	remove - uninstall a package.");
@@ -32,9 +32,9 @@ void help() {
 
 void about() {
 	echo("\e[1m   APTPAC \e[0m\n ==========");
-	echo("A simple wrapper for pacman with a syntax similar to apt to help people transitioning to arch and arch based distros like manjaro.");
-	printf("\e[1mversion:\e[0m %s built on %s.\n\n", VER, __TIMESTAMP__);
-	echo("license: MIT");
+	echo("A simple wrapper for pacman with a syntax similar to apt to help people transitioning to Arch and Arch based distros like Manjaro.");
+	printf("\e[1mVersion:\e[0m %s built on %s.\n\n", VER, __TIMESTAMP__);
+	echo("License: MIT");
 	echo("Copyright (c) 2021 Itai Nelken");
 }
 
