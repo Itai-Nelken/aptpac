@@ -25,7 +25,7 @@
 #
 
 #variables
-appver="2.3.1-bash"
+appver="2.4-bash"
 CALLCOMMAND="./aptpac.sh"
 
 #functions
@@ -35,6 +35,7 @@ function help() {
 	echo "	EXAMPLE: $CALLCOMMAND search qemu"
 	echo "AVAILABLE OPTIONS:"
 	echo "	install - install a package."
+	echo "	install-local - install local packages."
 	echo "	remove - uninstall a package."
 	echo "	purge - uninstall a package along with its configuration files. in debian (apt): 'apt purge'."
 	echo "	search - search a package."
@@ -142,6 +143,14 @@ while [[ "$1" != '' ]]; do
 				echo -e "The command being run is: \e[1msudo pacman -S \"$@\"\e[0m"
 			fi
 			sudo pacman -S "$@"
+			break
+		;;
+		install-local)
+			shift
+			if [[ "$LEARN" == 1 ]]; then
+				echo -e "The command being run is \e[1msudo pacman -U \"$@\"\e[0m"
+			fi
+			sudo pacman -U "$@"
 			break
 		;;
 		remove)

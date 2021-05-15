@@ -48,6 +48,24 @@ int main(int argc, char **argv) {
 #endif
         system(command);
         break;
+		} else if(!strcasecmp(argv[1], "install-local")) {
+            if(argv[2]) {
+                for(int i=2; i<argc; i++) {
+                    strcat(cmdflags, argv[i]);
+                    strcat(cmdflags, " ");
+                }
+                strcpy(app, cmdflags);
+        } else {
+            fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'install-local' option passed, but no package(s) provided!\e[0m\n");
+            break;
+        }
+        strcpy(command, "sudo pacman -U ");
+        strcat(command, app);
+#ifdef LEARN
+        printf("The command being run is: \e[1m%s\e[0m\n", command);
+#endif
+        system(command);
+        break;
         } else if(!strcasecmp(argv[1], "remove") || !strcasecmp(argv[1], "uninstall")) {
             if(argv[2]) {
                 for(int i=2; i<argc; i++) {

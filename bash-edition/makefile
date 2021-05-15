@@ -1,4 +1,4 @@
-.SILENT: make install uninstall help
+.SILENT: make install uninstall
 make:
 	echo -e "\e[1mUSAGE: run 'make install' to install and 'make uninstall' to uninstall.\e[0m"
 

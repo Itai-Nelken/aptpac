@@ -12,6 +12,7 @@ void help() {
 	echo("	\e[1mEXAMPLE:\e[0m aptpac search qemu");
 	echo("\e[1mAVAILABLE OPTIONS:\e[0m");
 	echo("	install - install a package.");
+	echo("	install-local - install a local package. accpets the path to the package as a argument.");
 	echo("	remove - uninstall a package.");
 	echo("	purge - uninstall a package along with its configuration files.");
 	echo("	search - search a package.");
