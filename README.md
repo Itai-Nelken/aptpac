@@ -40,7 +40,7 @@ AVAILABLE OPTIONS:
         
  options are not case sensitive (C version only).
 ```
-### Bash version only (for now):
+### Bash version only (for now, scroll down for learning mode in the C edition):
 `--learning-mode=<on|off>` - accepts 'on' or 'off' as values. turns learning mode on or off.
 
 ## Installation
@@ -64,7 +64,7 @@ make
 # Optional however crucial
 sudo make install # This moves aptpac to /usr/local/bin so it can be run easily
 ```
-#### Learning mode (C-edition only)
+#### Learning mode (for C-edition only, for bash edition, go [here](https://github.com/Itai-Nelken/aptpac#bash-version-only-for-now))
 If you want to enable 'learning mode' which prints the commands being run, add  `-DLEARN=1` before the .. in the `cmake` line during installation so it looks like this:<br>
 ```bash
 cmake -DLEARN=1 -DCALLCOMMAND="aptpac" -DCMAKE_BUILD_TYPE=Release ..
