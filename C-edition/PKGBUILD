@@ -20,5 +20,8 @@ build() {
 
 package() {
 	make -C build DESTDIR="$pkgdir" install
-	sudo install -Dm644 "$srcdir/build/aptpac" "/usr/bin/aptpac"
+	sudo install -Dm755 "$srcdir/build/aptpac" "/usr/bin/aptpac"
+	sudo install -Dm644 "$srcdir/aptpac/README.md" "/usr/share/doc/aptpac/README.md"
+	sudo install -Dm644 "$srcdir/aptpac/CHANGELOG.md" "/usr/share/doc/aptpac/CHANGELOG.md"
+	sudo install -Dm644 "$srcdir/aptpac/LICENSE" "/usr/share/doc/aptpac/LICENSE"
 }
