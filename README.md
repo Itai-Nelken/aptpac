@@ -1,6 +1,6 @@
 # aptpac
 
-[![latest release badge](https://img.shields.io/github/v/release/Itai-Nelken/aptpac?include_prereleases&style=flat-square)](github.com/Itai-Nelken/aptpac/releases/latest) [![license badge](https://img.shields.io/github/license/Itai-Nelken/aptpac?style=flat-square)](https://github.com/Itai-Nelken/aptpac/blob/main/LICENSE) ![Build-x64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-x64?label=Build%20x64&style=flat-square) ![Build-arm64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-arm64?label=Build%20arm64&style=flat-square) ![Build-armhf status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-armhf?label=Build%20armhf&style=flat-square) ![repository size badge](https://img.shields.io/github/repo-size/Itai-Nelken/aptpac?style=flat-square)
+[![latest release badge](https://img.shields.io/github/v/release/Itai-Nelken/aptpac?include_prereleases&style=flat-square)](https://github.com/Itai-Nelken/aptpac/releases/latest) [![license badge](https://img.shields.io/github/license/Itai-Nelken/aptpac?style=flat-square)](https://github.com/Itai-Nelken/aptpac/blob/main/LICENSE) ![Build-x64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-x64?label=Build%20x64&style=flat-square) ![Build-arm64 status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-arm64?label=Build%20arm64&style=flat-square) ![Build-armhf status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-armhf?label=Build%20armhf&style=flat-square) ![repository size badge](https://img.shields.io/github/repo-size/Itai-Nelken/aptpac?style=flat-square)
 
 
 aptpac is a program which helps with the transition to Arch Linux and Arch based distros like Manjaro.
@@ -21,6 +21,7 @@ USAGE:
         EXAMPLE: aptpac search qemu
 AVAILABLE OPTIONS:
         install - install a package.
+        install-local - install a local package.
         remove - uninstall a package.
         purge - uninstall a package along with its configuration files.
         search - search a package.
@@ -39,7 +40,7 @@ AVAILABLE OPTIONS:
         
  options are not case sensitive (C version only).
 ```
-### Bash version only (for now):
+### Bash version only (for now, scroll down for learning mode in the C edition):
 `--learning-mode=<on|off>` - accepts 'on' or 'off' as values. turns learning mode on or off.
 
 ## Installation
@@ -63,7 +64,7 @@ make
 # Optional however crucial
 sudo make install # This moves aptpac to /usr/local/bin so it can be run easily
 ```
-#### Learning mode (C-edition only)
+#### Learning mode (for C-edition only, for bash edition, go [here](https://github.com/Itai-Nelken/aptpac#bash-version-only-for-now))
 If you want to enable 'learning mode' which prints the commands being run, add  `-DLEARN=1` before the .. in the `cmake` line during installation so it looks like this:<br>
 ```bash
 cmake -DLEARN=1 -DCALLCOMMAND="aptpac" -DCMAKE_BUILD_TYPE=Release ..
@@ -75,7 +76,7 @@ cmake -DLEARN=1 -DCALLCOMMAND="aptpac" -DCMAKE_BUILD_TYPE=Release ..
 sudo pacman -S wget
 cd $HOME
 mkdir ~/.aptpac
-wget https://github.com/Itai-Nelken/aptpac/releases/download/2.2/aptpac.sh -O ~/.aptpac/aptpac.sh
+wget https://github.com/Itai-Nelken/aptpac/releases/download/2.4/aptpac.sh -O ~/.aptpac/aptpac.sh
 chmod +x .aptpac/aptpac.sh
 echo "alias aptpac=\"~/.aptpac/aptpac.sh\"" >> $HOME/.bashrc
 source ~/.bashrc
