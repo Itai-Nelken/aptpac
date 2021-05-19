@@ -42,7 +42,7 @@ function help() {
 	echo "	find - (pacman -F) in debian: 'apt-file search'."
 	echo "	update - equivalent of 'apt update' in debian."
 	echo "	upgrade - equivalent of 'apt upgrade' in debian."
-	echo "	full-upgrade - same as 'upgrade'."
+	echo "	full-upgrade - full system upgrade."
 	echo "	autoclean - clean up pacman caches."
 	echo "	clean - same as 'autoclean'."
 	echo "	autoremove - remove packages that are no longer needed."
@@ -80,10 +80,10 @@ function config() {
 #	$3=setting name when loading
 #
 	local DIR="$(pwd)"
-	if [[ ! -d "${HOME}/.config/aptpac/" ]]; then
-		mkdir "${HOME}/.config/aptpac/"
+	if [[ ! -d "${HOME}/.aptpac/" ]]; then
+		mkdir "${HOME}/.aptpac/"
 	fi
-	local CONF="${HOME}/.config/aptpac"
+	local CONF="${HOME}/.aptpac"
 	cd "$CONF"
 	if [[ ! -f config ]]; then
 		touch config
@@ -192,11 +192,18 @@ while [[ "$1" != '' ]]; do
 			sudo pacman -Sy
 			break
 		;;
-		upgrade|full-upgrade)
+		upgrade)
 			if [[ "$LEARN" == 1 ]]; then
 				echo -e "The command being run is: \e[1msudo pacman -Su\e[0m"
 			fi
 			sudo pacman -Su
+			break
+		;;
+		full-upgrade)
+			if [[ "$LEARN" == 1 ]]; then
+				echo -e "The command being run is: \e[1msudo pacman -Syu\e[0m"
+			fi
+			sudo pacman -Syu
 			break
 		;;
 		autoclean|clean)

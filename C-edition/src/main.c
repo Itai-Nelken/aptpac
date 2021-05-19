@@ -104,11 +104,12 @@ int main(int argc, char **argv) {
             break;
         } else if(!strcasecmp(argv[1], "search")) {
             if(argv[2]) {
-                strcpy(app, argv[2]);
-            } else {
-                fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'search' option passed, but no search string provided!\e[0m\n");
-                break;
-            }
+				for(int i=2; i<argc; i++) {
+					strcat(cmdflags, argv[i]);
+					strcat(cmdflags, " ");
+				}
+				strcpy(app, cmdflags);
+			}
         strcpy(command, "pacman -Ss ");
         strcat(command, app);
 #ifdef LEARN
@@ -140,12 +141,18 @@ int main(int argc, char **argv) {
 #endif
             system("sudo pacman -Sy");
             break;
-        } else if(!strcasecmp(argv[1], "upgrade") || !strcasecmp(argv[1], "full-upgrade")) {
+        } else if(!strcasecmp(argv[1], "upgrade")) {
 #ifdef LEARN
             printf("The command being run is: \e[1msudo pacman -Su\e[0m\n");
 #endif
             system("sudo pacman -Su");
             break;
+		} else if(!strcasecmp(argv[1], "full-upgrade")) {
+#ifdef LEARN
+			printf("The command being run is: \e[1msudo pacman -Syu\e[0m\n");
+#endif
+			system("sudo pacman -Syu");
+			break;
         } else if(!strcasecmp(argv[1], "clean") || !strcasecmp(argv[1], "autoclean")) {
 #ifdef LEARN
             printf("The command being run is: \e[1msudo pacman -Scc\e[0m\n");
