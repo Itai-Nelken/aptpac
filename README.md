@@ -21,15 +21,16 @@ USAGE:
         EXAMPLE: aptpac search qemu
 AVAILABLE OPTIONS:
         install - install a package.
-        install-local - install a local package.
+        install-local - install a local package. accpets the path to the package as a argument.
         remove - uninstall a package.
         purge - uninstall a package along with its configuration files.
         search - search a package.
-        find - (`pacman -F`) in debian: `apt-file search`.
-        update - equivalent of `apt update` in debian.
-        upgrade - equivalent of `apt upgrade` in debian.
+        find - (pacman -F) in debian: 'apt-file search'.
+        update - equivalent of 'apt update' in debian.
+        upgrade - equivalent of 'apt upgrade' in debian.
+        full-upgrade - full system upgrade.
         full-upgrade - same as 'upgrade'.
-        autoclean - clean up pacman caches.
+        autoclean - clean up all local caches.
         clean - same as 'autoclean'.
         autoremove - remove packages that are no longer needed.
         show - show the information of a package that is installed.
@@ -37,8 +38,8 @@ AVAILABLE OPTIONS:
         list-installed - list all installed packages.
         help - show this help.
         version - show version and about information.
-        
- options are not case sensitive (C version only).
+
+options are not case sensitive (C edition only).
 ```
 ### Bash version only (for now, scroll down for learning mode in the C edition):
 `--learning-mode=<on|off>` - accepts 'on' or 'off' as values. turns learning mode on or off.

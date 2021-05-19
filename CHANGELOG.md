@@ -25,4 +25,10 @@
 - Bumped version to 2.2
 - Improved foundation for learning mode setting saving in bash edition.
 - add experimental makefile for bash edition.
+### 19/5/2021 (and a bit before that I forgot to add)
+- Bump version to 2.5 (C-edition) and 2.5-bash (bash edition).
+- Add ability to enable and disable learning mode in runtime (bash edition only).
+- Add 'install-local' command to install local packages (pacman -U).
+- Improve 'search' command (C-edition).
+- more that I forgot to document...
 <hr>

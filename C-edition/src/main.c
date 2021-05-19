@@ -109,6 +109,9 @@ int main(int argc, char **argv) {
 					strcat(cmdflags, " ");
 				}
 				strcpy(app, cmdflags);
+			} else {
+				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'search' option passed, but no search string provided!\e[0m\n");
+				break;
 			}
         strcpy(command, "pacman -Ss ");
         strcat(command, app);
