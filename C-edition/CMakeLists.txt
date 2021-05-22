@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(aptpac VERSION 2.3 LANGUAGES C)
+project(aptpac VERSION 2.5 LANGUAGES C)
 
 option(CALLCOMMAND "The command to use when calling aptpac e.g './aptpac' or 'aptpac'" ${CALLCOMMAND})
 option(LEARN "Print the commands being run so you can learn how to use pacman" ${LEARN})
