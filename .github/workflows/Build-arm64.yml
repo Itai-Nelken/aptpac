@@ -24,8 +24,8 @@ jobs:
             cd C-edition/
             mkdir build
             cd build
-            cmake -DCMAKE_BUILD_TYPE=Debug ..
-            make -j4
+            cmake -DDEBUG=1 -DCMAKE_BUILD_TYPE=Debug ..
+            make -j$(nproc)
             DATE=$(date +"%F")
             mkdir aptpac-arm64_$DATE/
             mv ./aptpac aptpac-arm64_$DATE/
