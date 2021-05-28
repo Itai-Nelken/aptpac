@@ -99,7 +99,7 @@ function config() {
 			echo -e "$3"
 		fi
 	elif [[ "$1" == "load" ]]; then
-		if [[ "$(cat config | grep $2)" == "$2" ]]; then
+		if cat config | grep $2 >/dev/null ; then
 			export SETTING=$3
 		else
 			echo -e "\e[31m\e[1mERROR: \e[0m\e[31mfailed to find requested setting!\e[0m"
