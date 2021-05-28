@@ -31,4 +31,8 @@
 - Add 'install-local' command to install local packages (pacman -U).
 - Improve 'search' command (C-edition).
 - more that I forgot to document...
+### 28/5/2021
+bash edition: fix 'config' function when loading a single setting.
+C-edition: add DEBUG option that prints debug info in some places when enabled (enable with '-DDEBUG=1' when configuring with cmake).
+C-edition: add 'debug' function if debug mode enabled.
 <hr>

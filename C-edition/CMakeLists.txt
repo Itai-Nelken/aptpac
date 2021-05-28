@@ -4,6 +4,7 @@ project(aptpac VERSION 2.5 LANGUAGES C)
 
 option(CALLCOMMAND "The command to use when calling aptpac e.g './aptpac' or 'aptpac'" ${CALLCOMMAND})
 option(LEARN "Print the commands being run so you can learn how to use pacman" ${LEARN})
+option(DEBUG "Print debug info in some places" ${DEBUG})
 
 #CALLCOMMAND
 if(CALLCOMMAND STREQUAL "./aptpac")
@@ -25,6 +26,12 @@ endif()
 if(LEARN)
     message(STATUS "Configuring with learning mode on...")
     add_compile_definitions(LEARN)
+endif()
+#DEBUG
+if(DEBUG)
+	message(STATUS "COnfiguring with debug mode on...")
+	add_compile_definitions(DEBUG)
+	add_compile_options(-Wall)
 endif()
     
 #functions.h
