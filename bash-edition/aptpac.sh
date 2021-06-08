@@ -25,7 +25,7 @@
 #
 
 #variables
-appver="2.5-bash"
+appver="2.6-bash"
 CALLCOMMAND="./aptpac.sh"
 
 #functions
@@ -53,6 +53,7 @@ function help() {
 	echo "	version - show version and about information."
 	echo "SETTINGS:"
 	echo "	--learning-mode=<on|off> - accepts 'on' or 'off' as values. turns learning mode on or off."
+	echo "You can also use the environment variable 'APTPAC_LEARN' to toggle learning mode: if it equals 1, learning mode is on."
 	echo " "
 	echo -e "\e[1mIf you don't supply any option, the help and about will be printed.\e[0m"
 }
@@ -100,13 +101,13 @@ function config() {
 		fi
 	elif [[ "$1" == "load" ]]; then
 		if cat config | grep $2 >/dev/null ; then
-			export SETTING=$3
+			SETTING=$3
 		else
 			echo -e "\e[31m\e[1mERROR: \e[0m\e[31mfailed to find requested setting!\e[0m"
 			exit 1
 		fi
 	elif [[ "$1" == "load-all" ]]; then
-		export SETTING="$(cat config)"
+		SETTING="$(cat config)"
 	fi
 	cd "$DIR"
 }
@@ -116,11 +117,14 @@ if [[ "$1" == '' ]]; then
 	echo -e "\e[1mrun \"$CALLCOMMAND --help\" for help\e[0m"
 	exit 0
 fi
+if [[ "$APTPAC_LEARN" == 1 ]]; then
+	LEARN=1
+fi
 while [[ "$1" != '' ]]; do
 	config load-all
 	case $SETTING in
 		learn)
-			export LEARN=1
+			LEARN=1
 		;;
 	esac
 	case $1 in

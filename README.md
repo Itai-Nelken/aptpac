@@ -44,6 +44,7 @@ options are not case sensitive (C edition only).
 ### Bash version only (for now, scroll down for learning mode in the C edition):
 `--learning-mode=<on|off>` - accepts 'on' or 'off' as values. turns learning mode on or off.
 
+
 ## Installation
 
 Since there are 2 variants of aptpac, there are 2 install methods, please choose the variant you would like:
@@ -71,9 +72,7 @@ To use 'learning mode' in the C-edition you have to define the environment varia
 2) If you want to have learning mode on until you end your shell session (close the terminal window), run `export APTPAC_LEARN=1`.
 3) To have learning mode permanently on, add `export APTPAC_LEARN=1` to your bashrc or equivalent. then restart your terminal or source the bashrc.
 to turn it off, delete that line or change the value of the variable.
-```bash
-cmake -DLEARN=1 -DCALLCOMMAND="aptpac" -DCMAKE_BUILD_TYPE=Release ..
-```
+**NOTE:** this method also works for the bash edition.
 
 ### Guide to installing Bash aptpac:
 
