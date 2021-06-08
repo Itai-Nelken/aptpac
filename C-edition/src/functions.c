@@ -21,8 +21,12 @@ void learn(char command[101], int learn) {
 
 void help() {
 	echo("\e[1mUSAGE:\e[0m");
-	echo("	aptpac [option] [options for the option]");
+	echo("	aptpac [command] [packages (if applicable for the command)]");
 	echo("	\e[1mEXAMPLE:\e[0m aptpac search qemu");
+	echo("\e[1mLEARNING MODE:\e[0m");
+	echo("	to enable learning mode, run with the environment variable 'APTPAC_LEARN' set to 1");
+	echo("	\e[1mEXAMPLE:\e[0m APTPAC_LEARN=1 aptpac");
+	echo("	or add 'export APTPAC_LEARN=1' to your bashrc or equivalent to have it always on.");
 	echo("\e[1mAVAILABLE OPTIONS:\e[0m");
 	echo("	install - install a package.");
 	echo("	install-local - install a local package. accpets the path to the package as a argument.");
