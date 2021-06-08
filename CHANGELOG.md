@@ -35,4 +35,7 @@
 - bash edition: fix 'config' function when loading a single setting.
 - C-edition: add DEBUG option that prints debug info in some places when enabled (enable with '-DDEBUG=1' when configuring with cmake).
 - C-edition: add 'debug' function if debug mode enabled.
+### 8/6/2021
+- C-edition (also bash edition): add the ability to toggle learning mode in runtime using the `APTPAC_LEARN` environment variable.
+- Release 2.6 (and 2.6-bash)
 <hr>
