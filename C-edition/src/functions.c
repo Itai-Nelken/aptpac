@@ -13,6 +13,12 @@ void echo(char text[501]) {
 	}
 #endif
 
+void learn(char command[101], int learn) {
+	if(learn==1) {
+		printf("The command being run is: \e[1m%s\e[0m\n", command);
+	}
+}
+
 void help() {
 	echo("\e[1mUSAGE:\e[0m");
 	echo("	aptpac [option] [options for the option]");

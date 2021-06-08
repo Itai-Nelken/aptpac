@@ -29,6 +29,15 @@ SOFTWARE.
 
 int main(int argc, char **argv) {
 	char command[101], cmdflags[4097]="";
+	int LEARN=0;
+	//set the 'APTPAC_LEARN' env var to "0" (yes, a string) to avoid a segfault in getenv if it isn't set
+	//set its value to 0, and don't overwrite it if it already exists.
+	setenv("APTPAC_LEARN", "0", 0);
+	//activate learning mode if env var 'APTPAC_LEARN' = 1
+	char *learn_env=getenv("APTPAC_LEARN");
+	if(!strcmp(learn_env, "1")) {
+		LEARN=1;
+	}
 	while(argc>1) {
 		if(!strcasecmp(argv[1], "install")) {
 			if(argv[2]) {
@@ -42,9 +51,8 @@ int main(int argc, char **argv) {
 		}
 		strcpy(command, "sudo pacman -S ");
 		strcat(command, cmdflags);
-#ifdef LEARN
-		printf("The command being run is: \e[1m%s\e[0m\n", command);
-#endif
+		//if learning mode is on, print the command being run using the 'learn' function
+		learn(command, LEARN);
 		system(command);
 		break;
 		} else if(!strcasecmp(argv[1], "install-local")) {
@@ -59,9 +67,7 @@ int main(int argc, char **argv) {
 		}
 		strcpy(command, "sudo pacman -U ");
 		strcat(command, cmdflags);
-#ifdef LEARN
-		printf("The command being run is: \e[1m%s\e[0m\n", command);
-#endif
+		learn(command, LEARN);
 		system(command);
 		break;
 		} else if(!strcasecmp(argv[1], "remove") || !strcasecmp(argv[1], "uninstall")) {
@@ -76,9 +82,7 @@ int main(int argc, char **argv) {
 		}
 		strcpy(command, "sudo pacman -Rs ");
 		strcat(command, cmdflags);
-#ifdef LEARN
-		printf("The command being run is: \e[1m%s\e[0m\n", command);
-#endif
+		learn(command, LEARN);
 		system(command);
 		break;
 		} else if(!strcasecmp(argv[1], "purge")) {
@@ -93,9 +97,7 @@ int main(int argc, char **argv) {
 			}
 			strcpy(command, "sudo pacman -Rn ");
 			strcat(command, cmdflags);
-#ifdef LEARN
-			printf("The command being run is: \e[1m%s\e[0m\n", command);
-#endif
+			learn(command, LEARN);
 			system(command);
 			break;
 		} else if(!strcasecmp(argv[1], "search")) {
@@ -110,9 +112,7 @@ int main(int argc, char **argv) {
 			}
 		strcpy(command, "pacman -Ss ");
 		strcat(command, cmdflags);
-#ifdef LEARN
-		printf("The command being run is: \e[1m%s\e[0m\n", command);
-#endif
+		learn(command, LEARN);
 		system(command);
 		break;
 		} else if(!strcasecmp(argv[1], "find")) {
@@ -127,45 +127,31 @@ int main(int argc, char **argv) {
 			}
 			strcpy(command, "pacman -F ");
 			strcat(command, cmdflags);
-#ifdef LEARN
-			printf("The command being run is: \e[1m%s\e[0m\n", command);
-#endif
+			learn(command, LEARN);
 			system(command);
 			break;
 		} else if(!strcasecmp(argv[1], "update")) {
-#ifdef LEARN
-			printf("The command being run is: \e[1msudo pacman -Sy\e[0m\n");
-#endif
+			learn("sudo pacman -Sy", LEARN);
 			system("sudo pacman -Sy");
 			break;
 		} else if(!strcasecmp(argv[1], "upgrade")) {
-#ifdef LEARN
-			printf("The command being run is: \e[1msudo pacman -Su\e[0m\n");
-#endif
+			learn("sudo pacman -Su", LEARN);
 			system("sudo pacman -Su");
 			break;
 		} else if(!strcasecmp(argv[1], "full-upgrade")) {
-#ifdef LEARN
-			printf("The command being run is: \e[1msudo pacman -Syu\e[0m\n");
-#endif
+			learn("sudo pacman -Syu", LEARN);
 			system("sudo pacman -Syu");
 			break;
 		} else if(!strcasecmp(argv[1], "clean") || !strcasecmp(argv[1], "autoclean")) {
-#ifdef LEARN
-			printf("The command being run is: \e[1msudo pacman -Scc\e[0m\n");
-#endif
+			learn("sudo pacman -Scc", LEARN);
 			system("sudo pacman -Scc");
 			break;
 		} else if(!strcasecmp(argv[1], "autoremove")) {
-#ifdef LEARN
-			printf("The command being run is: \e[1msudo pacman -Qdtg | sudo pacman -Rs -\e[0m\n");
-#endif
+			learn("sudo pacman -Qdtq | sudo pacman -Rs -", LEARN);
 			system("sudo pacman -Qdtq | sudo pacman -Rs -");
 			break;
 		} else if(!strcasecmp(argv[1], "list-installed")) {
-#ifdef LEARN
-			printf("The command being run is: \e[1msudo pacman -Qqe\e[0m\n");
-#endif
+			learn(command, LEARN);
 			system("pacman -Qqe");
 			break;
         } else if(!strcasecmp(argv[1], "show")) {
@@ -183,10 +169,8 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'show' option passed, but no package provided \e[0m\n");
 				break;
 			}
-                
-#ifdef LEARN
-			printf("The command being run is: \e[1m%s\e[0m\n", command);
-#endif
+
+			learn(command, LEARN);
 #ifdef DEBUG
 			debug("command", command);
 #endif
@@ -204,9 +188,7 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'show-all' option passed, but no package provided \e[0m\n");
 				break;
 			}
-#ifdef LEARN
-			printf("The command being run is: \e[1m%s\e[0m\n", command);
-#endif
+			learn(command, LEARN);
 			system(command);
 			break;
 		} else if(!strcasecmp(argv[1], "help") || !strcasecmp(argv[1], "-help") || !strcasecmp(argv[1], "--help") || !strcasecmp(argv[1], "-h")) {

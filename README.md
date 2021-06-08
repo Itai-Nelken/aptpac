@@ -66,7 +66,11 @@ make
 sudo make install # This moves aptpac to /usr/local/bin so it can be run easily
 ```
 #### Learning mode (for C-edition only, for bash edition, go [here](https://github.com/Itai-Nelken/aptpac#bash-version-only-for-now))
-If you want to enable 'learning mode' which prints the commands being run, add  `-DLEARN=1` before the .. in the `cmake` line during installation so it looks like this:<br>
+To use 'learning mode' in the C-edition you have to define the environment variable `APTPAC_LEARN` with the value of `1`. there are 3 ways to do that:
+1) if you want to test it only for one run, run aptpac like this: `APTPAC_LEARN=1 aptpac <option>`.
+2) if you want to have learning mode on until you close your shell session, run `export APTPAC_LEARN=1`.
+3) to have learning mode permanently on, add `export APTPAC_LEARN=1` to your bashrc or equivalent. then restart your terminal or source the bashrc.
+to turn it of, delete that line or change i=the value of the variable.
 ```bash
 cmake -DLEARN=1 -DCALLCOMMAND="aptpac" -DCMAKE_BUILD_TYPE=Release ..
 ```
