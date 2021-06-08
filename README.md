@@ -5,10 +5,10 @@
 
 aptpac is a program which helps with the transition to Arch Linux and Arch based distros like Manjaro.
 
-It simplifies using pacman as it works like the easier to use APT package manager found in Debian based distributions.
+It simplifies using pacman as it works like the easier to use `apt` package manager found in Debian and derivatives.
 
 The program comes in 2 variants, a bash shell version, and a C code variant.
-It is recommended to use the C code variant since C code is quicker and better than shell scripts. the C variant is more friendly and more feature rich, but the bash version gets new commands before as its simpler and easier to debug.
+It is recommended to use the C code variant since C it is more friendly and feature rich, but the bash version sometimes gets new features before as its simpler and easier to write.
 
 ## Note
 This program has nothing to do with the other projects named `aptpac` like [this one](https://github.com/FascodeNet/aptpac). please don't ask for support for other `aptpac`'s in this repository or ask for support for this `aptpac` in the other `aptpac`'s repositories.
@@ -67,10 +67,10 @@ sudo make install # This moves aptpac to /usr/local/bin so it can be run easily
 ```
 #### Learning mode (for C-edition only, for bash edition, go [here](https://github.com/Itai-Nelken/aptpac#bash-version-only-for-now))
 To use 'learning mode' in the C-edition you have to define the environment variable `APTPAC_LEARN` with the value of `1`. there are 3 ways to do that:
-1) if you want to test it only for one run, run aptpac like this: `APTPAC_LEARN=1 aptpac <option>`.
-2) if you want to have learning mode on until you close your shell session, run `export APTPAC_LEARN=1`.
-3) to have learning mode permanently on, add `export APTPAC_LEARN=1` to your bashrc or equivalent. then restart your terminal or source the bashrc.
-to turn it of, delete that line or change i=the value of the variable.
+1) If you want to test it only for one run, run aptpac like this: `APTPAC_LEARN=1 aptpac <option>`.
+2) If you want to have learning mode on until you end your shell session (close the terminal window), run `export APTPAC_LEARN=1`.
+3) To have learning mode permanently on, add `export APTPAC_LEARN=1` to your bashrc or equivalent. then restart your terminal or source the bashrc.
+to turn it off, delete that line or change the value of the variable.
 ```bash
 cmake -DLEARN=1 -DCALLCOMMAND="aptpac" -DCMAKE_BUILD_TYPE=Release ..
 ```
