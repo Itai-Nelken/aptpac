@@ -38,4 +38,6 @@
 ### 8/6/2021
 - C-edition (also bash edition): add the ability to toggle learning mode in runtime using the `APTPAC_LEARN` environment variable.
 - Release 2.6 (and 2.6-bash)
+### 9/6/2021
+- Move command line argument collecting to `get_cmdargs` function.
 <hr>
