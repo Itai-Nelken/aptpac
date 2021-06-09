@@ -41,10 +41,7 @@ int main(int argc, char **argv) {
 	while(argc>1) {
 		if(!strcasecmp(argv[1], "install")) {
 			if(argv[2]) {
-				for(int i=2; i<argc; i++) {
-					strcat(cmdflags, argv[i]);
-					strcat(cmdflags, " ");
-				}
+				get_cmdargs(argc, argv, 2, cmdflags);
 		} else {
 			fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m '%s' option passed, but no app provided!\e[0m\n", argv[1]);
 			break;
@@ -57,10 +54,7 @@ int main(int argc, char **argv) {
 		break;
 		} else if(!strcasecmp(argv[1], "install-local")) {
 			if(argv[2]) {
-				for(int i=2; i<argc; i++) {
-					strcat(cmdflags, argv[i]);
-					strcat(cmdflags, " ");
-				}
+				get_cmdargs(argc, argv, 2, cmdflags);
 		} else {
 			fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'install-local' option passed, but no package(s) provided!\e[0m\n");
 			break;
@@ -72,10 +66,7 @@ int main(int argc, char **argv) {
 		break;
 		} else if(!strcasecmp(argv[1], "remove") || !strcasecmp(argv[1], "uninstall")) {
 			if(argv[2]) {
-				for(int i=2; i<argc; i++) {
-					strcat(cmdflags, argv[i]);
-					strcat(cmdflags, " ");
-				}
+				get_cmdargs(argc, argv, 2, cmdflags);
 		} else {
 			fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'install' option passed, but no app provided!\e[0m\n");
 			break;
@@ -87,10 +78,7 @@ int main(int argc, char **argv) {
 		break;
 		} else if(!strcasecmp(argv[1], "purge")) {
 			if(argv[2]) {
-				for(int i=2; i<argc; i++) {
-					strcat(cmdflags, argv[i]);
-					strcat(cmdflags, " ");
-				}
+				get_cmdargs(argc, argv, 2, cmdflags);
 			} else {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'purge' option passed, but no app provided!\e[0m\n");
 				break;
@@ -102,10 +90,7 @@ int main(int argc, char **argv) {
 			break;
 		} else if(!strcasecmp(argv[1], "search")) {
 			if(argv[2]) {
-				for(int i=2; i<argc; i++) {
-					strcat(cmdflags, argv[i]);
-					strcat(cmdflags, " ");
-				}
+				get_cmdargs(argc, argv, 2, cmdflags);
 			} else {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'search' option passed, but no search string provided!\e[0m\n");
 				break;
@@ -117,10 +102,7 @@ int main(int argc, char **argv) {
 		break;
 		} else if(!strcasecmp(argv[1], "find")) {
 			if(argv[2]) {
-				for(int i=2; i<argc; i++) {
-					strcat(cmdflags, argv[i]);
-					strcat(cmdflags, " ");
-				}
+				get_cmdargs(argc, argv, 2, cmdflags);
 			} else {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'find' option passed, but no search string provided!\e[0m\n");
 				break;
@@ -156,10 +138,7 @@ int main(int argc, char **argv) {
 			break;
         } else if(!strcasecmp(argv[1], "show")) {
 			if(argv[2]) {
-				for(int i=2; i<argc; i++) {
-					strcat(cmdflags, argv[i]);
-					strcat(cmdflags, " ");
-				}
+				get_cmdargs(argc, argv, 2, cmdflags);
 #ifdef DEBUG
 				debug("comdflags", cmdflags);
 #endif
@@ -178,10 +157,7 @@ int main(int argc, char **argv) {
 			break;
 		} else if(!strcasecmp(argv[1], "show-all")) {
 			if(argv[2]) {
-				for(int i=2; i<argc; i++) {
-					strcat(cmdflags, argv[i]);
-					strcat(cmdflags, " ");
-				}
+				get_cmdargs(argc, argv, 2, cmdflags);
 				strcpy(command, "pacman -Si ");
 				strcat(command, cmdflags);
 			} else {

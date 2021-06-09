@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "functions.h"
 
 
@@ -12,12 +13,6 @@ void echo(char text[501]) {
 		printf("%s: %s\n\n", text, info);
 	}
 #endif
-
-void learn(char command[101], int learn) {
-	if(learn==1) {
-		printf("The command being run is: \e[1m%s\e[0m\n", command);
-	}
-}
 
 void help() {
 	echo("\e[1mUSAGE:\e[0m");
@@ -55,6 +50,23 @@ void about() {
 	printf("\e[1mVersion:\e[0m %s built on %s.\n\n", VER, __TIMESTAMP__);
 	echo("License: MIT");
 	echo("Copyright (c) 2021 Itai Nelken");
+}
+
+//print the command being run: <the contents of the command variable> if int learn == 1
+void learn(char command[101], int learn) {
+	if(learn==1) {
+		printf("The command being run is: \e[1m%s\e[0m\n", command);
+	}
+}
+
+//get all command line arguments starting with argc=int startarg.
+//requires argc and argv to be passed as well as a char array to write the output to.
+void get_cmdargs(int argc, char **argv, int startarg, char out[101]) {
+	strcat(out, argv[startarg]);
+	for(int i=startarg+1; i<argc; i++) {
+		strcat(out, " ");
+		strcat(out, argv[i]);
+	}
 }
 
 void config(char opt[10], char **conf) {
