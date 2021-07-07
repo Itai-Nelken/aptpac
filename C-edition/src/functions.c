@@ -81,7 +81,7 @@ int config_save(char *conf, char *mode) {
 	FILE *file;
 	char *env=getenv("HOME");
 	char conf_file[101]="";
-	sprintf(conf_file, "%s/.aptpac/.aptpac.config", env);
+	sprintf(conf_file, "%s/.config/aptpac.config", env);
 #ifdef DEBUG
 	debug("configuration file", conf_file);
 #endif
@@ -110,8 +110,14 @@ int config_save(char *conf, char *mode) {
 //returns -1 on fail and the config on success
 int config_load(char *conf) {
 	FILE *file;
+	char *env=getenv("HOME");
+	char conf_file[101]="";
+	sprintf(conf_file, "%s/.config/aptpac.config", env);
+#ifdef DEBUG
+	debug("configuration file", conf_file);
+#endif
 	struct config config;
-	file=fopen("aptpac.config", "r");
+	file=fopen(conf_file, "r");
 	if(file==NULL) {
 		//fprintf(stderr, "\e[1;31mERROR:\e[0;31m failed to open config file!\e[0m\n");
 		return -1;

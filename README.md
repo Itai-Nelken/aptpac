@@ -41,9 +41,18 @@ AVAILABLE OPTIONS:
 
 options are not case sensitive (C edition only).
 ```
-### Bash version only (for now, scroll down for learning mode in the C edition):
-`--learning-mode=<on|off>` - accepts 'on' or 'off' as values. turns learning mode on or off.
-
+## Learning mode:
+### using a configuration file
+#### C edition
+`--config <set|unset> learn` - use `set` to turn it on and `unset` to turn it off. the configuration file is in `~/.config/aptpac`.
+### Bash edition
+`--learning-mode=<on|off>` - accepts `on` or `off` as values. the configuration file is in `~/.aptpac/config`.
+###  using a environment variable
+If the environment variable `APTPAC_LEARN` has the value of `1`, learning mode will be enabled. there are 3 ways to set it:
+1) If you want to test it only for one run, run aptpac like this: `APTPAC_LEARN=1 aptpac <option>`.
+2) If you want to have learning mode on until you end your shell session (close the terminal window), run `export APTPAC_LEARN=1`.
+3) To have learning mode permanently on, add `export APTPAC_LEARN=1` to your bashrc or equivalent. then restart your terminal or source the bashrc.
+to turn it off, delete that line or change the value of the variable.
 
 ## Installation
 
@@ -66,13 +75,6 @@ make
 # Optional however crucial
 sudo make install # This moves aptpac to /usr/local/bin so it can be run easily
 ```
-#### Learning mode (for C-edition only, for bash edition, go [here](https://github.com/Itai-Nelken/aptpac#bash-version-only-for-now))
-To use 'learning mode' in the C-edition you have to define the environment variable `APTPAC_LEARN` with the value of `1`. there are 3 ways to do that:
-1) If you want to test it only for one run, run aptpac like this: `APTPAC_LEARN=1 aptpac <option>`.
-2) If you want to have learning mode on until you end your shell session (close the terminal window), run `export APTPAC_LEARN=1`.
-3) To have learning mode permanently on, add `export APTPAC_LEARN=1` to your bashrc or equivalent. then restart your terminal or source the bashrc.
-to turn it off, delete that line or change the value of the variable.
-**NOTE:** this method also works for the bash edition.
 
 ### Guide to installing Bash aptpac:
 
@@ -98,6 +100,7 @@ sudo make uninstall
 cd $HOME
 sudo rm -r ./aptpac
 ```
+#### To delete the configuration file, run `rm -f ~/.config/aptpac.config`
 
 ### Guide to uninstalling Bash aptpac:
 

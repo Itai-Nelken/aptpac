@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(aptpac VERSION 2.6 LANGUAGES C)
+project(aptpac VERSION 3.0 LANGUAGES C)
 #set some variables
 set(BIN "aptpac") #the name of the executable
 set(VER "${CMAKE_PROJECT_VERSION}") #the version
 set(NAME "${CMAKE_PROJECT_NAME}") #the project name
-set(CONF "$ENV{HOME}/.aptpac")
+#set(CONF "$ENV{HOME}/.aptpac")
+set(CMAKE_C_COMPILER gcc)
 add_compile_definitions(VER="${VER}")
 
 #options for cmake
@@ -50,7 +51,6 @@ install(
 	TARGETS aptpac
 	DESTINATION /usr/local/bin
 )
-install(DIRECTORY DESTINATION ${CONF})
 
 # uninstall target
 if(NOT TARGET uninstall)

@@ -1,7 +1,7 @@
 # Maintainer: Itai-Nelken <itainelken@gmail.com>
 
 pkgname=aptpac
-pkgver=2.3
+pkgver=3.0
 pkgrel=1
 pkgdesc="A simple pacman wrapper with a syntax similar to apt."
 arch=('any')
@@ -10,7 +10,7 @@ _repo="aptpac"
 _author="Itai-Nelken"
 url="https://github.com/Itai-Nelken/aptpac"/
 license=('MIT')
-makedepends=('cmake')
+makedepends=('cmake' 'make' 'gcc')
 source=("${pkgname%-git}::git+https://github.com/${_author}/${_repo}.git")
 md5sums=('SKIP')
 build() {
