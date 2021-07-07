@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 #include "functions.h"
-
 
 void echo(char text[501]) {
 	printf("%s\n", text);
@@ -41,9 +44,13 @@ void help() {
 	echo("	list-installed - list all installed packages.");
 	echo("	help - show this help.");
 	echo("	version - show version and about information.\n");
+	echo("\e[1CONFIGURATION:\e[0m");
+	echo("	--config <set|unset> <configuration> - set/unset configuration options.");
+	echo("\e[1mAVAILABLE CONFIGURATION OPTIONS:\e[0m");
+	echo("	learn");
 	echo("\e[1moptions are not case sensitive.\e[0m");
 }
-
+ 
 void about() {
 	echo("\e[1m   APTPAC \e[0m\n ==========");
 	echo("A simple wrapper for pacman with a syntax similar to apt to help people transitioning to Arch and Arch based distros like Manjaro.");
@@ -61,7 +68,7 @@ void learn(char command[101], int learn) {
 
 //get all command line arguments starting with argc=int startarg.
 //requires argc and argv to be passed as well as a char array to write the output to.
-void get_cmdargs(int argc, char **argv, int startarg, char out[101]) {
+void get_cmdargs(int argc, char **argv, int startarg, char *out) {
 	strcat(out, argv[startarg]);
 	for(int i=startarg+1; i<argc; i++) {
 		strcat(out, " ");
@@ -69,50 +76,48 @@ void get_cmdargs(int argc, char **argv, int startarg, char out[101]) {
 	}
 }
 
-void config(char opt[10], char **conf) {
-/*****************
-#	SAVE:
-#	$1=save
-#	$2=setting to add to config
-#	$3=optional text to printed
-#	DELETE:
-#	$1=delete
-#	$2=setting to delete
-#	$3=optional text to print.
-#	LOAD:
-#	$1=load
-#	$2=setting to load
-#	$3=setting name when loading
-#
-	local DIR="$(pwd)"
-	if [[ ! -d "${HOME}/.config/aptpac/" ]]; then
-		mkdir "${HOME}/.config/aptpac/"
-	fi
-	local CONF="${HOME}/.config/aptpac"
-	cd "$CONF"
-	if [[ ! -f config ]]; then
-		touch config
-	fi
-	if [[ "$1" == "save" ]]; then
-		echo "$2" >> config
-		if [[ ! -z "$3" ]]; then
-			echo -e "$3"
-		fi
-	elif [[ "$1" == "delete" ]]; then
-		sed -i "/$2/d" config
-		if [[ ! -z "$3" ]]; then
-			echo -e "$3"
-		fi
-	elif [[ "$1" == "load" ]]; then
-		if cat config | grep $>/dev/null ; then
-			export SETTING=$3
-		else
-			echo -e "\e[31m\e[1mERROR: \e[0m\e[31mfailed to find requested setting!\e[0m"
-			exit 1
-		fi
-	elif [[ "$1" == "load-all" ]]; then
-		export SETTING="$(cat config)"
-	fi
-	cd "$DIR"
-****************/
+//returns 1 on invalid configuration option and 0 on success
+int config_save(char *conf, char *mode) {
+	FILE *file;
+	char *env=getenv("HOME");
+	char conf_file[101]="";
+	sprintf(conf_file, "%s/.aptpac", env);
+	struct config config;
+	if(!strcmp(conf, "learn")) {
+		if(!strcmp(mode, "set")) {
+			config.learn=1;
+		} else if(!strcmp(mode, "unset")) {
+			config.learn=0;
+		} else {
+			fprintf(stderr, "\e[1;31mERROR:\e[0;31m invalid config mode!\e[0m\n");
+			return 1;
+		}
+	} else {
+		return 1;
+	}
+	file=fopen(conf_file, "w");
+	if(file==NULL) {
+		fprintf(stderr, "\e[1;31mERROR:\e[0;31m failed to open config file!\e[0m\n");
+		return 1;
+	}
+	fwrite(&config, sizeof(struct config), 1, file);
+	fclose(file);
+	return 0;
+}
+//returns -1 on fail and the config on success
+int config_load(char *conf) {
+	FILE *file;
+	struct config config;
+	file=fopen("aptpac.config", "r");
+	if(file==NULL) {
+		//fprintf(stderr, "\e[1;31mERROR:\e[0;31m failed to open config file!\e[0m\n");
+		return -1;
+	}
+	fread(&config, sizeof(struct config), 1, file);
+	fclose(file);
+	if(!strcmp(conf, "learn")) {
+		return config.learn;
+	} else {
+		return -1;
+	}
 }

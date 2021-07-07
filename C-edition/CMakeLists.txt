@@ -5,6 +5,7 @@ project(aptpac VERSION 2.6 LANGUAGES C)
 set(BIN "aptpac") #the name of the executable
 set(VER "${CMAKE_PROJECT_VERSION}") #the version
 set(NAME "${CMAKE_PROJECT_NAME}") #the project name
+set(CONF "$ENV{HOME}/.aptpac")
 add_compile_definitions(VER="${VER}")
 
 #options for cmake
@@ -32,7 +33,7 @@ if(DEBUG)
 	add_compile_definitions(DEBUG)
 	add_compile_options(-Wall)
 endif()
-    
+
 #functions.h
 add_library(
 	functions
@@ -49,6 +50,7 @@ install(
 	TARGETS aptpac
 	DESTINATION /usr/local/bin
 )
+install(DIRECTORY DESTINATION ${CONF})
 
 # uninstall target
 if(NOT TARGET uninstall)

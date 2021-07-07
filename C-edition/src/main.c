@@ -35,11 +35,28 @@ int main(int argc, char **argv) {
 	setenv("APTPAC_LEARN", "0", 0);
 	//activate learning mode if env var 'APTPAC_LEARN' = 1
 	char *learn_env=getenv("APTPAC_LEARN");
-	if(!strcmp(learn_env, "1")) {
+	//load the configuration
+	int conf=config_load("learn");
+	if(!strcmp(learn_env, "1")||conf==1) {
 		LEARN=1;
 	}
 	while(argc>1) {
-		if(!strcasecmp(argv[1], "install")) {
+		if(!strcasecmp(argv[1], "--config")) {
+			if(!argv[2]) {
+				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m no configuration option provided!\e[0m\n");
+				return 1;
+			}
+			if(!argv[3]) {
+				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m no config set mode provided!\e[0m\n");
+				return 1;
+			}
+			if(config_save(argv[3], argv[2])) {
+				fprintf(stderr, "\e[1;31mERROR:\e[0;31m Failed to write config changes!\e[0m\n");
+				return 1;
+			} else {
+				return 0;
+			}
+		} else if(!strcasecmp(argv[1], "install")) {
 			if(argv[2]) {
 				get_cmdargs(argc, argv, 2, cmdflags);
 		} else {
