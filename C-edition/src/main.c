@@ -42,12 +42,8 @@ int main(int argc, char **argv) {
 	}
 	while(argc>1) {
 		if(!strcasecmp(argv[1], "--config")) {
-			if(!argv[2]) {
-				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m no configuration option provided!\e[0m\n");
-				return 1;
-			}
-			if(!argv[3]) {
-				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m no config set mode provided!\e[0m\n");
+			if(argc!=4) {
+				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m not rnough options for option 'config' provided!\e[0m\n");
 				return 1;
 			}
 			if(config_save(argv[3], argv[2])) {

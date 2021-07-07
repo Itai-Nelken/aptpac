@@ -44,7 +44,7 @@ void help() {
 	echo("	list-installed - list all installed packages.");
 	echo("	help - show this help.");
 	echo("	version - show version and about information.\n");
-	echo("\e[1CONFIGURATION:\e[0m");
+	echo("\e[1mCONFIGURATION:\e[0m");
 	echo("	--config <set|unset> <configuration> - set/unset configuration options.");
 	echo("\e[1mAVAILABLE CONFIGURATION OPTIONS:\e[0m");
 	echo("	learn");
@@ -81,7 +81,10 @@ int config_save(char *conf, char *mode) {
 	FILE *file;
 	char *env=getenv("HOME");
 	char conf_file[101]="";
-	sprintf(conf_file, "%s/.aptpac", env);
+	sprintf(conf_file, "%s/.aptpac/.aptpac.config", env);
+#ifdef DEBUG
+	debug("configuration file", conf_file);
+#endif
 	struct config config;
 	if(!strcmp(conf, "learn")) {
 		if(!strcmp(mode, "set")) {
