@@ -14,14 +14,16 @@ makedepends=('cmake' 'make' 'gcc')
 source=("${pkgname%-git}::git+https://github.com/${_author}/${_repo}.git")
 md5sums=('SKIP')
 build() {
-	cmake -B build -S "$pkgname/C-edition/" -DCMAKE_BUILD_TYPE=Release -DCALLCOMMAND="aptpac" -Wno-dev
+	cmake -B build -S "$pkgname/C-edition/" -DCMAKE_BUILD_TYPE=Release -DCALLCOMMAND="aptpac"
 	make -C build
 }
 
 package() {
-	make -C build DESTDIR="$pkgdir" install
-	sudo install -Dm755 "$srcdir/build/aptpac" "/usr/bin/aptpac"
-	sudo install -Dm644 "$srcdir/aptpac/README.md" "/usr/share/doc/aptpac/README.md"
-	sudo install -Dm644 "$srcdir/aptpac/CHANGELOG.md" "/usr/share/doc/aptpac/CHANGELOG.md"
-	sudo install -Dm644 "$srcdir/aptpac/LICENSE" "/usr/share/doc/aptpac/LICENSE"
+	#make -C build DESTDIR="$pkgdir" install
+	mkdir -p ${pkgdir}/usr/{bin,share}
+	mkdir -p "${pkgdir}/usr/share/doc/aptpac"
+	install "$srcdir/build/aptpac" "${pkgdir}/usr/bin/aptpac"
+	install "$srcdir/aptpac/README.md" "${pkgdir}/usr/share/doc/aptpac/README.md"
+	install "$srcdir/aptpac/CHANGELOG.md" "${pkgdir}/usr/share/doc/aptpac/CHANGELOG.md"
+	install "$srcdir/aptpac/LICENSE" "${pkgdir}/usr/share/doc/aptpac/LICENSE"
 }
