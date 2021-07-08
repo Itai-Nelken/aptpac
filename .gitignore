@@ -3,4 +3,4 @@ C-edition/build/*
 C-edition/build/CMakeFiles
 *.o
 C-edition/build/aptpac
-*.a
+
