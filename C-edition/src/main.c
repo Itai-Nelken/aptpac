@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m not rnough options for option 'config' provided!\e[0m\n");
 				return 1;
 			}
-			if(config_save(argv[3], argv[2])) {
+			if(config_save(argv[3], argv[2], 1)) {
 				fprintf(stderr, "\e[1;31mERROR:\e[0;31m Failed to write config changes!\e[0m\n");
 				return 1;
 			} else {

@@ -77,7 +77,7 @@ void get_cmdargs(int argc, char **argv, int startarg, char *out) {
 }
 
 //returns 1 on invalid configuration option and 0 on success
-int config_save(char *conf, char *mode) {
+int config_save(char *conf, char *mode, int text) {
 	FILE *file;
 	char *env=getenv("HOME");
 	char conf_file[101]="";
@@ -105,6 +105,9 @@ int config_save(char *conf, char *mode) {
 	}
 	fwrite(&config, sizeof(struct config), 1, file);
 	fclose(file);
+	if(text) {
+		printf("\e[1mConfiguration '%s' %s succesfully!\e[0m\n", conf, mode);
+	}
 	return 0;
 }
 //returns -1 on fail and the config on success
