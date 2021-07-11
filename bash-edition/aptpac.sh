@@ -127,7 +127,7 @@ while [[ "$1" != '' ]]; do
 			LEARN=1
 		;;
 	esac
-	case $1 in
+	case ${1,,} in
 		--learning-mode*)
 			MODE=$(echo $1 | sed -e 's/^[^=]*=//g')
 			if [[ "$MODE" == "on" ]]; then
