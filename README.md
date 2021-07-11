@@ -118,7 +118,7 @@ source .bashrc
 
 ## Daily builds
 
-Daily builds for x64, arm64, and armhf are now available, these can be found in the actions tab on the aptpac repo, once you have clicked on the actions tab, click on 'Build-x64', 'Build-arm64', or 'Build-armhf' then
+Daily builds for x64, arm64, and armhf are now available, these can be found in the actions tab on the aptpac repo, once you have clicked on the actions tab, click on 'Build-x64', or 'Build-arm64'<!--, or 'Build-armhf'--> then
 click on the latest build with a green ✔️, scroll down to the 'artifacts' section, and click on the zip there.
 keep in mind you need a github account to download them.
 
