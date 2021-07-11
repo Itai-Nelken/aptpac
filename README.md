@@ -39,7 +39,7 @@ AVAILABLE OPTIONS:
         help - show this help.
         version - show version and about information.
 
-options are not case sensitive (C edition only).
+options are not case sensitive.
 ```
 ## Learning mode:
 ### using a configuration file
