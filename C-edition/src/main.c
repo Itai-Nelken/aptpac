@@ -55,40 +55,40 @@ int main(int argc, char **argv) {
 		} else if(!strcasecmp(argv[1], "install")) {
 			if(argv[2]) {
 				get_cmdargs(argc, argv, 2, cmdflags);
-		} else {
-			fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m '%s' option passed, but no app provided!\e[0m\n", argv[1]);
+			} else {
+				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m '%s' option passed, but no app provided!\e[0m\n", argv[1]);
+				break;
+			}
+			strcpy(command, "sudo pacman -S ");
+			strcat(command, cmdflags);
+			//if learning mode is on, print the command being run using the 'learn' function
+			learn(command, LEARN);
+			system(command);
 			break;
-		}
-		strcpy(command, "sudo pacman -S ");
-		strcat(command, cmdflags);
-		//if learning mode is on, print the command being run using the 'learn' function
-		learn(command, LEARN);
-		system(command);
-		break;
 		} else if(!strcasecmp(argv[1], "install-local")) {
 			if(argv[2]) {
 				get_cmdargs(argc, argv, 2, cmdflags);
-		} else {
-			fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'install-local' option passed, but no package(s) provided!\e[0m\n");
+			} else {
+				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'install-local' option passed, but no package(s) provided!\e[0m\n");
+				break;
+			}
+			strcpy(command, "sudo pacman -U ");
+			strcat(command, cmdflags);
+			learn(command, LEARN);
+			system(command);
 			break;
-		}
-		strcpy(command, "sudo pacman -U ");
-		strcat(command, cmdflags);
-		learn(command, LEARN);
-		system(command);
-		break;
 		} else if(!strcasecmp(argv[1], "remove") || !strcasecmp(argv[1], "uninstall")) {
 			if(argv[2]) {
 				get_cmdargs(argc, argv, 2, cmdflags);
-		} else {
-			fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'install' option passed, but no app provided!\e[0m\n");
+			} else {
+				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'install' option passed, but no app provided!\e[0m\n");
+				break;
+			}
+			strcpy(command, "sudo pacman -Rs ");
+			strcat(command, cmdflags);
+			learn(command, LEARN);
+			system(command);
 			break;
-		}
-		strcpy(command, "sudo pacman -Rs ");
-		strcat(command, cmdflags);
-		learn(command, LEARN);
-		system(command);
-		break;
 		} else if(!strcasecmp(argv[1], "purge")) {
 			if(argv[2]) {
 				get_cmdargs(argc, argv, 2, cmdflags);

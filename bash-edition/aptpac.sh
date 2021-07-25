@@ -108,6 +108,8 @@ function config() {
 		fi
 	elif [[ "$1" == "load-all" ]]; then
 		SETTING="$(cat config)"
+	elif [[ "$1" == "delete-all" ]]; then
+		echo -n "" > config
 	fi
 	cd "$DIR"
 }
@@ -139,6 +141,20 @@ while [[ "$1" != '' ]]; do
 			else
 				echo -e "\e[31m\e[1mERROR:\e[0m\e[31m Invalid option '$MODE' for option '--learning-mode'!\e[0m"
 			fi
+			shift
+		;;
+		--config)
+			case $2 in
+				clear)
+					config delete-all || exit 1
+					echo "configuration cleared succesfully!"
+					break
+				;;
+				*)
+				echo -e "\e[31m\e[1mERROR:\e[0m\e[31m Invalid option '$MODE' for option '--config'!\e[0m"
+				break
+				;;
+			esac
 			shift
 		;;
 		install)

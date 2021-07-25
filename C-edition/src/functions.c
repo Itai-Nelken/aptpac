@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <sys/stat.h>
-#include <sys/types.h>
+#include <unistd.h>
+#include <errno.h>
+#include <sys/wait.h>
 #include <unistd.h>
 #include "functions.h"
 
@@ -131,5 +132,27 @@ int config_load(char *conf) {
 		return config.learn;
 	} else {
 		return -1;
+	}
+}
+
+int run(char **command) {
+	int exit=0, stat_loc;
+	pid_t child=fork();
+	if(child==0) {
+		if(execvp(command[0], command)==-1) {
+			perror("execv");
+			exit=1;
+			return 1;
+		}
+	} else if(child<0) {
+		perror("fork");
+		exit=1;
+	} else {
+		waitpid(child, &stat_loc, WUNTRACED);
+	}
+	if(exit==1) {
+		return 1;
+	} else {
+		return 0;
 	}
 }

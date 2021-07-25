@@ -18,3 +18,4 @@ void get_conf(char *out);
 int config_save(char *conf, char *mode, int text);
 //returns -1 on fail and the config on success
 int config_load(char *conf);
+int run(char **command);
