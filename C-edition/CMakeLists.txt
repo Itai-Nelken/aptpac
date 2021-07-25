@@ -32,6 +32,7 @@ if(DEBUG)
 	message(STATUS "Configuring with debug mode on...")
 	add_compile_definitions(DEBUG)
 	add_compile_options(-Wall)
+	set(CMAKE_BUILD_TYPE Debug)
 endif()
 
 #functions.h

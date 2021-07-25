@@ -77,8 +77,18 @@ void get_cmdargs(int argc, char **argv, int startarg, char *out) {
 	}
 }
 
-//returns 1 on invalid configuration option and 0 on success
-int config_save(struct config *config, char *conf, char *mode, int text) {
+//initialize a struct config.
+struct config *config_init() {
+	struct config *conf=malloc(sizeof(struct config)*1);
+	return conf;
+}
+
+void config_free(struct config *conf) {
+	free(conf);
+}
+
+//returns 1 if opening config file failed and 0 on success
+int config_save(struct config *config) {
 	FILE *file;
 	char *env=getenv("HOME");
 	char conf_file[101]="";
@@ -86,33 +96,18 @@ int config_save(struct config *config, char *conf, char *mode, int text) {
 #ifdef DEBUG
 	debug("configuration file", conf_file);
 #endif
-	if(!strcmp(conf, "learn")) {
-		if(!strcmp(mode, "set")) {
-			config->learn=1;
-		} else if(!strcmp(mode, "unset")) {
-			config->learn=0;
-		} else {
-			fprintf(stderr, "\e[1;31mERROR:\e[0;31m invalid config mode!\e[0m\n");
-			return 1;
-		}
-	} else {
-		return 1;
-	}
 	file=fopen(conf_file, "w");
 	if(file==NULL) {
-		fprintf(stderr, "\e[1;31mERROR:\e[0;31m failed to open config file!\e[0m\n");
+		fprintf(stderr, "\e[1;31mERROR:\e[0;31m failed to open config file: %s\e[0m\n", strerror(errno));
 		return 1;
 	}
 	fwrite(config, sizeof(struct config), 1, file);
 	fclose(file);
-	if(text) {
-		printf("\e[1mConfiguration '%s' %s succesfully!\e[0m\n", conf, mode);
-	}
 	return 0;
 }
 
 //exits with return value -1 on fail and a pointer to the config struct on success
-struct config *config_load() {
+void config_load(struct config *config) {
 	FILE *file;
 	char *env=getenv("HOME");
 	char conf_file[101]="";
@@ -120,15 +115,13 @@ struct config *config_load() {
 #ifdef DEBUG
 	debug("configuration file", conf_file);
 #endif
-	struct config *config=malloc(sizeof(struct config)*1);
 	file=fopen(conf_file, "r");
 	if(file==NULL) {
 		perror("config_load: fopen");
-		exit -1;
+		exit(-1);
 	}
 	fread(config, sizeof(struct config), 1, file);
 	fclose(file);
-	return config;
 }
 
 int run(char **command) {

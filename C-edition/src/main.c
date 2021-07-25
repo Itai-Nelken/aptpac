@@ -30,14 +30,14 @@ SOFTWARE.
 int main(int argc, char **argv) {
 	char command[101], cmdflags[4097]="";
 	int LEARN=0;
-	struct config *conf;
+	struct config *conf=config_init();
 	//set the 'APTPAC_LEARN' env var to "0" (yes, a string) to avoid a segfault in getenv if it isn't set
 	//set its value to 0, and don't overwrite it if it already exists.
 	setenv("APTPAC_LEARN", "0", 0);
 	//activate learning mode if env var 'APTPAC_LEARN' = 1
 	char *learn_env=getenv("APTPAC_LEARN");
 	//load the configuration
-	conf=config_load();
+	config_load(conf);
 	if(!strcmp(learn_env, "1")||conf->learn==1) {
 		LEARN=1;
 	}
@@ -48,12 +48,34 @@ int main(int argc, char **argv) {
 				free(conf);
 				return 1;
 			}
-			if(config_save(conf, argv[3], argv[2], 1)) {
+			if(!strcmp(argv[2], "set")) {
+				if(!strcmp(argv[3], "learn")) {
+					conf->learn=1;
+				} else {
+					fprintf(stderr, "\e[1;31mERROR: \e[0;31minvalid configuration option '%s'!\e[0m\n", argv[3]);
+					config_free(conf);
+					return 1;
+				}
+			} else if(!strcmp(argv[2], "unset")) {
+				if(!strcmp(argv[3], "learn")) {
+					conf->learn=0;
+				} else {
+					fprintf(stderr, "\e[1;31mERROR: \e[0;31minvalid configuration option '%s'!\e[0m\n", argv[3]);
+					config_free(conf);
+					return 1;
+				}
+			} else {
+				fprintf(stderr, "\e[1;31mERROR:\e[0;31m invalid config mode!\e[0m\n");
+				config_free(conf);
+				return 1;
+			}
+			if(config_save(conf)) {
 				fprintf(stderr, "\e[1;31mERROR:\e[0;31m Failed to write config changes!\e[0m\n");
 				free(conf);
 				return 1;
 			} else {
-				free(conf);
+				printf("\e[1mConfiguration '%s' %s succesfully!\e[0m\n", argv[3], argv[2]);
+				config_free(conf);
 				return 0;
 			}
 		} else if(!strcasecmp(argv[1], "install")) {
@@ -202,7 +224,7 @@ int main(int argc, char **argv) {
 		//echo("");
 		//help();
 	}
-	free(conf);
+	config_free(conf);
 	return 0;
 }
 

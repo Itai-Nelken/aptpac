@@ -1,3 +1,4 @@
+#pragma once
 //#define VER "2.5" //defined in CMakeLists.txt
 //#define CALLCOMMAND "./aptpac" //defined in CMakeLists.txt
 
@@ -13,9 +14,10 @@ void help();
 void about();
 void learn(char command[101], int learn);
 void get_cmdargs(int argc, char **argv, int startarg, char *out);
-void get_conf(char *out);
+//initialize a struct config.
+struct config *config_init();
+void config_free(struct config *conf);
 //returns 1 on invalid configuration option and 0 on success
-int config_save(struct config *config, char *conf, char *mode, int text);
-//returns -1 on fail and the config on success
-struct config *config_load();
+int config_save(struct config *config);
+void config_load();
 int run(char **command);
