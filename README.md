@@ -45,7 +45,7 @@ options are not case sensitive.
 ## Learning mode:
 ### using a configuration file
 #### C edition
-`--config <set|unset> learn` - use `set` to turn it on and `unset` to turn it off. the configuration file is in `~/.config/aptpac`.
+`--config <set|unset> learn` - use `set` to turn it on and `unset` to turn it off. the configuration file is `~/.config/aptpac.config`.
 ### Bash edition
 `--learning-mode=<on|off>` - accepts `on` or `off` as values. the configuration file is in `~/.aptpac/config`.
 ###  using a environment variable
