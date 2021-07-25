@@ -78,7 +78,7 @@ void get_cmdargs(int argc, char **argv, int startarg, char *out) {
 }
 
 //returns 1 on invalid configuration option and 0 on success
-int config_save(char *conf, char *mode, int text) {
+int config_save(struct config *config, char *conf, char *mode, int text) {
 	FILE *file;
 	char *env=getenv("HOME");
 	char conf_file[101]="";
@@ -86,12 +86,11 @@ int config_save(char *conf, char *mode, int text) {
 #ifdef DEBUG
 	debug("configuration file", conf_file);
 #endif
-	struct config config;
 	if(!strcmp(conf, "learn")) {
 		if(!strcmp(mode, "set")) {
-			config.learn=1;
+			config->learn=1;
 		} else if(!strcmp(mode, "unset")) {
-			config.learn=0;
+			config->learn=0;
 		} else {
 			fprintf(stderr, "\e[1;31mERROR:\e[0;31m invalid config mode!\e[0m\n");
 			return 1;
@@ -104,15 +103,16 @@ int config_save(char *conf, char *mode, int text) {
 		fprintf(stderr, "\e[1;31mERROR:\e[0;31m failed to open config file!\e[0m\n");
 		return 1;
 	}
-	fwrite(&config, sizeof(struct config), 1, file);
+	fwrite(config, sizeof(struct config), 1, file);
 	fclose(file);
 	if(text) {
 		printf("\e[1mConfiguration '%s' %s succesfully!\e[0m\n", conf, mode);
 	}
 	return 0;
 }
-//returns -1 on fail and the config on success
-int config_load(char *conf) {
+
+//exits with return value -1 on fail and a pointer to the config struct on success
+struct config *config_load() {
 	FILE *file;
 	char *env=getenv("HOME");
 	char conf_file[101]="";
@@ -120,19 +120,15 @@ int config_load(char *conf) {
 #ifdef DEBUG
 	debug("configuration file", conf_file);
 #endif
-	struct config config;
+	struct config *config=malloc(sizeof(struct config)*1);
 	file=fopen(conf_file, "r");
 	if(file==NULL) {
-		//fprintf(stderr, "\e[1;31mERROR:\e[0;31m failed to open config file!\e[0m\n");
-		return -1;
+		perror("config_load: fopen");
+		exit -1;
 	}
-	fread(&config, sizeof(struct config), 1, file);
+	fread(config, sizeof(struct config), 1, file);
 	fclose(file);
-	if(!strcmp(conf, "learn")) {
-		return config.learn;
-	} else {
-		return -1;
-	}
+	return config;
 }
 
 int run(char **command) {

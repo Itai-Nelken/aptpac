@@ -30,26 +30,30 @@ SOFTWARE.
 int main(int argc, char **argv) {
 	char command[101], cmdflags[4097]="";
 	int LEARN=0;
+	struct config *conf;
 	//set the 'APTPAC_LEARN' env var to "0" (yes, a string) to avoid a segfault in getenv if it isn't set
 	//set its value to 0, and don't overwrite it if it already exists.
 	setenv("APTPAC_LEARN", "0", 0);
 	//activate learning mode if env var 'APTPAC_LEARN' = 1
 	char *learn_env=getenv("APTPAC_LEARN");
 	//load the configuration
-	int conf=config_load("learn");
-	if(!strcmp(learn_env, "1")||conf==1) {
+	conf=config_load();
+	if(!strcmp(learn_env, "1")||conf->learn==1) {
 		LEARN=1;
 	}
 	while(argc>1) {
 		if(!strcasecmp(argv[1], "--config")) {
 			if(argc!=4) {
-				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m not rnough options for option 'config' provided!\e[0m\n");
+				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m not enough options for option 'config' provided!\e[0m\n");
+				free(conf);
 				return 1;
 			}
-			if(config_save(argv[3], argv[2], 1)) {
+			if(config_save(conf, argv[3], argv[2], 1)) {
 				fprintf(stderr, "\e[1;31mERROR:\e[0;31m Failed to write config changes!\e[0m\n");
+				free(conf);
 				return 1;
 			} else {
+				free(conf);
 				return 0;
 			}
 		} else if(!strcasecmp(argv[1], "install")) {
@@ -198,6 +202,7 @@ int main(int argc, char **argv) {
 		//echo("");
 		//help();
 	}
+	free(conf);
 	return 0;
 }
 

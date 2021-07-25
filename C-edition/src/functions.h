@@ -15,7 +15,7 @@ void learn(char command[101], int learn);
 void get_cmdargs(int argc, char **argv, int startarg, char *out);
 void get_conf(char *out);
 //returns 1 on invalid configuration option and 0 on success
-int config_save(char *conf, char *mode, int text);
+int config_save(struct config *config, char *conf, char *mode, int text);
 //returns -1 on fail and the config on success
-int config_load(char *conf);
+struct config *config_load();
 int run(char **command);
