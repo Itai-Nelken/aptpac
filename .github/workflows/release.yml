@@ -4,10 +4,6 @@ on:
   release:
     types:
       - created
-
-env:
-  BUILD_TYPE: Release
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,15 +13,17 @@ jobs:
 
     - name: Configure CMake
       run: |
-        mkdir -p ${{github.workspace}}/C-edition/build
-        cmake -B ${{github.workspace}}/C-edition/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+        cd aptpac/C-edition/
+        mkdir build
+        cd build
+        cmake -DCMAKE_BUILD_TYPE=Release ..
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/C-edition/build --config ${{env.BUILD_TYPE}}
+      run: make -C C-edition/build
 
     - name: Package
       run: |
-        cd ${{github.workspace}}/C-edition/build
+        cd C-edition/build
         cpack -G STGZ
         echo "PKG=$(basename *.sh)" >> $GITHUB_ENV
     - name: Upload to release
@@ -33,6 +31,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        file: '${{github.workspace}}/C-edition/build/${{ env.PKG }}'
+        file: 'C-edition/build/${{ env.PKG }}'
         type: 'text/x-shellscript'
       
