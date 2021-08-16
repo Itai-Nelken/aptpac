@@ -64,6 +64,8 @@ Since there are 2 variants of aptpac, there are 2 install methods, please choose
 
 ### Guide to installing C aptpac:
 
+You can either download the latest release packaged as a self extracting archive from [here](https://github.com/Itai-Nelken/aptpac/releases/latest), or compile the latest develop:
+
 ``` bash
 sudo pacman -S cmake make git gcc
 cd $HOME
@@ -83,7 +85,7 @@ sudo make install # This moves aptpac to /usr/local/bin so it can be run easily
 sudo pacman -S wget
 cd $HOME
 mkdir ~/.aptpac
-wget https://github.com/Itai-Nelken/aptpac/releases/download/2.6/aptpac.sh -O ~/.aptpac/aptpac.sh
+wget https://github.com/Itai-Nelken/aptpac/releases/download/3.0/aptpac.sh -O ~/.aptpac/aptpac.sh
 chmod +x .aptpac/aptpac.sh
 echo "alias aptpac=\"~/.aptpac/aptpac.sh\"" >> $HOME/.bashrc
 source ~/.bashrc
@@ -91,7 +93,7 @@ source ~/.bashrc
 
 ## Uninstalling
 
-Choose the correct uninstall method - the one you chose when installing
+Choose the correct uninstall method - for the variant you chose when installing
 
 ### Guide to uninstalling C aptpac:
 
@@ -118,12 +120,12 @@ source .bashrc
 
 ## Daily builds
 
-Daily builds for x64, arm64, and armhf are now available, these can be found in the actions tab on the aptpac repo, once you have clicked on the actions tab, click on 'Build-x64', or 'Build-arm64'<!--, or 'Build-armhf'--> then
+Daily builds for x64 and arm64 <!--, and armhf-->are now available, these can be found in the actions tab on the aptpac repo, once you have clicked on the actions tab, click on 'Build-x64', or 'Build-arm64'<!--, or 'Build-armhf'--> then
 click on the latest build with a green ✔️, scroll down to the 'artifacts' section, and click on the zip there.
 keep in mind you need a github account to download them.
 
 ## Build checks
 
-Build checks for arm64, armhf, and X86-64 are run for every commit and pr. you can see the status in the badges at the top of the README.
+Build checks for arm64<!--, armhf,--> and X86_64 are run for every commit and pr. you can see the status in the badges at the top of the README.
 The check are not run for README updates.
 
