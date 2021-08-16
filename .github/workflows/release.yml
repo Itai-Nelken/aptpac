@@ -1,5 +1,4 @@
-name: Release
-
+name: publish-x64
 on:
   release:
     types:
@@ -7,30 +6,32 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Configure CMake
-      run: |
-        cd aptpac/C-edition/
-        mkdir build
-        cd build
-        cmake -DCMAKE_BUILD_TYPE=Release ..
-
-    - name: Build
-      run: make -C C-edition/build
-
-    - name: Package
-      run: |
-        cd C-edition/build
-        cpack -G STGZ
-        echo "PKG=$(basename *.sh)" >> $GITHUB_ENV
-    - name: Upload to release
-      uses: gacts/upload-to-release@v1.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        file: 'C-edition/build/${{ env.PKG }}'
-        type: 'text/x-shellscript'
-      
+      - name: Install Dependencies
+        run: |
+          DEBIAN_FRONTEND=noninteractive sudo apt update
+          DEBIAN_FRONTEND=noninteractive sudo apt -y install build-essential
+      - name: Configure
+        run: |
+          mkdir C-edition/build
+          cd C-edition/build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+      - name: Build
+        run: |
+          cd C-edition/build
+          make
+      - name: Package
+        run: |
+          cd C-edition/build
+          cpack -G STGZ
+          echo "PKG=$(basename *.sh)" >> $GITHUB_ENV
+      - name: Upload to release
+        uses: gacts/upload-to-release@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: 'build/${{ env.PKG }}'
+          type: 'text/x-shellscript'
