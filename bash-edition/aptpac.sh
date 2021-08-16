@@ -25,7 +25,7 @@
 #
 
 #variables
-appver="2.6-bash"
+appver="3.0-bash"
 CALLCOMMAND="./aptpac.sh"
 
 #functions

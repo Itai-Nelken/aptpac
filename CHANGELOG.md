@@ -39,5 +39,20 @@
 - C-edition (also bash edition): add the ability to toggle learning mode in runtime using the `APTPAC_LEARN` environment variable.
 - Release 2.6 (and 2.6-bash)
 ### 9/6/2021
-- Move command line argument collecting to `get_cmdargs` function.
+- C-edition: move command line argument "collecting" to get_cmdargs() function.
+### 7/7/2021
+- C-edition: add runtime configuration changing!
+- move the configuration file to ~/.config
+- v3.0-beta
+### 8/7/2021
+- C-edition: print message on succesful set/unset of a setting.
+### 10/7/2021
+- C-edition: add packaging with CPack.
+### 11/7/2021
+- bash edition: Jai-JAP - make options non-case sensitive (Thank you!).
+### 25/7/2021
+- bash edition: make --config option work the same as in the C-edition.
+- C-edition: improve configuration loading/saving, and configuration functions.
+### 16/8/2021
+- Release v3.0 (and 3.0-bash)!
 <hr>
