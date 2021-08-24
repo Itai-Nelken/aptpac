@@ -45,7 +45,16 @@ add_library(
 add_executable(${BIN} src/main.c)
 target_link_libraries(${BIN} PRIVATE functions)
 
-set(TARGET_ARCH ${CMAKE_HOST_SYSTEM_PROCESSOR})
+execute_process(
+    COMMAND bash "-c" "echo $(od -An -t x1 -j 4 -N 1 \"$(readlink -f /sbin/init)\") | tr -d '\n'" 
+    OUTPUT_VARIABLE ARCH
+)
+if(${ARCH} STREQUAL 02)
+        set(TARGET_ARCH "aarch64")
+elseif(${ARCH} STREQUAL 01)
+        set(TARGET_ARCH "armv7l")
+endif()
+
 if(NOT CPACK_GENERATOR)
         set(CPACK_GENERATOR "STGZ")
 endif()
