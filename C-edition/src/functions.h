@@ -3,6 +3,7 @@
 //#define CALLCOMMAND "./aptpac" //defined in CMakeLists.txt
 
 struct config {
+	unsigned int version;
 	int learn;
 };
 
