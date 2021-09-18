@@ -80,6 +80,7 @@ void get_cmdargs(int argc, char **argv, int startarg, char *out) {
 //initialize a struct config.
 struct config *config_init() {
 	struct config *conf=malloc(sizeof(struct config)*1);
+	conf->version=CONF_FILE_VERSION;
 	return conf;
 }
 
@@ -117,10 +118,16 @@ void config_load(struct config *config) {
 #endif
 	file=fopen(conf_file, "r");
 	if(file==NULL) {
-		perror("config_load: fopen");
+		fprintf(stderr, "config_load(): fopen(): %s: %s\n", strerror(errno), conf_file);
 		exit(-1);
 	}
 	fread(config, sizeof(struct config), 1, file);
+	if(config->version!=CONF_FILE_VERSION) {
+		int learn_old=config->learn;
+		config_free(config);
+		config=config_init();
+		config->learn=learn_old;
+	}
 	fclose(file);
 }
 

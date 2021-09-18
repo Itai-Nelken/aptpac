@@ -5,8 +5,10 @@ project(aptpac VERSION 3.0 LANGUAGES C)
 set(BIN "aptpac") #the name of the executable
 set(VER "${CMAKE_PROJECT_VERSION}") #the versiongc
 set(NAME "${CMAKE_PROJECT_NAME}") #the project name
-#set(CONF "$ENV{HOME}/.aptpac")
+set(HOME_DIR "$ENV{HOME}")
+set(CONF_FILE "${HOME_DIR}/.config/aptpac.config")
 add_compile_definitions(VER="${VER}")
+add_compile_definitions(CONF_FILE_VERSION=1)
 
 #options for cmake
 option(CALLCOMMAND "The command to use when calling aptpac e.g './aptpac' or 'aptpac'" ${CALLCOMMAND})
@@ -74,6 +76,7 @@ install(
 	TARGETS aptpac
 	DESTINATION /usr/local/bin
 )
+add_custom_command(TARGET aptpac POST_BUILD COMMAND touch $ENV{HOME}/.config/aptpac.config)
 
 # uninstall target
 if(NOT TARGET uninstall)
