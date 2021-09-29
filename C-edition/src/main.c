@@ -74,7 +74,7 @@ int main(int argc, char **argv) {
 				free(conf);
 				return 1;
 			} else {
-				printf("\e[1mConfiguration '%s' %s succesfully!\e[0m\n", argv[3], argv[2]);
+				printf("\e[1mConfiguration '%s' %s successfully!\e[0m\n", argv[3], argv[2]);
 				config_free(conf);
 				return 0;
 			}
