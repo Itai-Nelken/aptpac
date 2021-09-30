@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 set(CMAKE_C_COMPILER "gcc")
-project(aptpac VERSION 3.0 LANGUAGES C)
+project(aptpac VERSION 3.1 LANGUAGES C)
 
 #set some variables
 set(BIN "aptpac") #the name of the executable
