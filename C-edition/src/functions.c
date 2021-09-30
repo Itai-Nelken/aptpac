@@ -145,12 +145,12 @@ int run(char **command) {
 	pid_t child=fork();
 	if(child==0) {
 		if(execvp(command[0], command)==-1) {
-			perror("execv");
+			perror("run(): execv()");
 			exit=1;
 			return 1;
 		}
 	} else if(child<0) {
-		perror("fork");
+		perror("run(): fork()");
 		exit=1;
 	} else {
 		waitpid(child, &stat_loc, WUNTRACED);

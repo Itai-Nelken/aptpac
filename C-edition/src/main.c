@@ -1,42 +1,45 @@
 /*********************
-MIT License
-
-Copyright (c) 2021 Itai Nelken
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+* MIT License
+* 
+* Copyright (c) 2021 Itai Nelken
+* 
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* 
+* The above copyright notice and this permission notice shall be included in all
+* copies or substantial portions of the Software.
+* 
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
 *********************/
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> // setenv(), getenv()
 #include <string.h>
-#include "functions.h" //VER defined in "functions.h"
+#include "functions.h" // VER defined in "functions.h"
 
 int main(int argc, char **argv) {
 	char command[101], cmdflags[4097]="";
 	int LEARN=0;
 	struct config *conf=config_init();
-	//set the 'APTPAC_LEARN' env var to "0" (yes, a string) to avoid a segfault in getenv if it isn't set
-	//set its value to 0, and don't overwrite it if it already exists.
+	
+	// set the 'APTPAC_LEARN' env var to "0" (yes, a string) to avoid a segfault in getenv if it isn't set
+	// set its value to 0, and don't overwrite it if it already exists.
 	setenv("APTPAC_LEARN", "0", 0);
-	//activate learning mode if env var 'APTPAC_LEARN' = 1
+	
+	// activate learning mode if env var 'APTPAC_LEARN' = 1
 	char *learn_env=getenv("APTPAC_LEARN");
-	//load the configuration
+
+	// load the configuration
 	config_load(conf);
 	if(!strcmp(learn_env, "1")||conf->learn==1) {
 		LEARN=1;
