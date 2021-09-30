@@ -44,6 +44,12 @@ int main(int argc, char **argv) {
 	if(!strcmp(learn_env, "1")||conf->learn==1) {
 		LEARN=1;
 	}
+
+	if(argc==1) {
+		fprintf(stderr, "\e[31m\e[1mERROR:\e[0m \e[31mno operation specified!\e[0m\n");
+		fprintf(stderr, "\e[1mrun \"%s --help\" for help\e[0m\n", argv[0]);
+		return 1;
+	}
 	while(argc>1) {
 		if(!strcasecmp(argv[1], "--config")) {
 			if(argc!=4) {
@@ -220,13 +226,7 @@ int main(int argc, char **argv) {
 			break;
 		}
 	}
-	if(argc==1) {
-		fprintf(stderr, "\e[31m\e[1mERROR:\e[0m \e[31mno operation specified!\e[0m\n");
-		fprintf(stderr, "\e[1mrun \"%s --help\" for help\e[0m\n", argv[0]);
-		//about();
-		//echo("");
-		//help();
-	}
+
 	config_free(conf);
 	return 0;
 }
