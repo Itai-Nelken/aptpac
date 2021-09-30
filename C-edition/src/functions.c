@@ -28,7 +28,7 @@ void help() {
 	echo("	or add 'export APTPAC_LEARN=1' to your bashrc or equivalent to have it always on.");
 	echo("\e[1mAVAILABLE OPTIONS:\e[0m");
 	echo("	install - install a package.");
-	echo("	install-local - install a local package. accpets the path to the package as a argument.");
+	echo("	install-local - install a local package. accepts the path to the package as a argument.");
 	echo("	remove - uninstall a package.");
 	echo("	purge - uninstall a package along with its configuration files.");
 	echo("	search - search a package.");
