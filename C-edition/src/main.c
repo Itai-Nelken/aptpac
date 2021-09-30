@@ -207,7 +207,7 @@ int main(int argc, char **argv) {
 			system(command);
 			break;
 		} else if(!strcasecmp(argv[1], "help") || !strcasecmp(argv[1], "-help") || !strcasecmp(argv[1], "--help") || !strcasecmp(argv[1], "-h")) {
-			help();
+			help(argv[0]);
 			break;
 		} else if(!strcasecmp(argv[1], "version") || !strcasecmp(argv[1], "-v") || !strcasecmp(argv[1], "--version")) {
 			about();
@@ -219,7 +219,7 @@ int main(int argc, char **argv) {
 	}
 	if(argc==1) {
 		fprintf(stderr, "\e[31m\e[1mERROR:\e[0m \e[31mno operation specified!\e[0m\n");
-		fprintf(stderr, "\e[1mrun \"%s --help\" for help\e[0m\n", CALLCOMMAND);
+		fprintf(stderr, "\e[1mrun \"%s --help\" for help\e[0m\n", argv[0]);
 		//about();
 		//echo("");
 		//help();

@@ -1,67 +1,76 @@
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <sys/wait.h>
-#include <unistd.h>
+#include <string.h>   // strlen(), strcat(), strerror()
+#include <stdlib.h>   // malloc(), free(), exit(), getenv()
+#include <unistd.h>   // fork(), execvp()
+#include <errno.h>    // errno
+#include <sys/wait.h> // waitpid()
+#include <stdarg.h>   // va_list, va_start(), va_end(), vprintf()
+
 #include "functions.h"
 
-void echo(char text[501]) {
-	printf("%s\n", text);
+void println(const char *format, ...) {
+	char *str=malloc(sizeof(char)*strlen(format)+3);
+	snprintf(str, sizeof(char)*strlen(format)+3, "%s\n", format);
+	va_list args;
+	va_start(args, format);
+	
+	vprintf(str, args);
+	
+	va_end(args);
+	free(str);
 }
 #ifdef DEBUG
-	void debug(char text[101], char info[101]) {
+	void debug(char *text, char *info) {
 		printf("\e[1m\n DEBUG INFO \e[0m\n");
 		printf("============\n");
 		printf("%s: %s\n\n", text, info);
 	}
 #endif
 
-void help() {
-	echo("\e[1mUSAGE:\e[0m");
-	echo("	aptpac [command] [packages (if applicable for the command)]");
-	echo("	\e[1mEXAMPLE:\e[0m aptpac search qemu");
-	echo("\e[1mLEARNING MODE:\e[0m");
-	echo("	to enable learning mode, run with the environment variable 'APTPAC_LEARN' set to 1");
-	echo("	\e[1mEXAMPLE:\e[0m APTPAC_LEARN=1 aptpac");
-	echo("	or add 'export APTPAC_LEARN=1' to your bashrc or equivalent to have it always on.");
-	echo("\e[1mAVAILABLE OPTIONS:\e[0m");
-	echo("	install - install a package.");
-	echo("	install-local - install a local package. accepts the path to the package as a argument.");
-	echo("	remove - uninstall a package.");
-	echo("	purge - uninstall a package along with its configuration files.");
-	echo("	search - search a package.");
-	echo("	find - (pacman -F) in debian: 'apt-file search'.");
-	echo("	update - equivalent of 'apt update' in debian.");
-	echo("	upgrade - equivalent of 'apt upgrade' in debian.");
-	echo("	full-upgrade - full system upgrade.");
-	echo("	full-upgrade - same as 'upgrade'.");
-	echo("	autoclean - clean up all local caches.");
-	echo("	clean - same as 'autoclean'.");
-	echo("	autoremove - remove packages that are no longer needed.");
-	echo("	show - show the information of a package that is installed.");
-	echo("	show-all - same as 'show', but shows packages from the repos.");
-	echo("	list-installed - list all installed packages.");
-	echo("	help - show this help.");
-	echo("	version - show version and about information.\n");
-	echo("\e[1mCONFIGURATION:\e[0m");
-	echo("	--config <set|unset> <configuration> - set/unset configuration options.");
-	echo("\e[1mAVAILABLE CONFIGURATION OPTIONS:\e[0m");
-	echo("	learn");
-	echo("\e[1moptions are not case sensitive.\e[0m");
+void help(char *argv0) {
+	println("\e[1mUSAGE:\e[0m");
+	println("	%s [command] [packages (if applicable for the command)]", argv0);
+	println("	\e[1mEXAMPLE:\e[0m aptpac search qemu");
+	println("\e[1mLEARNING MODE:\e[0m");
+	println("	to enable learning mode, run with the environment variable 'APTPAC_LEARN' set to 1");
+	println("	\e[1mEXAMPLE:\e[0m APTPAC_LEARN=1 aptpac");
+	println("	or add 'export APTPAC_LEARN=1' to your bashrc or equivalent to have it always on.");
+	println("\e[1mAVAILABLE OPTIONS:\e[0m");
+	println("	install - install a package.");
+	println("	install-local - install a local package. accepts the path to the package as a argument.");
+	println("	remove - uninstall a package.");
+	println("	purge - uninstall a package along with its configuration files.");
+	println("	search - search a package.");
+	println("	find - (pacman -F) in debian: 'apt-file search'.");
+	println("	update - equivalent of 'apt update' in debian.");
+	println("	upgrade - equivalent of 'apt upgrade' in debian.");
+	println("	full-upgrade - full system upgrade.");
+	println("	full-upgrade - same as 'upgrade'.");
+	println("	autoclean - clean up all local caches.");
+	println("	clean - same as 'autoclean'.");
+	println("	autoremove - remove packages that are no longer needed.");
+	println("	show - show the information of a package that is installed.");
+	println("	show-all - same as 'show', but shows packages from the repos.");
+	println("	list-installed - list all installed packages.");
+	println("	help - show this help.");
+	println("	version - show version and about information.\n");
+	println("\e[1mCONFIGURATION:\e[0m");
+	println("	--config <set|unset> <configuration> - set/unset configuration options.");
+	println("\e[1mAVAILABLE CONFIGURATION OPTIONS:\e[0m");
+	println("	learn");
+	println("\e[1moptions are not case sensitive.\e[0m");
 }
  
 void about() {
-	echo("\e[1m   APTPAC \e[0m\n ==========");
-	echo("A simple wrapper for pacman with a syntax similar to apt to help people transitioning to Arch and Arch based distros like Manjaro.");
+	println("\e[1m   APTPAC \e[0m\n ==========");
+	println("A simple wrapper for pacman with a syntax similar to apt to help people transitioning to Arch and Arch based distros like Manjaro.");
 	printf("\e[1mVersion:\e[0m %s built on %s.\n\n", VER, __TIMESTAMP__);
-	echo("License: MIT");
-	echo("Copyright (c) 2021 Itai Nelken");
+	println("License: MIT");
+	println("Copyright (c) 2021 Itai Nelken");
 }
 
 //print the command being run: <the contents of the command variable> if int learn == 1
-void learn(char command[101], int learn) {
+void learn(char *command, int learn) {
 	if(learn==1) {
 		printf("The command being run is: \e[1m%s\e[0m\n", command);
 	}

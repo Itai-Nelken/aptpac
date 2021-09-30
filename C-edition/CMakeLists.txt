@@ -1,34 +1,18 @@
 cmake_minimum_required(VERSION 3.16)
-set(CMAKE_C_COMPILER "/bin/gcc")
+set(CMAKE_C_COMPILER "gcc")
 project(aptpac VERSION 3.0 LANGUAGES C)
+
 #set some variables
 set(BIN "aptpac") #the name of the executable
 set(VER "${CMAKE_PROJECT_VERSION}") #the versiongc
 set(NAME "${CMAKE_PROJECT_NAME}") #the project name
-set(HOME_DIR "$ENV{HOME}")
-set(CONF_FILE "${HOME_DIR}/.config/aptpac.config")
+set(CONF_FILE "$ENV{HOME}/.config/aptpac.config")
+
 add_compile_definitions(VER="${VER}")
 add_compile_definitions(CONF_FILE_VERSION=1)
 
 #options for cmake
-option(CALLCOMMAND "The command to use when calling aptpac e.g './aptpac' or 'aptpac'" ${CALLCOMMAND})
 option(DEBUG "Print debug info in some places" ${DEBUG})
-#CALLCOMMAND
-if(CALLCOMMAND STREQUAL "./${BIN}")
-    add_compile_definitions(CALLCOMMAND="./${BIN}")
-elseif(CALLCOMMAND STREQUAL "${BIN}")
-    add_compile_definitions(CALLCOMMAND="${BIN}")
-elseif(CALLCOMMAND STREQUAL "OFF")
-    message(STATUS "Using default value for 'CALLCOMMAND'...")
-    add_compile_definitions(CALLCOMMAND="${BIN}")
-else()
-    message(WARNING )
-    execute_process(COMMAND 
-        ${CMAKE_COMMAND} -E env CLICOLOR_FORCE=1
-        ${CMAKE_COMMAND} -E cmake_echo_color --red --bold "Unknown option for 'CALLCOMMAND'! using default '${BIN}'"
-    )
-    add_compile_definitions(CALLCOMMAND="${BIN}")
-endif()
 #DEBUG
 if(DEBUG)
 	message(STATUS "Configuring with debug mode on...")
@@ -38,8 +22,7 @@ if(DEBUG)
 endif()
 
 #functions.h
-add_library(
-	functions
+add_library(functions OBJECT
 	src/functions.h
 	src/functions.c
 )

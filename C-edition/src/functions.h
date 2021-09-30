@@ -1,19 +1,21 @@
-#pragma once
-//#define VER "2.5" //defined in CMakeLists.txt
-//#define CALLCOMMAND "./aptpac" //defined in CMakeLists.txt
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+//#define VER "2.5" // defined in CMakeLists.txt
+//#define CALLCOMMAND "./aptpac" // defined in CMakeLists.txt
 
 struct config {
 	unsigned int version;
 	int learn;
 };
 
-void echo(char text[501]);
+void println(const char *format, ...);
 #ifdef DEBUG
-	void debug(char text[101], char info[101]);
+	void debug(char *text, char *info);
 #endif
-void help();
+void help(char *argv0);
 void about();
-void learn(char command[101], int learn);
+void learn(char *command, int learn);
 void get_cmdargs(int argc, char **argv, int startarg, char *out);
 //initialize a struct config.
 struct config *config_init();
@@ -22,3 +24,5 @@ void config_free(struct config *conf);
 int config_save(struct config *config);
 void config_load();
 int run(char **command);
+
+#endif // FUNCTIONS_H
