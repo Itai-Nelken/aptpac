@@ -4,12 +4,12 @@
 <!--![Build-armhf status badge](https://img.shields.io/github/workflow/status/Itai-Nelken/aptpac/Build-armhf?label=Build%20armhf&style=flat-square)-->
 
 
-**`aptpac`** is a program which helps with the transition to Arch Linux and Arch based distros like Manjaro.
+**`aptpac`** is a program which helps with the transition from Debian and Debian based distros like Ubuntu to Arch Linux and Arch based distros like Manjaro.
 
 It simplifies using pacman as it works like the easier to use `apt` package manager found in Debian and derivatives.
 
 The program comes in 2 variants, a bash shell version, and a C code variant.
-It is recommended to use the C code variant since C it is more friendly and feature rich, but the bash version sometimes gets new features before as its simpler and easier to write.
+It is recommended to use the C code variant since it is more friendly and feature rich, but the bash version sometimes gets new features before as its simpler and easier to write.
 
 ## Note
 This program has nothing to do with the other projects named `aptpac` like [this one](https://github.com/FascodeNet/aptpac). please don't ask for support for other `aptpac`'s in this repository or ask for support for this `aptpac` in the other `aptpac`'s repositories.
@@ -73,7 +73,7 @@ git clone https://github.com/Itai-Nelken/aptpac
 cd ./aptpac/C-edition
 mkdir build
 cd build 
-cmake -DCMAKE_BUILD_TYPE=Release -DCALLCOMMAND="aptpac" ..
+cmake -DCMAKE_BUILD_TYPE=Release ..
 make
 # Optional however crucial
 sudo make install # This moves aptpac to /usr/local/bin so it can be run easily

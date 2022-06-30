@@ -55,4 +55,7 @@
 - C-edition: improve configuration loading/saving, and configuration functions.
 ### 16/8/2021
 - Release v3.0 (and 3.0-bash)!
+### 30/06/2022
+- Update README.md
+
 <hr>
