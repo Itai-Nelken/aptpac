@@ -29,8 +29,7 @@ AVAILABLE OPTIONS:
         find - (pacman -F) in debian: 'apt-file search'.
         update - equivalent of 'apt update' in debian.
         upgrade - equivalent of 'apt upgrade' in debian.
-        full-upgrade - full system upgrade.
-        full-upgrade - same as 'upgrade'.
+        full-upgrade - update + upgrade.
         autoclean - clean up all local caches.
         clean - same as 'autoclean'.
         autoremove - remove packages that are no longer needed.
@@ -49,10 +48,10 @@ options are not case sensitive.
 ### Bash edition
 `--learning-mode=<on|off>` - accepts `on` or `off` as values. the configuration file is in `~/.aptpac/config`.
 ###  using a environment variable
-If the environment variable `APTPAC_LEARN` has the value of `1`, learning mode will be enabled. there are 3 ways to set it:
-1) If you want to test it only for one run, run aptpac like this: `APTPAC_LEARN=1 aptpac <option>`.
-2) If you want to have learning mode on until you end your shell session (close the terminal window), run `export APTPAC_LEARN=1`.
-3) To have learning mode permanently on, add `export APTPAC_LEARN=1` to your bashrc or equivalent. then restart your terminal or source the bashrc.
+If the environment variable `APTPAC_LEARN` has the value of `1`, learning mode will be enabled. there are 3 ways to set it:<br>
+1) If you want to test it only for one run, run aptpac like this: `APTPAC_LEARN=1 aptpac <option>`.<br>
+2) If you want to have learning mode on until you end your shell session (close the terminal window), run `export APTPAC_LEARN=1`.<br>
+3) To have learning mode permanently on, add `export APTPAC_LEARN=1` to your bashrc or equivalent. then restart your terminal or source the bashrc.<br>
 to turn it off, delete that line or change the value of the variable.
 
 ## Installation
@@ -118,9 +117,9 @@ source .bashrc
 
 <a href="https://github.com/CleanMachine1" target="_blank">CleanMachine1</a> - aptpac is a great piece of software, making the move to arch easier (the better Linux in my opinion).
 
-## Daily builds
+## Development builds
 
-Daily builds for x64 and arm64 <!--, and armhf-->are now available, these can be found in the actions tab on the aptpac repo, once you have clicked on the actions tab, click on 'Build-x64', or 'Build-arm64'<!--, or 'Build-armhf'--> then
+Development builds (builds from with the latest changes) for x64 and arm64 <!--, and armhf-->are available, these can be found in the actions tab on the aptpac repo, once you have clicked on the actions tab, click on 'Build-x64', or 'Build-arm64'<!--, or 'Build-armhf'--> then
 click on the latest build with a green ✔️, scroll down to the 'artifacts' section, and click on the zip there.
 keep in mind you need a github account to download them.
 

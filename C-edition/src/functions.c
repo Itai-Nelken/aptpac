@@ -44,8 +44,7 @@ void help(char *argv0) {
 	println("	find - (pacman -F) in debian: 'apt-file search'.");
 	println("	update - equivalent of 'apt update' in debian.");
 	println("	upgrade - equivalent of 'apt upgrade' in debian.");
-	println("	full-upgrade - full system upgrade.");
-	println("	full-upgrade - same as 'upgrade'.");
+	println("	full-upgrade - update + upgrade.");
 	println("	autoclean - clean up all local caches.");
 	println("	clean - same as 'autoclean'.");
 	println("	autoremove - remove packages that are no longer needed.");

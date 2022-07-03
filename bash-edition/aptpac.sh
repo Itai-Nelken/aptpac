@@ -42,7 +42,7 @@ function help() {
 	echo "	find - (pacman -F) in debian: 'apt-file search'."
 	echo "	update - equivalent of 'apt update' in debian."
 	echo "	upgrade - equivalent of 'apt upgrade' in debian."
-	echo "	full-upgrade - full system upgrade."
+	echo "	full-upgrade - update + upgrade.."
 	echo "	autoclean - clean up pacman caches."
 	echo "	clean - same as 'autoclean'."
 	echo "	autoremove - remove packages that are no longer needed."
