@@ -119,7 +119,7 @@ source .bashrc
 
 ## Development builds
 
-Development builds (builds from with the latest changes) for x64 and arm64 <!--, and armhf-->are available, these can be found in the actions tab on the aptpac repo, once you have clicked on the actions tab, click on 'Build-x64', or 'Build-arm64'<!--, or 'Build-armhf'--> then
+Development builds (builds with the latest changes) for x64 and arm64 <!--, and armhf-->are available, these can be found in the actions tab on the aptpac repo, once you have clicked on the actions tab, click on 'Build-x64', or 'Build-arm64'<!--, or 'Build-armhf'--> then
 click on the latest build with a green ✔️, scroll down to the 'artifacts' section, and click on the zip there.
 keep in mind you need a github account to download them.
 
