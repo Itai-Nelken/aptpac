@@ -124,7 +124,7 @@ void config_load(struct config *config) {
 #ifdef DEBUG
 	debug("configuration file", conf_file);
 #endif
-	file=fopen(conf_file, "r");
+	file=fopen(conf_file, "a+");
 	if(file==NULL) {
 		fprintf(stderr, "config_load(): fopen(): %s: %s\n", strerror(errno), conf_file);
 		exit(-1);
