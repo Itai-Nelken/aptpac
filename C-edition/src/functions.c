@@ -124,10 +124,14 @@ void config_load(struct config *config) {
 #ifdef DEBUG
 	debug("configuration file", conf_file);
 #endif
-	file=fopen(conf_file, "a+");
-	if(file==NULL) {
-		fprintf(stderr, "config_load(): fopen(): %s: %s\n", strerror(errno), conf_file);
-		exit(-1);
+	file=fopen(conf_file, "r");
+	if(file==NULL){
+		fprintf(stderr, "Configuration file does not exist, trying to create it.\n");
+		file=fopen(conf_file, "a+");
+		if(file==NULL){
+			fprintf(stderr, "config_load(): Failed to create config file ay %s: %s\n", conf_file, strerror(errno));
+			exit(-1);
+		}
 	}
 	fread(config, sizeof(struct config), 1, file);
 	if(config->version!=CONF_FILE_VERSION) {
