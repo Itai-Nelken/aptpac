@@ -57,5 +57,7 @@
 - Release v3.0 (and 3.0-bash)!
 ### 30/06/2022
 - Update README.md
+### 18/08/2022
+- C-edition: config_init(): initialize all fields to 0.
 
 <hr>
