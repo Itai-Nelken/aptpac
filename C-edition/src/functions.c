@@ -88,6 +88,7 @@ void get_cmdargs(int argc, char **argv, int startarg, char *out) {
 //initialize a struct config.
 struct config *config_init() {
 	struct config *conf=malloc(sizeof(struct config)*1);
+	memset(conf, 0, sizeof(struct config));
 	conf->version=CONF_FILE_VERSION;
 	return conf;
 }
