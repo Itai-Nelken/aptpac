@@ -129,7 +129,7 @@ void config_load(struct config *config) {
 		fprintf(stderr, "Configuration file does not exist, trying to create it.\n");
 		file=fopen(conf_file, "a+");
 		if(file==NULL){
-			fprintf(stderr, "config_load(): Failed to create config file ay %s: %s\n", conf_file, strerror(errno));
+			fprintf(stderr, "config_load(): Failed to create config file at %s. %s\n", conf_file, strerror(errno));
 			exit(-1);
 		}
 	}
