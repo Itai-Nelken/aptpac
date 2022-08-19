@@ -56,7 +56,8 @@ void help(char *argv0) {
 	println("\e[1mCONFIGURATION:\e[0m");
 	println("	--config <set|unset> <configuration> - set/unset configuration options.");
 	println("\e[1mAVAILABLE CONFIGURATION OPTIONS:\e[0m");
-	println("	learn");
+	println("	learn (default: off)");
+	println("	Configuration is default if there is not a config file yet.");
 	println("\e[1moptions are not case sensitive.\e[0m");
 }
  
@@ -125,13 +126,11 @@ void config_load(struct config *config) {
 	debug("configuration file", conf_file);
 #endif
 	file=fopen(conf_file, "r");
-	if(file==NULL){
-		fprintf(stderr, "Configuration file does not exist, trying to create it.\n");
-		file=fopen(conf_file, "a+");
-		if(file==NULL){
-			fprintf(stderr, "config_load(): Failed to create config file at %s. %s\n", conf_file, strerror(errno));
-			exit(-1);
-		}
+	if(file==NULL) {
+		// There is not a config file, learning mode is default off.
+		config->version = CONF_FILE_VERSION;
+		config->learn = 0;
+		return;
 	}
 	fread(config, sizeof(struct config), 1, file);
 	if(config->version!=CONF_FILE_VERSION) {
