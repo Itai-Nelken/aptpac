@@ -57,7 +57,7 @@ void help(char *argv0) {
 	println("	--config <set|unset> <configuration> - set/unset configuration options.");
 	println("\e[1mAVAILABLE CONFIGURATION OPTIONS:\e[0m");
 	println("	learn (default: off)");
-	println("	Configuration is default if there is not a config file yet.");
+	println("	Configuration is set to the default values if there is no configuration file.");
 	println("\e[1moptions are not case sensitive.\e[0m");
 }
  
