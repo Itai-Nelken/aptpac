@@ -31,7 +31,7 @@ jobs:
       - name: gen-pkgname
         run: |
           cd C-edition/build
-          echo "PKG_NAME=$(pwd)/$(ls | grep aptpac*Linux*.sh)" >> $GITHUB_ENV
+          echo "PKG_NAME=$(ls | grep aptpac*Linux*.sh)" >> $GITHUB_ENV
       - name: gen-date
         run: echo "DATE=$(date +"%F")" >> $GITHUB_ENV
       - name: upload
