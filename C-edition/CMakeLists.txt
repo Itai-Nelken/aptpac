@@ -30,15 +30,15 @@ add_library(functions OBJECT
 add_executable(${BIN} src/main.c)
 target_link_libraries(${BIN} PRIVATE functions)
 
-execute_process(
-    COMMAND bash "-c" "echo $(od -An -t x1 -j 4 -N 1 \"$(readlink -f /sbin/init)\") | tr -d '\n'" 
-    OUTPUT_VARIABLE ARCH
-)
-if(${ARCH} STREQUAL 02)
-        set(TARGET_ARCH "aarch64")
-elseif(${ARCH} STREQUAL 01)
-        set(TARGET_ARCH "armv7l")
-endif()
+#execute_process(
+#    COMMAND bash "-c" "echo $(od -An -t x1 -j 4 -N 1 \"$(readlink -f /sbin/init)\") | tr -d '\n'" 
+#    OUTPUT_VARIABLE ARCH
+#)
+#if(${ARCH} STREQUAL 02)
+#        set(TARGET_ARCH "aarch64")
+#elseif(${ARCH} STREQUAL 01)
+#        set(TARGET_ARCH "armv7l")
+#endif()
 
 if(NOT CPACK_GENERATOR)
         set(CPACK_GENERATOR "STGZ")
@@ -50,7 +50,8 @@ set(CPACK_VERSION_MAJOR ${CMAKE_PROJECT_VERSION_MAJOR})
 set(CPACK_VERSION_MINOR ${CMAKE_PROJECT_VERSION_MINOR})
 set(CPACK_VERSION_PATCH ${CMAKE_PROJECT_VERSION_PATCH})
 set(CPACK_PACKAGE_VERSION ${CMAKE_PROJECT_VERSION})
-set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}_Linux-${TARGET_ARCH}")
+#set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}_Linux-${TARGET_ARCH}")
+set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}_Linux-${CMAKE_HOST_SYSTEM_PROCESSOR}")
 include(CPack)
 
 #install target
