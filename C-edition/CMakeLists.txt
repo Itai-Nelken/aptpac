@@ -60,7 +60,8 @@ install(
 	TARGETS aptpac
 	DESTINATION /usr/local/bin
 )
-add_custom_command(TARGET aptpac POST_BUILD COMMAND touch $ENV{HOME}/.config/aptpac.config)
+# no need to create the configuration file. it will be created automatically when the user changes an option.
+#add_custom_command(TARGET aptpac POST_BUILD COMMAND touch $ENV{HOME}/.config/aptpac.config)
 
 # uninstall target
 if(NOT TARGET uninstall)
