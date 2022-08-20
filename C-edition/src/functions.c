@@ -127,7 +127,7 @@ void config_load(struct config *config) {
 #endif
 	file=fopen(conf_file, "r");
 	if(file==NULL) {
-		// There is not a config file, learning mode is default off.
+		// There is no config file, set the configuration values to the defaults.
 		config->version = CONF_FILE_VERSION;
 		config->learn = 0;
 		return;
