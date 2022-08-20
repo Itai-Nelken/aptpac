@@ -56,7 +56,8 @@ void help(char *argv0) {
 	println("\e[1mCONFIGURATION:\e[0m");
 	println("	--config <set|unset> <configuration> - set/unset configuration options.");
 	println("\e[1mAVAILABLE CONFIGURATION OPTIONS:\e[0m");
-	println("	learn");
+	println("	learn (default: off)");
+	println("	Configuration is set to the default values if there is no configuration file.");
 	println("\e[1moptions are not case sensitive.\e[0m");
 }
  
@@ -127,8 +128,10 @@ void config_load(struct config *config) {
 #endif
 	file=fopen(conf_file, "r");
 	if(file==NULL) {
-		fprintf(stderr, "config_load(): fopen(): %s: %s\n", strerror(errno), conf_file);
-		exit(-1);
+		// There is no config file, set the configuration values to the defaults.
+		config->version = CONF_FILE_VERSION;
+		config->learn = 0;
+		return;
 	}
 	fread(config, sizeof(struct config), 1, file);
 	if(config->version!=CONF_FILE_VERSION) {
