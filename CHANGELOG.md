@@ -13,8 +13,8 @@
 - add 'purge' option to bash and C edition.
 - fix typo in the help function in the C and bash editions.
 - add 'show' and 'show-all' commands (C and bash editions).
-- CleanMachine1: change the `clean`/`autoclean` from `pacman -Sc` to `pacman -Scc`.
-- CleanMachine1: add `full-upgrade` (same as `upgrade`).
+- @CleanMachine1: change the `clean`/`autoclean` from `pacman -Sc` to `pacman -Scc`.
+- @CleanMachine1: add `full-upgrade` (same as `upgrade`).
 ### 06-07/5/2021
 - add workflows for github-actions for daily builds for each commit and pr and for checking if compilation is succesfull (for C-edition).
 - error and exit if no packages are provided in `show` and `show-all` commands (C-edition).
@@ -49,7 +49,7 @@
 ### 10/7/2021
 - C-edition: add packaging with CPack.
 ### 11/7/2021
-- bash edition: Jai-JAP - make options non-case sensitive (Thank you!).
+- bash edition: @Jai-JAP - make options non-case sensitive (Thank you!).
 ### 25/7/2021
 - bash edition: make --config option work the same as in the C-edition.
 - C-edition: improve configuration loading/saving, and configuration functions.
@@ -59,5 +59,9 @@
 - Update README.md
 ### 18/08/2022
 - C-edition: config_init(): initialize all fields to 0.
+### 20/08/2022
+- C-edition: @saeziae: assume default configuration if configuration file doesn't exist.
+- C-edition: CMakeLists.txt: use CMAKE_HOST_SYSTEM_PROCESSOR (set to uname -m) for the architecture to use in the cpack packages.
+- C-edition: CMakeLists.txt: don't create configuration file.
 
 <hr>
