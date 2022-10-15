@@ -178,7 +178,11 @@ int main(int argc, char **argv) {
 			break;
 		} else if(!strcasecmp(argv[1], "autoremove")) {
 			learn("sudo pacman -Qdtq | sudo pacman -Rs -", LEARN);
-			system("sudo pacman -Qdtq | sudo pacman -Rs -");
+			if(system("test \"x$(pacman -Qdtq)\" = x")){
+				system("sudo pacman -Qdtq | sudo pacman -Rs -");
+			}else{
+				printf("Nothing to be autoremoved.\n");
+			}
 			break;
 		} else if(!strcasecmp(argv[1], "list-installed")) {
 			learn(command, LEARN);
