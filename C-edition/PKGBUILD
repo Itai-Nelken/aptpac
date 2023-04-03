@@ -23,6 +23,7 @@ package() {
 	mkdir -p ${pkgdir}/usr/{bin,share}
 	mkdir -p "${pkgdir}/usr/share/doc/aptpac"
 	install "$srcdir/build/aptpac" "${pkgdir}/usr/bin/aptpac"
+	install "$srcdir/aptpac/aptpac.bash" "${pkgdir}/usr/share/bash-completion/completions/aptpac"
 	install "$srcdir/aptpac/README.md" "${pkgdir}/usr/share/doc/aptpac/README.md"
 	install "$srcdir/aptpac/CHANGELOG.md" "${pkgdir}/usr/share/doc/aptpac/CHANGELOG.md"
 	install "$srcdir/aptpac/LICENSE" "${pkgdir}/usr/share/doc/aptpac/LICENSE"
