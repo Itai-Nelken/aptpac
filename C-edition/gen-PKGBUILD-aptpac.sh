@@ -36,7 +36,7 @@ echo "license=('MIT')" >> $filename
 echo "depends=('glibc')" >> $filename
 echo "makedepends=('gcc' 'make' 'glibc' 'cmake')" >> $filename
 echo -e 'build() {\n\tcd aptpac-${pkgver}-src\n\tmkdir build\n\tcd build\n\tcmake -DCMAKE_BUILD_TYPE=Release ..\n\tmake\n}' >> $filename
-echo -e 'package() {\n\tmkdir -p ${pkgdir}/usr/bin\n\tcd aptpac-${pkgver}-src\n\tinstall -m 755 build/aptpac "${pkgdir}/usr/bin/aptpac"\n}' >> $filename
+echo -e 'package() {\n\tmkdir -p ${pkgdir}/usr/bin\n\tmkdir -p ${pkgdir}/usr/share/bash-completion/completions\n\tcd aptpac-${pkgver}-src\n\tinstall -m 755 build/aptpac "${pkgdir}/usr/bin/aptpac"\n\tinstall aptpac/aptpac.bash "${pkgdir}/usr/share/bash-completion/completions/aptpac"}' >> $filename
 
 echo "done"
 exit 0
