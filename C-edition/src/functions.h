@@ -28,7 +28,7 @@ void config_free(struct config *conf);
 // returns 1 on invalid configuration option and 0 on success
 int config_save(struct config *config);
 
-void config_load();
+void config_load(struct config *config);
 
 int run(char **command);
 
