@@ -63,5 +63,8 @@
 - C-edition: @saeziae: assume default configuration if configuration file doesn't exist.
 - C-edition: CMakeLists.txt: use CMAKE_HOST_SYSTEM_PROCESSOR (set to uname -m) for the architecture to use in the cpack packages.
 - C-edition: CMakeLists.txt: don't create configuration file.
+### 05/03/2026
+- C-edition: @bahmoudd: fix "conflicting types" compilation warning.
+- Update github workflows to use checkout/v3 instead of the deprecated v2.
 
 <hr>
