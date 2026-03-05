@@ -42,7 +42,7 @@ jobs:
           ===================================\n" > README.txt
   
       - name: upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: aptpac-armhf_${{ env.DATE }}
           path: C-edition/build/aptpac-armhf_${{ env.DATE }}/

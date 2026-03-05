@@ -36,7 +36,7 @@ jobs:
       - name: gen-date
         run: echo "DATE=$(date +"%F")" >> $GITHUB_ENV
       - name: upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: aptpac-arm64_${{ env.DATE }}
           path: C-edition/build/aptpac-arm64_${{ env.DATE }}/
