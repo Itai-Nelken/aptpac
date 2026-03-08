@@ -10,14 +10,12 @@ on:
     
 jobs:
   build-arm64:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     name: Build-arm64 
     steps:
-      - uses: actions/checkout@v3
-      - uses: darsvador/run-on-arch-action@v1.0.10
-        with:
-          architecture: aarch64
-          distribution: ubuntu20.04
+        - name: checkout
+          uses: actions/checkout@v4
+        - name: build
           run: |
             DEBIAN_FRONTEND=noninteractive apt update
             DEBIAN_FRONTEND=noninteractive apt install build-essential cmake gcc make -y
@@ -32,11 +30,12 @@ jobs:
             cd aptpac-arm64_$DATE/
             echo -e "\n arm64 aptpac daily build for $DATE
             ===================================\n" > README.txt
-            
-      - name: gen-date
-        run: echo "DATE=$(date +"%F")" >> $GITHUB_ENV
-      - name: upload
-        uses: actions/upload-artifact@v4
-        with:
-          name: aptpac-arm64_${{ env.DATE }}
-          path: C-edition/build/aptpac-arm64_${{ env.DATE }}/
+
+        - name: gen-date
+          run: echo "DATE=$(date +"%F")" >> $GITHUB_ENV
+
+        - name: upload
+          uses: actions/upload-artifact@v4
+          with:
+                name: aptpac-arm64_${{ env.DATE }}
+                path: C-edition/build/aptpac-arm64_${{ env.DATE }}/
