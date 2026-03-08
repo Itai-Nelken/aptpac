@@ -10,14 +10,12 @@ on:
     
 jobs:
   build-arm64:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04-arm
     name: Build-arm64 
     steps:
-      - uses: actions/checkout@v3
-      - uses: darsvador/run-on-arch-action@v1.0.10
-        with:
-          architecture: aarch64
-          distribution: ubuntu20.04
+        - name: checkout
+          uses: actions/checkout@v4
+        - name: package
           run: |
             DEBIAN_FRONTEND=noninteractive apt update
             DEBIAN_FRONTEND=noninteractive apt install build-essential cmake gcc make -y
@@ -28,14 +26,14 @@ jobs:
             make -j$(nproc)
             make package
 
-      - name: gen-pkgname
-        run: |
-          cd C-edition/build
-          echo "PKG_NAME=$(ls | grep aptpac*Linux*.sh)" >> $GITHUB_ENV
-      - name: gen-date
-        run: echo "DATE=$(date +"%F")" >> $GITHUB_ENV
-      - name: upload
-        uses: actions/upload-artifact@v4
-        with:
-          name: aptpac_package_arm64_${{ env.DATE }}
-          path: C-edition/build/${{ env.PKG_NAME }}/
+        - name: gen-pkgname
+          run: |
+              cd C-edition/build
+              echo "PKG_NAME=$(ls | grep aptpac*Linux*.sh)" >> $GITHUB_ENV
+        - name: gen-date
+          run: echo "DATE=$(date +"%F")" >> $GITHUB_E
+        - name: upload
+          uses: actions/upload-artifact@v4
+          with:
+              name: aptpac_package_arm64_${{ env.DATE }}
+              path: C-edition/build/${{ env.PKG_NAME }}/
