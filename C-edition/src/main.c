@@ -25,12 +25,20 @@
 #include <stdio.h>
 #include <stdlib.h> // setenv(), getenv()
 #include <string.h>
+#include <unistd.h>
 #include "functions.h" // VER defined in "functions.h"
 
 int main(int argc, char **argv) {
 	char command[101], cmdflags[4097]="";
 	int LEARN=0;
 	struct config *conf=config_init();
+    const char* package_manager;
+
+    if (access("/usr/bin/paru", X_OK) == 0)
+        package_manager = "paru";
+    else
+        package_manager = "sudo pacman";
+
 	
 	// set the 'APTPAC_LEARN' env var to "0" (yes, a string) to avoid a segfault in getenv if it isn't set
 	// set its value to 0, and don't overwrite it if it already exists.
@@ -94,7 +102,7 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m '%s' option passed, but no app provided!\e[0m\n", argv[1]);
 				break;
 			}
-			strcpy(command, "sudo pacman -S ");
+            snprintf(command, sizeof(command), "%s -S ", package_manager);
 			strcat(command, cmdflags);
 			//if learning mode is on, print the command being run using the 'learn' function
 			learn(command, LEARN);
@@ -107,7 +115,7 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'install-local' option passed, but no package(s) provided!\e[0m\n");
 				break;
 			}
-			strcpy(command, "sudo pacman -U ");
+            snprintf(command, sizeof(command), "%s -U ", package_manager);
 			strcat(command, cmdflags);
 			learn(command, LEARN);
 			system(command);
@@ -119,7 +127,7 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'install' option passed, but no app provided!\e[0m\n");
 				break;
 			}
-			strcpy(command, "sudo pacman -Rs ");
+            snprintf(command, sizeof(command), "%s -Rs ", package_manager);
 			strcat(command, cmdflags);
 			learn(command, LEARN);
 			system(command);
@@ -131,7 +139,7 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'purge' option passed, but no app provided!\e[0m\n");
 				break;
 			}
-			strcpy(command, "sudo pacman -Rn ");
+            snprintf(command, sizeof(command), "%s -Rn ", package_manager);
 			strcat(command, cmdflags);
 			learn(command, LEARN);
 			system(command);
@@ -143,10 +151,10 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'search' option passed, but no search string provided!\e[0m\n");
 				break;
 			}
-		strcpy(command, "pacman -Ss ");
-		strcat(command, cmdflags);
-		learn(command, LEARN);
-		system(command);
+            snprintf(command, sizeof(command), "%s -Ss ", package_manager);
+            strcat(command, cmdflags);
+            learn(command, LEARN);
+            system(command);
 		break;
 		} else if(!strcasecmp(argv[1], "find")) {
 			if(argv[2]) {
@@ -155,38 +163,70 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'find' option passed, but no search string provided!\e[0m\n");
 				break;
 			}
-			strcpy(command, "pacman -F ");
+            snprintf(command, sizeof(command), "%s -F ", package_manager);
 			strcat(command, cmdflags);
 			learn(command, LEARN);
 			system(command);
 			break;
 		} else if(!strcasecmp(argv[1], "update")) {
-			learn("sudo pacman -Sy", LEARN);
-			system("sudo pacman -Sy");
-			break;
+            if (strcmp(package_manager, "paru") == 0) {
+                learn("paru -Sy", LEARN);
+                system("paru -Sy");
+            } else {
+                learn("sudo pacman -Sy", LEARN);
+                system("sudo pacman -Sy");
+            }
+            break;
 		} else if(!strcasecmp(argv[1], "upgrade")) {
-			learn("sudo pacman -Su", LEARN);
-			system("sudo pacman -Su");
+            if (strcmp(package_manager, "paru") == 0) {
+                learn("paru -Su", LEARN);
+                system("paru -Su");
+            } else {
+                learn("sudo pacman -Su", LEARN);
+                system("sudo pacman -Su ");
+            }	
 			break;
 		} else if(!strcasecmp(argv[1], "full-upgrade")) {
-			learn("sudo pacman -Syu", LEARN);
-			system("sudo pacman -Syu");
+			if (strcmp(package_manager, "paru") == 0) {
+                learn("paru -Syu", LEARN);
+                system("paru");
+            } else {
+                learn("sudo pacman -Syu", LEARN);
+                system("sudo pacman -Syu");
+            }
 			break;
 		} else if(!strcasecmp(argv[1], "clean") || !strcasecmp(argv[1], "autoclean")) {
-			learn("sudo pacman -Scc", LEARN);
-			system("sudo pacman -Scc");
-			break;
+			if (strcmp(package_manager, "paru") == 0) {
+                learn("paru -Scc", LEARN);
+                system("paru -Scc");
+            } else {
+                learn("sudo pacman -Scc", LEARN);
+                system("sudo pacman -Scc");
+            }
+            break;
 		} else if(!strcasecmp(argv[1], "autoremove")) {
-			learn("sudo pacman -Qdtq | sudo pacman -Rs -", LEARN);
-			if(system("test -z \"$(pacman -Qdtq)\"") == 0) {
-				puts("Nothing to autoremove.");
-			} else {
-				system("pacman -Qdtq | sudo pacman -Rs -");
-			}
+            if (strcmp(package_manager, "paru") == 0) {
+                learn("paru -Qdtq | sudo pacman -Rs -", LEARN);
+                if(system("test -z \"$(paru -Qdtq)\"") == 0) {
+                    puts("Nothing to autoremove.");
+                } else {
+                    system("paru -Qdtq | sudo pacman -Rs -");
+                }
+            } else {
+                learn("pacman -Qdtq | sudo pacman -Rs -", LEARN);
+                if(system("test -z \"$(pacman -Qdtq)\"") == 0) {
+                    puts("Nothing to autoremove.");
+                } else {
+                    system("pacman -Qdtq | sudo pacman -Rs -");
+                }
+            }
 			break;
 		} else if(!strcasecmp(argv[1], "list-installed")) {
 			learn(command, LEARN);
-			system("pacman -Qqe");
+            if (strcmp(package_manager, "paru") == 0) 
+                system("paru -Qqe");
+            else
+                system("pacman -Qqe");
 			break;
         } else if(!strcasecmp(argv[1], "show")) {
 			if(argv[2]) {
@@ -194,8 +234,9 @@ int main(int argc, char **argv) {
 #ifdef DEBUG
 				debug("comdflags", cmdflags);
 #endif
-				strcpy(command, "pacman -Qi ");
-				strcat(command, cmdflags);
+			
+                snprintf(command, sizeof(command), "%s -Qi ", package_manager);
+                strcat(command, cmdflags);
 			} else {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'show' option passed, but no package provided \e[0m\n");
 				break;
@@ -210,7 +251,7 @@ int main(int argc, char **argv) {
 		} else if(!strcasecmp(argv[1], "show-all")) {
 			if(argv[2]) {
 				get_cmdargs(argc, argv, 2, cmdflags);
-				strcpy(command, "pacman -Si ");
+                snprintf(command, sizeof(command), "%s -Si ", package_manager);
 				strcat(command, cmdflags);
 			} else {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'show-all' option passed, but no package provided \e[0m\n");
